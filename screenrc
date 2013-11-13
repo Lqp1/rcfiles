@@ -21,8 +21,5 @@ utf8 on on
 # Use a huge history
 defscrollback 5000
 
-# Use 256 colors
-term screen-256colori
-
 # Fix with vim/nano
 altscreen on
