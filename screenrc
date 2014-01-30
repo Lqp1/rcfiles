@@ -16,10 +16,12 @@ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 
 # Force use of UTF8
 defutf8 on
-utf8 on on
 
 # Use a huge history
 defscrollback 5000
 
 # Fix with vim/nano
 altscreen on
+
+# Fix screen behavior with vim
+term xterm

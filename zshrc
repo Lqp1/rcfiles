@@ -6,7 +6,7 @@ autoload -Uz compinit
 
 # Nice prompt :)
 promptinit
-PROMPT="%{$fg_bold[blue]%}%T%{$reset_color%} %B[%b %U%{$fg_bold[red]%}%n%{$reset_color%}%B@%b%{$fg_bold[green]%}%M%{$reset_color%}%u %B%2~ ]%b %# "
+PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %# "
 
 # History
 setopt histignorealldups sharehistory
@@ -18,6 +18,7 @@ HISTFILE=~/.zsh_history
 
 # Use modern completion system
 compinit
+eval "$(dircolors -b)"
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'

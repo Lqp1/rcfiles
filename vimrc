@@ -50,6 +50,5 @@
 :highlight Space ctermbg=darkblue guibg=darkblue
 :au BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
 :au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
-:set list listchars=tab:»·,trail:·
 :set ts=8 sw=3 sts=8 expandtab cino=>5n-3f0^-2{2(0W1st0
 
