@@ -43,3 +43,6 @@ alias ll='ls -l'
 alias lla='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Custom envvars
+export EDITOR="vim"
