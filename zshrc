@@ -7,6 +7,7 @@ autoload -Uz compinit
 # Nice prompt :)
 promptinit
 PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %# "
+RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
 
 # History
 setopt histignorealldups sharehistory
@@ -33,6 +34,8 @@ zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh_cache
 
 # Add some aliases
 alias ls='ls --color=auto -F'
@@ -46,3 +49,24 @@ alias l='ls -C'
 
 # Custom envvars
 export EDITOR="vim"
+
+# Dirstackfile
+DIRSTACKFILE="$HOME/.cache/zsh/dirs"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+   dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+   [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+chpwd() {
+   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+}
+DIRSTACKSIZE=20
+setopt autopushd pushdsilent pushdtohome
+setopt pushdignoredups
+setopt pushdminus
+
+# Rebind some keys
+bindkey "\e[H" beginning-of-line # Début
+bindkey "\e[F" end-of-line # Fin
+bindkey "\e[3~" delete-char
+bindkey "^R" history-incremental-search-backward # Rechercher
+
