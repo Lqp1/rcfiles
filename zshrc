@@ -65,7 +65,7 @@ setopt pushdignoredups
 setopt pushdminus
 
 # Rebind some keys
-bindkey -v
+bindkey -e
 bindkey "\e[H" beginning-of-line # Début
 bindkey "\e[F" end-of-line # Fin
 bindkey "\e[3~" delete-char
