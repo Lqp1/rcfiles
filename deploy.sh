@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z $@  ]
+if [ -z "$@"  ]
 then
    echo "Please give at least one username"
    exit 0
