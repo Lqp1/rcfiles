@@ -8,7 +8,14 @@ fi
 
 for i in $@
 do
-   if [ ! -d "/home/$i/" ]
+   if [ "$i" == "root" ]
+   then
+      echo "Furnishing '$i'"
+      cp -vi "screenrc" "/root/.screenrc"
+      cp -vi "vimrc" "/root/.vimrc"
+      cp -vi "zshrc" "/root/.zshrc"
+      cp -vi "bashrc" "/root/.bashrc"
+   elif [ ! -d "/home/$i/" ]
    then
       echo "Directory home must be configured. Skipping."
    else
