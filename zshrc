@@ -8,8 +8,13 @@ autoload -Uz compinit
 # Nice prompt :)
 promptinit
 setopt promptsubst
-PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %# "
+if [ "`id -u`" -eq 0 ]; then
+   PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %{$fg_bold[red]%}%#%{$reset_color%} "
+else
+   PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %# "
+fi
 RPROMPT="%{$fg_no_bold[red]%}%(?,%b,[%?])%{$reset_color%}"
+
 
 # History
 setopt histignorealldups sharehistory
