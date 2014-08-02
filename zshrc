@@ -4,10 +4,12 @@ autoload -U colors && colors
 autoload -Uz promptinit
 autoload -Uz compinit
 
+
 # Nice prompt :)
 promptinit
+setopt promptsubst
 PROMPT="%{$fg[blue]%}%T%{$reset_color%} [ %{$fg[red]%}%n%{$reset_color%}@%{$fg[green]%}%M%{$reset_color%}%u %2~ ] %# "
-RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
+RPROMPT="%{$fg_no_bold[red]%}%(?,%b,[%?])%{$reset_color%}"
 
 # History
 setopt histignorealldups sharehistory
@@ -37,6 +39,17 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 
+# Colors
+if [ -x /usr/bin/dircolors ] ; then
+   if [ -r ~/.dir_colors ] ; then
+      eval "`dircolors ~/.dir_colors`"
+   elif [ -r /etc/dir_colors ] ; then
+      eval "`dircolors /etc/dir_colors`"
+   else
+      eval "`dircolors`"
+   fi
+fi
+
 # Add some aliases
 alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
@@ -64,10 +77,6 @@ setopt autopushd pushdsilent pushdtohome
 setopt pushdignoredups
 setopt pushdminus
 
-# Rebind some keys
+# Emacs keybindings
 bindkey -e
-bindkey "\e[H" beginning-of-line # Début
-bindkey "\e[F" end-of-line # Fin
-bindkey "\e[3~" delete-char
-bindkey "^R" history-incremental-search-backward # Rechercher
 
