@@ -15,6 +15,7 @@ do
       cp -vi "vimrc" "/root/.vimrc"
       cp -vi "zshrc" "/root/.zshrc"
       cp -vi "bashrc" "/root/.bashrc"
+      cp -vi "bashrc" "/root/.dircolors"
    elif [ ! -d "/home/$i/" ]
    then
       echo "Directory home must be configured. Skipping."
@@ -24,10 +25,12 @@ do
       cp -vi "vimrc" "/home/$i/.vimrc"
       cp -vi "zshrc" "/home/$i/.zshrc"
       cp -vi "bashrc" "/home/$i/.bashrc"
+      cp -vi "dircolors" "/home/$i/.dircolors"
       chown "$i:users" "/home/$i/.screenrc"
       chown "$i:users" "/home/$i/.vimrc"
       chown "$i:users" "/home/$i/.zshrc"
       chown "$i:users" "/home/$i/.bashrc"
+      chown "$i:users" "/home/$i/.dircolors"
    fi
 done
 echo "Done."
