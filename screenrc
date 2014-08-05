@@ -25,3 +25,8 @@ altscreen on
 
 # Fix screen behavior with vim
 term xterm
+
+# Ensure vbell is off
+vbell_msg "bell: window ~%"
+vbell off
+
