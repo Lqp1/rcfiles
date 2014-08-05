@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -z "$@"  ]
+if [ -z "$@" ]
 then
    echo "Please give at least one username"
    exit 0
@@ -11,26 +11,29 @@ do
    if [ "$i" == "root" ]
    then
       echo "Furnishing '$i'"
-      cp -vi "screenrc" "/root/.screenrc"
-      cp -vi "vimrc" "/root/.vimrc"
-      cp -vi "zshrc" "/root/.zshrc"
-      cp -vi "bashrc" "/root/.bashrc"
-      cp -vi "bashrc" "/root/.dircolors"
+      cp -vf "screenrc" "/root/.screenrc"
+      cp -vf "vimrc" "/root/.vimrc"
+      cp -vf "zshrc" "/root/.zshrc"
+      cp -vf "bashrc" "/root/.bashrc"
+      cp -vf "bashrc" "/root/.dircolors"
+      cp -vf "zshenv" "/root/.zshenv"
    elif [ ! -d "/home/$i/" ]
    then
       echo "Directory home must be configured. Skipping."
    else
       echo "Furnishing '$i'"
-      cp -vi "screenrc" "/home/$i/.screenrc"
-      cp -vi "vimrc" "/home/$i/.vimrc"
-      cp -vi "zshrc" "/home/$i/.zshrc"
-      cp -vi "bashrc" "/home/$i/.bashrc"
-      cp -vi "dircolors" "/home/$i/.dircolors"
+      cp -vf "screenrc" "/home/$i/.screenrc"
+      cp -vf "vimrc" "/home/$i/.vimrc"
+      cp -vf "zshrc" "/home/$i/.zshrc"
+      cp -vf "bashrc" "/home/$i/.bashrc"
+      cp -vf "dircolors" "/home/$i/.dircolors"
+      cp -vf "zshenv" "/home/$i/.zshenv"
       chown "$i:users" "/home/$i/.screenrc"
       chown "$i:users" "/home/$i/.vimrc"
       chown "$i:users" "/home/$i/.zshrc"
       chown "$i:users" "/home/$i/.bashrc"
       chown "$i:users" "/home/$i/.dircolors"
+      chown "$i:users" "/home/$i/.zshenv"
    fi
 done
 echo "Done."
