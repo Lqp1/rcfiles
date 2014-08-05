@@ -18,5 +18,10 @@ alias lla='ls -lA'
 alias la='ls -A'
 alias l='ls -C'
 
+if [ -n $(command -v pygmentize) ]
+then
+   alias pcat='pygmentize -g'
+fi
+
 # Some envvars
 export EDITOR="vim"
