@@ -89,4 +89,6 @@ setopt pushdminus
 
 # Emacs keybindings
 bindkey -e
+bindkey '\e[4~' end-of-line
+bindkey '\e[1~' beginning-of-line
 

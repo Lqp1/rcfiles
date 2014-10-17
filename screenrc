@@ -30,3 +30,8 @@ term xterm
 vbell_msg "bell: window ~%"
 vbell off
 
+# Disable wait time on messages
+msgminwait 0
+
+# Use application scrollbar
+#termcapinfo xterm* ti@:te@
