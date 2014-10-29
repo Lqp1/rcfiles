@@ -8,6 +8,7 @@ set history=100
 filetype plugin on
 filetype indent on
 
+" Set cursor to last known position
 if has("autocmd")
      au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -21,6 +22,8 @@ set autoread
 
 " Indent and dev
 syntax on
+set smartindent
+set autoindent
 set shiftwidth=3
 filetype on
 set showmatch
@@ -30,8 +33,12 @@ set expandtab ts=3 sw=3 ai
 autocmd FileType make setlocal noexpandtab
 
 " Status line
+hi User1 ctermbg=124 ctermfg=white
+hi User2 ctermbg=214 ctermfg=black
 set laststatus=2
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+au InsertEnter * hi StatusLine ctermfg=70
+au InsertLeave * hi StatusLine ctermfg=189
+set statusline=%1*%m%*%r%h\ %2*%f%*\ [%{strlen(&fenc)?&fenc:'none'},%{&ff},%{strlen(&ft)?&ft:'none'}]%=%c,%l/%L
 
 " Search tips
 set wrapscan
@@ -55,3 +62,15 @@ highlight Tab ctermbg=darkgray guibg=darkgray
 highlight Space ctermbg=darkblue guibg=darkblue
 au BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
 au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
+
+" Use 256 colors
+set t_Co=256
+
+" Allow mouse
+set mouse=a
+
+" Misc
+set wildmode=longest,list,full
+set wildmenu
+set showcmd
+
