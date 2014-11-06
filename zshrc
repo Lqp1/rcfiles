@@ -64,6 +64,7 @@ alias ll='ls -l'
 alias lla='ls -lA'
 alias la='ls -A'
 alias l='ls -C'
+alias pless='less -rN'
 
 if [ -n $(command -v pygmentize) ]
 then
@@ -72,6 +73,7 @@ fi
 
 # Custom envvars
 export EDITOR="vim"
+export TERM="xterm-256color"
 
 # Dirstackfile
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"

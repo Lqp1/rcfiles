@@ -25,3 +25,4 @@ fi
 
 # Some envvars
 export EDITOR="vim"
+export TERM="xterm-256color"

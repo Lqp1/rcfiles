@@ -24,7 +24,7 @@ defscrollback 5000
 altscreen on
 
 # Fix screen behavior with vim
-term xterm
+term xterm-256color
 
 # Ensure vbell is off
 vbell_msg "bell: window ~%"
