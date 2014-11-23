@@ -50,8 +50,8 @@ do
       chown "$i:users" "/home/$i/.bashrc"
       chown "$i:users" "/home/$i/.dircolors"
       chown "$i:users" "/home/$i/.zshenv"
-      chown "$i:users" "/home/.cache/"
-      chown "$i:users" "/home/.cache/zsh/"
+      chown "$i:users" "/home/$i/.cache/"
+      chown "$i:users" "/home/$i/.cache/zsh/"
    fi
 done
 echo "Done."
