@@ -64,7 +64,6 @@ alias ll='ls -l'
 alias lla='ls -lA'
 alias la='ls -A'
 alias l='ls -C'
-alias pless='less -rN'
 
 if [ -n $(command -v pygmentize) ]
 then

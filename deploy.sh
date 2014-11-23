@@ -17,6 +17,14 @@ do
       cp -vf "bashrc" "/root/.bashrc"
       cp -vf "bashrc" "/root/.dircolors"
       cp -vf "zshenv" "/root/.zshenv"
+      if [ ! -d '/root/.cache' ]
+      then
+         mkdir '/root/.cache'
+      fi
+      if [ ! -d '/root/.cache/zsh' ]
+      then
+         mkdir '/root/.cache/zsh'
+      fi
    elif [ ! -d "/home/$i/" ]
    then
       echo "Directory home must be configured. Skipping."
@@ -28,12 +36,22 @@ do
       cp -vf "bashrc" "/home/$i/.bashrc"
       cp -vf "dircolors" "/home/$i/.dircolors"
       cp -vf "zshenv" "/home/$i/.zshenv"
+      if [ ! -d '/root/.cache' ]
+      then
+         mkdir '/root/.cache'
+      fi
+      if [ ! -d '/root/.cache/zsh' ]
+      then
+         mkdir '/root/.cache/zsh'
+      fi
       chown "$i:users" "/home/$i/.screenrc"
       chown "$i:users" "/home/$i/.vimrc"
       chown "$i:users" "/home/$i/.zshrc"
       chown "$i:users" "/home/$i/.bashrc"
       chown "$i:users" "/home/$i/.dircolors"
       chown "$i:users" "/home/$i/.zshenv"
+      chown "$i:users" "/home/.cache/"
+      chown "$i:users" "/home/.cache/zsh/"
    fi
 done
 echo "Done."
