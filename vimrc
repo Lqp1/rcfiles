@@ -40,6 +40,11 @@ au InsertEnter * hi StatusLine ctermfg=70
 au InsertLeave * hi StatusLine ctermfg=189
 set statusline=%1*%m%*%r%h\ %2*%f%*\ [%{strlen(&fenc)?&fenc:'none'},%{&ff},%{strlen(&ft)?&ft:'none'}]%=%c,%l/%L
 
+" Backup
+set backup
+set backupdir=~/.vimdat
+set dir=~/.vimdat
+
 " Search tips
 set wrapscan
 set hlsearch

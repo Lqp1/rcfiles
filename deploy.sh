@@ -25,6 +25,10 @@ do
       then
          mkdir '/root/.cache/zsh'
       fi
+      if [ ! -d '/root/.vimdat' ]
+      then
+         mkdir '/root/.vimdat'
+      fi
    elif [ ! -d "/home/$i/" ]
    then
       echo "Directory home must be configured. Skipping."
@@ -36,13 +40,17 @@ do
       cp -vf "bashrc" "/home/$i/.bashrc"
       cp -vf "dircolors" "/home/$i/.dircolors"
       cp -vf "zshenv" "/home/$i/.zshenv"
-      if [ ! -d '/root/.cache' ]
+      if [ ! -d "/home/$i/.cache" ]
       then
-         mkdir '/root/.cache'
+         mkdir "/home/$i/.cache"
       fi
-      if [ ! -d '/root/.cache/zsh' ]
+      if [ ! -d "/home/$i/.cache/zsh" ]
       then
-         mkdir '/root/.cache/zsh'
+         mkdir "/home/$i/.cache/zsh"
+      fi
+      if [ ! -d "/home/$i/.vimdat" ]
+      then
+         mkdir "/home/$i/.vimdat"
       fi
       chown "$i:users" "/home/$i/.screenrc"
       chown "$i:users" "/home/$i/.vimrc"
@@ -52,6 +60,7 @@ do
       chown "$i:users" "/home/$i/.zshenv"
       chown "$i:users" "/home/$i/.cache/"
       chown "$i:users" "/home/$i/.cache/zsh/"
+      chown "$i:users" "/home/$i/.vimdat/"
    fi
 done
 echo "Done."
