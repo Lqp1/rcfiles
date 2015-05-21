@@ -64,6 +64,7 @@ alias ll='ls -l'
 alias lla='ls -lA'
 alias la='ls -A'
 alias l='ls -C'
+alias git-glog='git log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short --all'
 
 if [ -n $(command -v pygmentize) ]
 then

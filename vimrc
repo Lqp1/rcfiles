@@ -72,7 +72,7 @@ au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
 set t_Co=256
 
 " Allow mouse
-set mouse=a
+" set mouse=a
 
 " Misc
 set wildmode=longest,list,full
