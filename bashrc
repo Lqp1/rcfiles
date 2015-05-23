@@ -19,7 +19,7 @@ alias la='ls -A'
 alias l='ls -C'
 alias git-glog='git log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short --all'
 
-command -v pygmentize
+command -v pygmentize > /dev/null
 HAS_PYGMENTIZE=$?
 if [ $HAS_PYGMENTIZE -eq 0 ]
 then
