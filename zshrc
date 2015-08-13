@@ -3,7 +3,7 @@
 autoload -U colors && colors
 autoload -Uz promptinit
 autoload -Uz compinit
-
+autoload -U edit-command-line
 
 # Nice prompt :)
 promptinit
@@ -95,6 +95,10 @@ setopt pushdminus
 bindkey -e
 bindkey '\e[4~' end-of-line
 bindkey '\e[1~' beginning-of-line
+
+# Add bash shortcut C-xe
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 
 # Colored man
 man() {
