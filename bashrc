@@ -8,15 +8,17 @@
 # Nice prompt
 export PS1="\[\e[00;34m\]\A\[\e[0m\]\[\e[00;37m\] [ \[\e[0m\]\[\e[00;31m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;32m\]\h\[\e[0m\]\[\e[00;37m\] \W ]\[\e[0m\] "
 
+# Tip from https://www.reddit.com/r/archlinux/comments/41s1w4/what_is_your_favorite_one_liner_to_use/cz50y1m
+ll ()
+{
+   /bin/ls -vAFlq --color=yes --time-style=long-iso "$@" | sed "s/$(date +%Y-%m-%d)/\x1b[32m     TODAY\x1b[m/;s/$(date +'%Y-%m-%d' -d yesterday)/\x1b[33m YESTERDAY\x1b[m/"
+}
+
 # Add some aliases
-alias ls='ls --color=auto -F'
+alias ls='/bin/ls --color=auto -FA'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ll='ls -l'
-alias lla='ls -lA'
-alias la='ls -A'
-alias l='ls -C'
 alias git-glog='git log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short --all'
 
 command -v pygmentize > /dev/null
