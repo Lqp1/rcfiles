@@ -80,6 +80,8 @@ fi
 # Custom envvars
 export EDITOR="vim"
 export TERM="xterm-256color"
+export PAGER="less"
+export LESS="-FSRXI"
 
 # Dirstackfile
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
