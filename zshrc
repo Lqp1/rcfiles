@@ -117,3 +117,7 @@ man() {
       LESS_TERMCAP_us=$'\E[04;38;5;146m' \
       man "$@"
 }
+
+if [ -f ~/.bash_aliases ]; then
+   . ~/.bash_aliases
+fi
