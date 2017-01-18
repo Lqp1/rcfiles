@@ -60,7 +60,18 @@ set number
 highlight LineNr term=bold ctermfg=darkgray guifg=darkgray
 
 " Show when a line exceeds 80 chars
-au BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+let s:activatedh = 0 
+function! ToggleH()
+    if s:activatedh == 0
+        let s:activatedh = 1 
+        match ErrorMsg '\%>80v.\+'
+    else
+        let s:activatedh = 0 
+        match none
+    endif
+endfunction
+nnoremap <F8> :call ToggleH()<CR>
+call ToggleH()
 
 " Highlight trailing Tabs and Spaces
 highlight Tab ctermbg=darkgray guibg=darkgray
