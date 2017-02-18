@@ -73,6 +73,21 @@ endfunction
 nnoremap <F8> :call ToggleH()<CR>
 call ToggleH()
 
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
+nnoremap <F9> :call GotoJump()<CR>
+
 " Highlight trailing Tabs and Spaces
 highlight Tab ctermbg=darkgray guibg=darkgray
 highlight Space ctermbg=darkblue guibg=darkblue
