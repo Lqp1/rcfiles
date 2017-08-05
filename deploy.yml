@@ -1,0 +1,68 @@
+---
+- hosts: all
+  vars:
+     home: /home/hacker/
+     user: hacker
+  remote_user: root
+  tasks:
+     - name: "Clone Oh My ZSH from github"
+       git:
+          repo: "https://github.com/robbyrussell/oh-my-zsh"
+          dest: "{{home}}/oh-my-zsh"
+       become: yes
+       become_user : "{{user}}"
+     - name: "Clone Autosuggestions from github"
+       git:
+          repo: "https://github.com/zsh-users/zsh-autosuggestions"
+          dest: "{{home}}/oh-my-zsh/custom/plugins/zsh-autosuggestions"
+       become: yes
+       become_user : "{{user}}"
+     - name: "Clone Syntax from github"
+       git:
+          repo: "https://github.com/zsh-users/zsh-syntax-highlighting"
+          dest: "{{home}}/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+       become: yes
+       become_user : "{{user}}"
+     - name: "Copy additionnal configuration files"
+       copy:
+        src:  "{{item}}"
+        dest : "{{home}}/.{{item}}"
+        owner: "{{user}}"
+       with_items:
+         - "screenrc"
+         - "vimrc"
+         - "bashrc"
+         - "dircolors"
+         - "zshenv"
+     - name: "Link ZSH RC"
+       file:
+          src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
+          dest: "{{home}}/.zshrc"
+          state: "link"
+          owner: "{{user}}"
+     - name: "Create cache dirs"
+       file:
+          path: "{{home}}/{{item}}"
+          state: "directory"
+          owner: "{{user}}"
+       with_items:
+          - ".cache"
+          - ".cache/zsh"
+          - ".vimdat"
+     - name: "Configure Oh My ZSH home dire"
+       replace:
+          path: "{{home}}/.zshrc"
+          regexp: 'export ZSH=.*'
+          replace: 'export ZSH="{{home}}/oh-my-zsh"'
+     - name: "Configure Oh My ZSH prompt"
+       replace:
+          path: "{{home}}/.zshrc"
+          regexp: 'ZSH_THEME=.*'
+          replace: 'ZSH_THEME="cypher"'
+     - name: "Configure Oh My ZSH plugins"
+       replace:
+          path: "{{home}}/.zshrc"
+          regexp: 'plugins=.*'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions)'
+
+
