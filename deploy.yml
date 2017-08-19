@@ -1,8 +1,9 @@
 ---
 - hosts: all
   vars:
-     home: /home/hacker/
-     user: hacker
+     home: /home/{{user}}/
+     user: foo
+     ansible_python_interpreter: /usr/bin/python2.7
   remote_user: root
   tasks:
      - name: "Clone Oh My ZSH from github"
