@@ -65,6 +65,26 @@
        replace:
           path: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
-          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions)'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)'
+     - name: "Add waiting dots"
+       replace:
+          path: "{{home}}/.zshrc"
+          regexp: '# COMPLETION_WAITING_DOTS="true"'
+          replace: 'COMPLETION_WAITING_DOTS="true"'
+     - name: "Add custom aliases and xports"
+       lineinfile:
+          path: "{{home}}/.zshrc"
+          line: "{{item}}"
+          state: "present"
+       with_items:
+          - "export EDITOR='vim'"
+          - "export PAGER='less'"
+          - "export LESS='-FSRXI'"
+          - "unalias ll"
+          - "ll (){/bin/ls -vFlq --color=yes --time-style=long-iso \"$@\" | sed \"s/$(date +%Y-%m-%d)/\x1b[32m     TODAY\x1b[m/;s/$(date +'%Y-%m-%d' -d yesterday)/\x1b[33m YESTERDAY\x1b[m/\"}"
+          - "alias ls='/bin/ls --color=auto -F'"
+          - "alias gitg='git log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short'"
+          - "alias gits='git status'"
+          - "alias gitd='git diff'"
 
 
