@@ -105,3 +105,9 @@ set wildmode=longest,list,full
 set wildmenu
 set showcmd
 
+" Folding
+set foldmethod=syntax
+
+" Modeline
+ab MODELINE vim: set ts=3 sw=3 ai ff=unix
+" set modeline

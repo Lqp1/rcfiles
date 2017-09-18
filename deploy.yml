@@ -53,27 +53,27 @@
           - ".vimdat"
      - name: "Configure Oh My ZSH home dire"
        replace:
-          path: "{{home}}/.zshrc"
+          dest: "{{home}}/.zshrc"
           regexp: 'export ZSH=.*'
           replace: 'export ZSH="{{home}}/oh-my-zsh"'
      - name: "Configure Oh My ZSH prompt"
        replace:
-          path: "{{home}}/.zshrc"
+          dest: "{{home}}/.zshrc"
           regexp: 'ZSH_THEME=.*'
           replace: 'ZSH_THEME="cypher"'
      - name: "Configure Oh My ZSH plugins"
        replace:
-          path: "{{home}}/.zshrc"
+          dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
           replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)'
      - name: "Add waiting dots"
        replace:
-          path: "{{home}}/.zshrc"
+          dest: "{{home}}/.zshrc"
           regexp: '# COMPLETION_WAITING_DOTS="true"'
           replace: 'COMPLETION_WAITING_DOTS="true"'
      - name: "Add custom aliases and xports"
        lineinfile:
-          path: "{{home}}/.zshrc"
+          dest: "{{home}}/.zshrc"
           line: "{{item}}"
           state: "present"
        with_items:
