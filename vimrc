@@ -20,6 +20,9 @@ set ffs=unix,dos,mac
 " Avoid conflicts; re-read changed files
 set autoread
 
+" Shortcut to sudo-save a file
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " Indent and dev
 syntax on
 set smartindent

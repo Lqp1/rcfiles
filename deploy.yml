@@ -86,5 +86,6 @@
           - "alias gitg='git log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short'"
           - "alias gits='git status'"
           - "alias gitd='git diff'"
+          - "alias gitw='git whatchanged'"
 
 
