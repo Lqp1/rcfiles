@@ -56,7 +56,7 @@ set smartcase
 set incsearch
 
 " Spelling tips
-" :set spell
+autocmd BufEnter *.txt,README,*.md set spell
 
 " Show line number
 set number

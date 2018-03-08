@@ -24,25 +24,7 @@
           dest: "{{home}}/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
        become: yes
        become_user : "{{user}}"
-     - name: "Copy additionnal configuration files"
-       copy:
-        src:  "{{item}}"
-        dest : "{{home}}/.{{item}}"
-        owner: "{{user}}"
-       with_items:
-         - "screenrc"
-         - "vimrc"
-         - "nvimrc"
-         - "bashrc"
-         - "dircolors"
-         - "zshenv"
-     - name: "Link ZSH RC"
-       file:
-          src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
-          dest: "{{home}}/.zshrc"
-          state: "link"
-          owner: "{{user}}"
-     - name: "Create cache dirs"
+     - name: "Create some directories"
        file:
           path: "{{home}}/{{item}}"
           state: "directory"
@@ -51,6 +33,25 @@
           - ".cache"
           - ".cache/zsh"
           - ".vimdat"
+          - ".config/nvim/"
+     - name: "Copy additionnal configuration files"
+       copy:
+        src:  "{{item.src}}"
+        dest : "{{home}}/{{item.dst}}"
+        owner: "{{user}}"
+       with_items:
+          - { src : "screenrc", dst : ".screenrc"}
+          - { src : "vimrc", dst : ".vimrc"}
+          - { src : "nvimrc", dst : ".config/nvim/init.vim"}
+          - { src : "bashrc", dst : ".bashrc"}
+          - { src : "dircolors", dst : ".dircolors"}
+          - { src : "zshenv", dst : ".zshenv"}
+     - name: "Link ZSH RC"
+       file:
+          src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
+          dest: "{{home}}/.zshrc"
+          state: "link"
+          owner: "{{user}}"
      - name: "Configure Oh My ZSH home dire"
        replace:
           dest: "{{home}}/.zshrc"
