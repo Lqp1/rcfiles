@@ -46,6 +46,7 @@
           - { src : "bashrc", dst : ".bashrc"}
           - { src : "dircolors", dst : ".dircolors"}
           - { src : "zshenv", dst : ".zshenv"}
+          - { src : "emacs", dst : ".emacs"}
      - name: "Link ZSH RC"
        file:
           src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
