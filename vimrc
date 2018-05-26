@@ -97,6 +97,10 @@ highlight Space ctermbg=darkblue guibg=darkblue
 au BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
 au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
 
+" Highlight non ascii chars
+" highlight nonAscii ctermfg=blue guifg=blue
+" au BufWinEnter * let w:m4=matchadd('nonAscii', '[^\d0-\d127]', -1)
+
 " Use 256 colors
 set t_Co=256
 
@@ -107,6 +111,7 @@ set t_Co=256
 set wildmode=longest,list,full
 set wildmenu
 set showcmd
+imap <C-d> <Esc>wdiwxi
 
 " Folding
 set foldmethod=syntax
