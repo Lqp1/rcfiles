@@ -48,11 +48,11 @@
           - { src : "zshenv", dst : ".zshenv"}
           - { src : "emacs", dst : ".emacs"}
      - name: "Link ZSH RC"
-       file:
+       copy:
           src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
           dest: "{{home}}/.zshrc"
-          state: "link"
           owner: "{{user}}"
+          remote_src: true
      - name: "Configure Oh My ZSH home dire"
        replace:
           dest: "{{home}}/.zshrc"
