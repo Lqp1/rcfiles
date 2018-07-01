@@ -59,7 +59,7 @@ set incsearch
 autocmd BufEnter *.txt,README,*.md set spell
 
 " Show line number
-set number
+set number relativenumber
 highlight LineNr term=bold ctermfg=darkgray guifg=darkgray
 
 " Show when a line exceeds 80 chars
@@ -104,8 +104,9 @@ au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
 " Use 256 colors
 set t_Co=256
 
-" Allow mouse
+" Allow mouse and system clipboard smoothly
 " set mouse=a
+" set clipboard=unnamedplus
 
 " Misc
 set wildmode=longest,list,full
