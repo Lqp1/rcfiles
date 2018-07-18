@@ -112,7 +112,7 @@ set t_Co=256
 set wildmode=longest,list,full
 set wildmenu
 set showcmd
-imap <C-d> <Esc>wdiwxi
+imap <C-d> <C-o>daw
 
 " Folding
 set foldmethod=syntax
