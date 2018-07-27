@@ -32,7 +32,10 @@ filetype on
 set showmatch
 set mat=4
 set smarttab
-set expandtab ts=4 sw=4 ai
+set tabstop=4
+set softtabstop=4
+set expandtab
+
 autocmd FileType make setlocal noexpandtab
 
 " Status line
