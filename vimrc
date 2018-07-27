@@ -27,12 +27,12 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 syntax on
 set smartindent
 set autoindent
-set shiftwidth=3
+set shiftwidth=4
 filetype on
 set showmatch
 set mat=4
 set smarttab
-set expandtab ts=3 sw=3 ai
+set expandtab ts=4 sw=4 ai
 autocmd FileType make setlocal noexpandtab
 
 " Status line
@@ -118,5 +118,5 @@ imap <C-d> <C-o>daw
 set foldmethod=syntax
 
 " Modeline
-ab MODELINE vim: set ts=3 sw=3 ai ff=unix
+ab MODELINE vim: set ts=4 sw=4 ai ff=unix
 " set modeline
