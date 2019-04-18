@@ -114,11 +114,18 @@ set t_Co=256
 " Misc
 set wildmode=longest,list,full
 set wildmenu
+set path+=**
 set showcmd
 imap <C-d> <C-o>daw
 
 " Folding
 set foldmethod=syntax
+
+" NetRW config
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3 
 
 " Modeline
 ab MODELINE vim: set ts=4 sw=4 ai ff=unix
