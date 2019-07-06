@@ -70,7 +70,10 @@
           regexp: 'ZSH_THEME=.*'
           replace: 'ZSH_THEME="cypher"'
      - name: "Configure Oh My ZSH plugins"
-       shell: sed -i '/^plugins=(/,/)/{/^plugins=(/ s/.*/plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)/; t; d}' {{home}}/.zshrc
+       replace:
+          dest: "{{home}}/.zshrc"
+          regexp: 'plugins=.*'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)'
      - name: "Add waiting dots"
        replace:
           dest: "{{home}}/.zshrc"
