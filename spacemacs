@@ -323,6 +323,7 @@ you should place your code here."
 (setq magit-revision-show-gravatars nil)
 (add-hook 'prog-mode-hook 'turn-on-fci-mode)
 (add-hook 'text-mode-hook 'turn-on-fci-mode)
+(define-key evil-insert-state-map (kbd "jk") 'evil-escape)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

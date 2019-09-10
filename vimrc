@@ -23,6 +23,9 @@ set autoread
 " Shortcut to sudo-save a file
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
+" Shortcut to exit insert mode faster
+inoremap jk <ESC>
+
 " Indent and dev
 syntax on
 set smartindent
@@ -64,35 +67,6 @@ autocmd BufEnter *.txt,README,*.md set spell
 " Show line number
 set number relativenumber
 highlight LineNr term=bold ctermfg=darkgray guifg=darkgray
-
-" Show when a line exceeds 80 chars
-let s:activatedh = 0 
-function! ToggleH()
-    if s:activatedh == 0
-        let s:activatedh = 1 
-        match ErrorMsg '\%>80v.\+'
-    else
-        let s:activatedh = 0 
-        match none
-    endif
-endfunction
-nnoremap <F8> :call ToggleH()<CR>
-call ToggleH()
-
-function! GotoJump()
-  jumps
-  let j = input("Please select your jump: ")
-  if j != ''
-    let pattern = '\v\c^\+'
-    if j =~ pattern
-      let j = substitute(j, pattern, '', 'g')
-      execute "normal " . j . "\<c-i>"
-    else
-      execute "normal " . j . "\<c-o>"
-    endif
-  endif
-endfunction
-nnoremap <F9> :call GotoJump()<CR>
 
 " Highlight trailing Tabs and Spaces
 highlight Tab ctermbg=darkgray guibg=darkgray

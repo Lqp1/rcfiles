@@ -20,14 +20,6 @@ alias la='ll -A'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias git-glog='git log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short --all'
-
-command -v pygmentize > /dev/null
-HAS_PYGMENTIZE=$?
-if [ $HAS_PYGMENTIZE -eq 0 ]
-then
-   alias pcat='pygmentize -g'
-fi
 
 # Some envvars
 export EDITOR="vim"

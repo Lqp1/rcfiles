@@ -50,7 +50,6 @@
           - { src : "vimrc", dst : ".vimrc"}
           - { src : "nvimrc", dst : ".config/nvim/init.vim"}
           - { src : "bashrc", dst : ".bashrc"}
-          - { src : "dircolors", dst : ".dircolors"}
           - { src : "zshenv", dst : ".zshenv"}
           - { src : "spacemacs", dst : ".spacemacs"}
      - name: "Link ZSH RC"
