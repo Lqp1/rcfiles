@@ -5,8 +5,10 @@ set nocompatible
 set background=dark
 set cursorline
 set history=100
+set hidden
 filetype plugin on
 filetype indent on
+au BufWinEnter * cd %:p:h
 
 " Set cursor to last known position
 if has("autocmd")
@@ -19,6 +21,11 @@ set ffs=unix,dos,mac
 
 " Avoid conflicts; re-read changed files
 set autoread
+
+" Set Leader key to Space and add several shortcuts
+let mapleader=" "
+nnoremap <silent> <Leader><Tab> :bprev<CR>
+nnoremap <Leader><Leader> :
 
 " Shortcut to sudo-save a file
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
