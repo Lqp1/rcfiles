@@ -8,12 +8,10 @@ set history=100
 set hidden
 filetype plugin on
 filetype indent on
-au BufWinEnter * cd %:p:h
+au BufWinEnter * if &buftype != "terminal" | cd %:p:h | endif
 
 " Set cursor to last known position
-if has("autocmd")
-     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Encoding
 set encoding=utf8
@@ -32,6 +30,9 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Shortcut to exit insert mode faster
 inoremap jk <ESC>
+if has("terminal")
+    tnoremap jk <C-\><C-n>
+end
 
 " Indent and dev
 syntax on
