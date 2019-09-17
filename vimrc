@@ -8,7 +8,8 @@ set history=100
 set hidden
 filetype plugin on
 filetype indent on
-au BufWinEnter * if &buftype != "terminal" | cd %:p:h | endif
+au BufEnter * if &buftype != "terminal" | cd %:p:h | endif
+set backspace=indent,eol,start
 
 " Set cursor to last known position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
