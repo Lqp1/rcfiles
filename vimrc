@@ -47,6 +47,9 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set expandtab
+if has("colorcolumn")
+    set cc=+80
+end
 
 autocmd FileType make setlocal noexpandtab
 
@@ -71,7 +74,7 @@ set smartcase
 set incsearch
 
 " Spelling tips
-autocmd BufEnter *.txt,README,*.md set spell
+autocmd BufEnter *.txt,README,*.md set spell textwidth=80
 
 " Show line number
 set number relativenumber
@@ -91,7 +94,7 @@ au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
 set t_Co=256
 
 " Allow mouse and system clipboard smoothly
-" set mouse=a
+set mouse=a
 " set clipboard=unnamedplus
 
 " Misc
@@ -108,7 +111,7 @@ set foldmethod=syntax
 let g:netrw_banner=0
 let g:netrw_browse_split=4
 let g:netrw_altv=1
-let g:netrw_liststyle=3 
+let g:netrw_liststyle=3
 
 " Modeline
 ab MODELINE vim: set ts=4 sw=4 ai ff=unix
