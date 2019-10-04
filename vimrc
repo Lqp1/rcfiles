@@ -8,7 +8,7 @@ set history=100
 set hidden
 filetype plugin on
 filetype indent on
-au BufEnter * if &buftype != "terminal" | cd %:p:h | endif
+au BufEnter * if &buftype == "" | cd %:p:h | endif
 set backspace=indent,eol,start
 
 " Set cursor to last known position
