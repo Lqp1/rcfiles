@@ -17,6 +17,13 @@ fi
 which ansible-playbook 2>&1 > /dev/null || exit 3
 which git 2>&1 > /dev/null || exit 3
 
+min="false"
+if [ $1 = "root" ]
+then
+    min="true"
+fi
+
 # Run install
 mv -v $2/.zshrc $2/.zshrc.old
-ansible-playbook -i "local," -c local --extra-vars "user=$1 home=$2" deploy.yml
+echo "Minimal install : $min"
+ansible-playbook -i "local," -c local --extra-vars "{'user':\"$1\",'home':\"$2\",'minimal':$min}" deploy.yml

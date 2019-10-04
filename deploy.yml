@@ -3,7 +3,7 @@
   vars:
      home: /home/{{user}}/
      user: foo
-     ansible_python_interpreter: /usr/bin/python2.7
+     minimal: false
   remote_user: root
   tasks:
      - name: "Clone Spacemacs from github"
@@ -12,24 +12,28 @@
           dest: "{{home}}/.emacs.d"
        become: yes
        become_user : "{{user}}"
+       when: not minimal|bool
      - name: "Clone Oh My ZSH from github"
        git:
           repo: "https://github.com/robbyrussell/oh-my-zsh"
           dest: "{{home}}/oh-my-zsh"
        become: yes
        become_user : "{{user}}"
+       when: not minimal|bool
      - name: "Clone Autosuggestions from github"
        git:
           repo: "https://github.com/zsh-users/zsh-autosuggestions"
           dest: "{{home}}/oh-my-zsh/custom/plugins/zsh-autosuggestions"
        become: yes
        become_user : "{{user}}"
+       when: not minimal|bool
      - name: "Clone Syntax from github"
        git:
           repo: "https://github.com/zsh-users/zsh-syntax-highlighting"
           dest: "{{home}}/oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
        become: yes
        become_user : "{{user}}"
+       when: not minimal|bool
      - name: "Create some directories"
        file:
           path: "{{home}}/{{item}}"
@@ -52,32 +56,43 @@
           - { src : "bashrc", dst : ".bashrc"}
           - { src : "zshenv", dst : ".zshenv"}
           - { src : "spacemacs", dst : ".spacemacs"}
+     - name: "Copy minimal ZSH"
+       copy:
+           src: "zshrc"
+           dest: "{{home}}/.zshrc"
+           owner: "{{user}}"
+       when: minimal|bool
      - name: "Link ZSH RC"
        copy:
           src: "{{home}}/oh-my-zsh/templates/zshrc.zsh-template"
           dest: "{{home}}/.zshrc"
           owner: "{{user}}"
           remote_src: true
+       when: not minimal|bool
      - name: "Configure Oh My ZSH home dir"
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'export ZSH=.*'
           replace: 'export ZSH="{{home}}/oh-my-zsh"'
+       when: not minimal|bool
      - name: "Configure Oh My ZSH prompt"
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'ZSH_THEME=.*'
           replace: 'ZSH_THEME="cypher"'
+       when: not minimal|bool
      - name: "Configure Oh My ZSH plugins"
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
           replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)'
+       when: not minimal|bool
      - name: "Add waiting dots"
        replace:
           dest: "{{home}}/.zshrc"
           regexp: '# COMPLETION_WAITING_DOTS="true"'
           replace: 'COMPLETION_WAITING_DOTS="true"'
+       when: not minimal|bool
      - name: "Add custom aliases and xports"
        lineinfile:
           dest: "{{home}}/.zshrc"
