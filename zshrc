@@ -44,17 +44,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 
-# Colors
-if [ -x /usr/bin/dircolors ] ; then
-   if [ -r ~/.dir_colors ] ; then
-      eval "`dircolors ~/.dir_colors`"
-   elif [ -r /etc/dir_colors ] ; then
-      eval "`dircolors /etc/dir_colors`"
-   else
-      eval "`dircolors`"
-   fi
-fi
-
 # Tip from https://www.reddit.com/r/archlinux/comments/41s1w4/what_is_your_favorite_one_liner_to_use/cz50y1m
 ll ()
 {
@@ -62,17 +51,12 @@ ll ()
 }
 
 # Add some aliases
-alias ls='/bin/ls --color=auto -F'
-alias la='ll -A'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Custom envvars
-export EDITOR="vim"
 export TERM="xterm-256color"
-export PAGER="less"
-export LESS="-FSRXI"
 
 # Dirstackfile
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"

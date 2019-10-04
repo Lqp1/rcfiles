@@ -91,6 +91,7 @@
           - "alias gits='git status'"
           - "alias gitd='git diff'"
           - "alias gitw='git whatchanged'"
+          - "source {{home}}/.bash_aliases 2>/dev/null"
      - name: "Add git alias"
        shell: 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
 
