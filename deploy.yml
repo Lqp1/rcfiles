@@ -44,6 +44,7 @@
           - ".cache/zsh"
           - ".vimdat"
           - ".config/nvim/"
+          - ".config/i3/"
      - name: "Copy additionnal configuration files"
        copy:
         src:  "{{item.src}}"
@@ -53,6 +54,7 @@
           - { src : "screenrc", dst : ".screenrc"}
           - { src : "vimrc", dst : ".vimrc"}
           - { src : "nvimrc", dst : ".config/nvim/init.vim"}
+          - { src : "i3", dst : ".config/i3/config"}
           - { src : "bashrc", dst : ".bashrc"}
           - { src : "zshenv", dst : ".zshenv"}
           - { src : "spacemacs", dst : ".spacemacs"}
