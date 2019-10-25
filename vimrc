@@ -24,6 +24,8 @@ set autoread
 " Set Leader key to Space and add several shortcuts
 let mapleader=" "
 nnoremap <silent> <Leader><Tab> :bprev<CR>
+nnoremap <silent> <Leader>bn :bnext<CR>
+nnoremap <silent> <Leader>bb :ls<CR>
 nnoremap <Leader><Leader> :
 
 " Shortcut to sudo-save a file
