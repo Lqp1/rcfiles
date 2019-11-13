@@ -6,6 +6,7 @@ set background=dark
 set cursorline
 set history=100
 set hidden
+set timeoutlen=200
 filetype plugin on
 filetype indent on
 au BufEnter * if &buftype == "" | cd %:p:h | endif
@@ -108,6 +109,7 @@ imap <C-d> <C-o>daw
 
 " Folding
 set foldmethod=syntax
+set foldlevel=20
 
 " NetRW config
 let g:netrw_banner=0

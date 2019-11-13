@@ -105,7 +105,7 @@
           - "export PAGER='less'"
           - "export LESS='-FSRXI'"
           - "alias ls='/bin/ls --color=auto -F'"
-          - "alias gits='git status'"
+          - "alias gits='git status -s'"
           - "alias gitd='git diff'"
           - "alias gitw='git whatchanged'"
           - "source {{home}}/.bash_aliases 2>/dev/null"
