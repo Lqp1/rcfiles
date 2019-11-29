@@ -4,6 +4,7 @@
 # French XFCE4 integration
 
 set $mod Mod4
+workspace_auto_back_and_forth yes
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -15,7 +16,8 @@ font pango:Noto Mono for Powerline Regular 12
 floating_modifier $mod
 
 # share other screen
-bindsym $mod+shift+p move workspace to output right
+#bindsym $mod+shift+p move workspace to output right
+bindsym $mod+shift+p move container to output right
 
 # use scratch pad
 bindsym $mod+shift+U move scratchpad
@@ -125,17 +127,17 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-smart_gaps on
 default_border pixel 3
 #exec --no-startup-id feh --bg-scale /home/xxx/Images/xxx.png
 #exec --no-startup-id conky -d
 
 # i3-gaps config
-gaps inner 5
-gaps outer 5
-gaps horizontal 5
-gaps vertical 5
-gaps top 5
-gaps right 5
-gaps bottom 5
-gaps left 5
+#smart_gaps on
+#gaps inner 5
+#gaps outer 5
+#gaps horizontal 5
+#gaps vertical 5
+#gaps top 5
+#gaps right 5
+#gaps bottom 5
+#gaps left 5
