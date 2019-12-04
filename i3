@@ -16,7 +16,7 @@ font pango:Noto Mono for Powerline Regular 12
 floating_modifier $mod
 
 # share other screen
-#bindsym $mod+shift+p move workspace to output right
+bindsym $mod+shift+w move workspace to output right
 bindsym $mod+shift+p move container to output right
 
 # use scratch pad
@@ -32,6 +32,7 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+Shift+d exec i3-dmenu
 bindsym $mod+x exec xfce4-appfinder
 
 # change focus
