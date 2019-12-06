@@ -42,12 +42,14 @@ values."
      emacs-lisp
      python
      c-c++
+     ruby
      syntax-checking
 
      ;; Notes & writing
      markdown
      org
      latex
+     pdf-tools
      spell-checking
 
      ;; Misc
@@ -65,7 +67,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(vimish-fold)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -271,7 +273,11 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers '(:relative t
+                               :disabled-for-modes dired-mode
+                                                   doc-view-mode
+                                                   pdf-view-mode
+                               :size-limit-kb 5000)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -325,8 +331,12 @@ you should place your code here."
 (setq evil-ex-search-case 'insensitive)
 (setq magit-revision-show-gravatars nil)
 (setq evil-escape-key-sequence "jk")
-(add-hook 'prog-mode-hook 'turn-on-fci-mode)
-(add-hook 'text-mode-hook 'turn-on-fci-mode)
+(setq evil-escape-delay 0.2)
+(add-hook 'text-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
+
+;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
+
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 )
