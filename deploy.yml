@@ -87,7 +87,7 @@
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
-          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump)'
        when: not minimal|bool
      - name: "Add waiting dots"
        replace:

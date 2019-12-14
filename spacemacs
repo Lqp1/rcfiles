@@ -67,7 +67,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vimish-fold)
+   dotspacemacs-additional-packages '(vimish-fold docker-tramp helm-lxc)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -332,7 +332,8 @@ you should place your code here."
 (setq magit-revision-show-gravatars nil)
 (setq evil-escape-key-sequence "jk")
 (setq evil-escape-delay 0.2)
-(add-hook 'text-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
+(add-hook 'org-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
+(setq helm-lxc-hosts '(("localhost" . "/su::")))
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
