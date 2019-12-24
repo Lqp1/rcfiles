@@ -95,6 +95,12 @@
           regexp: '# COMPLETION_WAITING_DOTS="true"'
           replace: 'COMPLETION_WAITING_DOTS="true"'
        when: not minimal|bool
+     - name: "Disable auto updates"
+       replace:
+          dest: "{{home}}/.zshrc"
+          regexp: '# DISABLE_AUTO_UPDATE="true"'
+          replace: 'DISABLE_AUTO_UPDATE="true"'
+       when: not minimal|bool
      - name: "Add custom aliases and xports"
        lineinfile:
           dest: "{{home}}/.zshrc"
