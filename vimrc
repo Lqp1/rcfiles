@@ -54,7 +54,7 @@ if has("colorcolumn")
     set cc=+80
 end
 
-autocmd FileType make setlocal noexpandtab
+autocmd FileType make,go setlocal noexpandtab
 
 " Status line
 hi User1 ctermbg=124 ctermfg=white

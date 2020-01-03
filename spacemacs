@@ -43,6 +43,7 @@ values."
      python
      c-c++
      ruby
+     go
      syntax-checking
 
      ;; Notes & writing
