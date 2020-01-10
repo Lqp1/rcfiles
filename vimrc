@@ -1,8 +1,8 @@
 " VIMRC
 
 " Global settings
+silent! colorscheme solarized
 set nocompatible
-set background=dark
 set cursorline
 set history=100
 set hidden
