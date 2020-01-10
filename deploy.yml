@@ -43,6 +43,8 @@
           - ".cache"
           - ".cache/zsh"
           - ".vimdat"
+          - ".vim"
+          - ".vim/colors"
           - ".config/nvim/"
           - ".config/i3/"
      - name: "Copy additionnal configuration files"
@@ -53,6 +55,7 @@
        with_items:
           - { src : "screenrc", dst : ".screenrc"}
           - { src : "vimrc", dst : ".vimrc"}
+          - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
           - { src : "nvimrc", dst : ".config/nvim/init.vim"}
           - { src : "i3", dst : ".config/i3/config"}
           - { src : "bashrc", dst : ".bashrc"}

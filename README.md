@@ -10,7 +10,11 @@ Note that the installation script installs
 * Adds one of my favorite git alias in global configuration.
 
 >Usage:
+
+>`git clone --recursive https://github.com/lqp1/rcfiles`
+
 >`./deploy.sh myuser /home/myuser`
+
 
 __NOTE__ : For `root` user, the script installs a minimal version, without oh my zsh and
 spacemacs.
