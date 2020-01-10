@@ -68,7 +68,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vimish-fold docker-tramp helm-lxc)
+   dotspacemacs-additional-packages '(vimish-fold docker-tramp helm-lxc solarized-theme)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -142,6 +142,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-light
+                         solarized-light
                          spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -335,6 +336,7 @@ you should place your code here."
 (setq evil-escape-delay 0.2)
 (add-hook 'org-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
+(vimish-fold-global-mode 1)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
