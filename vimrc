@@ -65,9 +65,16 @@ au InsertLeave * hi StatusLine ctermfg=189
 set statusline=%1*%m%*%r%h\ %2*%f%*\ [%{strlen(&fenc)?&fenc:'none'},%{&ff},%{strlen(&ft)?&ft:'none'}]%=%c,%l/%L
 
 " Backup
+if !isdirectory($HOME . "/.vimdat")
+    call mkdir($HOME . "/.vimdat/backups", "p", 0700)
+    call mkdir($HOME . "/.vimdat/swaps", "p", 0700)
+    call mkdir($HOME . "/.vimdat/undos", "p", 0700)
+endif
 set backup
-set backupdir=~/.vimdat
-set dir=~/.vimdat
+set udf
+set backupdir=~/.vimdat/backups
+set dir=~/.vimdat/swaps
+set udir=~/.vimdat/undos
 
 " Search tips
 set wrapscan

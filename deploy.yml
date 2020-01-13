@@ -42,7 +42,6 @@
        with_items:
           - ".cache"
           - ".cache/zsh"
-          - ".vimdat"
           - ".vim"
           - ".vim/colors"
           - ".config/nvim/"
