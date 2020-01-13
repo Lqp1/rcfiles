@@ -129,7 +129,7 @@ mode "resize" {
 }
 
 default_border pixel 3
-#exec --no-startup-id feh --bg-scale /home/xxx/Images/xxx.png
+exec --no-startup-id ~/.fehbg
 #exec --no-startup-id conky -d
 
 # i3-gaps config
