@@ -118,6 +118,17 @@
           - "alias gitd='git diff'"
           - "alias gitw='git whatchanged'"
           - "source {{home}}/.bash_aliases 2>/dev/null"
+     - name: "Add EMACS alias"
+       lineinfile:
+          dest: "{{home}}/.zshrc"
+          line: "{{item}}"
+          state: "present"
+       when: not minimal|bool
+       with_items:
+          - "export ALTERNATE_EDITOR=''"
+          - "alias emacsopen='emacsclient -t'"
+          - "alias emacsxadd='emacsclient -n'"
+          - "alias emacsxopen='emacsclient -n -c'"
      - name: "Add git alias"
        shell: 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
 
