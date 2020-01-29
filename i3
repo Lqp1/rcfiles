@@ -5,6 +5,7 @@
 
 set $mod Mod4
 workspace_auto_back_and_forth yes
+focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.

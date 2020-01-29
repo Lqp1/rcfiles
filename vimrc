@@ -127,3 +127,8 @@ let g:netrw_liststyle=3
 " Modeline
 ab MODELINE vim: set ts=4 sw=4 ai ff=unix
 " set modeline
+
+" Local VIMRC
+if filereadable(expand("~/.vim_local"))
+    source ~/.vim_local
+endif
