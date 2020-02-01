@@ -335,6 +335,7 @@ you should place your code here."
 (setq evil-escape-key-sequence "jk")
 (setq evil-escape-delay 0.2)
 (add-hook 'org-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
+(add-hook 'markdown-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
 
