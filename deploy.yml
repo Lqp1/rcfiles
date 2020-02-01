@@ -79,11 +79,16 @@
           regexp: 'export ZSH=.*'
           replace: 'export ZSH="{{home}}/.oh-my-zsh"'
        when: not minimal|bool
+     - name: "Add a fork of cypher prompt, with time"
+       copy:
+         dest: "{{home}}/.oh-my-zsh/themes/timed-cypher.zsh-theme"
+         content: "PROMPT=\"[%*] %m %{${fg_bold[red]}%}:: %{${fg[green]}%}%3~%(0?. . %{${fg[red]}%}%? )%{${fg[blue]}%}»%{${reset_color}%} \""
+       when: not minimal|bool
      - name: "Configure Oh My ZSH prompt"
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'ZSH_THEME=.*'
-          replace: 'ZSH_THEME="cypher"'
+          replace: 'ZSH_THEME="timed-cypher"'
        when: not minimal|bool
      - name: "Configure Oh My ZSH plugins"
        replace:
