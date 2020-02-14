@@ -338,6 +338,7 @@ you should place your code here."
 (add-hook 'markdown-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
+(setq tags-add-tables nil)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
