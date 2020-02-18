@@ -40,6 +40,7 @@ values."
      vimscript
      windows-scripts
      emacs-lisp
+     common-lisp
      python
      c-c++
      ruby
@@ -339,6 +340,7 @@ you should place your code here."
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
 (setq tags-add-tables nil)
+(set-fontset-font t 'unicode "Symbola" nil 'prepend)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
