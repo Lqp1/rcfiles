@@ -6,6 +6,52 @@
      minimal: false
   remote_user: root
   tasks:
+     - name: "Check dependencies"
+       command: "which {{ item }}"
+       with_items:
+          - bash
+          - git
+          - vim
+          - ip
+     - name: "Check optional dependencies"
+       command: "which {{ item }}"
+       with_items:
+          #debug
+          - htop
+          - iotop
+          - iftop
+          - dfc
+          # editors and shell
+          - emacs
+          - zsh
+          - autojump
+          - screen
+          - tree
+          # X11
+          - i3
+          - rofi
+          - xdotool
+          # dev
+          - ipython
+          - pry
+          - go
+          - sbcl
+       when: not minimal|bool
+       ignore_errors: yes
+     - name: "Clone Splatmoji"
+       git:
+          repo: "https://github.com/cspeterson/splatmoji"
+          dest: "{{home}}/.splatmoji"
+       become: yes
+       become_user : "{{user}}"
+       when: not minimal|bool
+     - name: "Add splatmoji shortcut"
+       vars:
+           - name: "splatmoji"
+           - exec: "{{home}}/.splatmoji/splatmoji type"
+       template:
+           src: "res/app_template.desktop.j2"
+           dest: "{{ home }}/.local/share/applications/{{name}}.desktop"
      - name: "Clone Spacemacs from github"
        git:
           repo: "https://github.com/syl20bnr/spacemacs"
@@ -117,23 +163,13 @@
           - "export EDITOR='vim'"
           - "export PAGER='less'"
           - "export LESS='-FSRXI'"
+          - "export ALTERNATE_EDITOR=''"
           - "alias ls='/bin/ls --color=auto -F'"
           - "alias ip='/bin/ip --color=auto'"
           - "alias gits='git status -s'"
           - "alias gitd='git diff'"
           - "alias gitw='git whatchanged'"
           - "source {{home}}/.bash_aliases 2>/dev/null"
-     - name: "Add EMACS alias"
-       lineinfile:
-          dest: "{{home}}/.zshrc"
-          line: "{{item}}"
-          state: "present"
-       when: not minimal|bool
-       with_items:
-          - "export ALTERNATE_EDITOR=''"
-          - "alias emacsopen='emacsclient -t'"
-          - "alias emacsxadd='emacsclient -n'"
-          - "alias emacsxopen='emacsclient -n -c'"
      - name: "Add git alias"
        shell: 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
 

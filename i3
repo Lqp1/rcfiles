@@ -1,7 +1,6 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-# French XFCE4 integration
 
 set $mod Mod4
 workspace_auto_back_and_forth yes
@@ -32,9 +31,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
-bindsym $mod+Shift+d exec i3-dmenu
-bindsym $mod+x exec xfce4-appfinder
+bindsym $mod+d exec rofi -show run
+bindsym $mod+semicolon exec ~/.splatmoji/splatmoji type
 
 # change focus
 bindsym $mod+j focus down
