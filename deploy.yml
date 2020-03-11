@@ -4,6 +4,7 @@
      home: /home/{{user}}/
      user: foo
      minimal: false
+     lessopts: "-FSRXI"
   remote_user: root
   tasks:
      - name: "Check dependencies"
@@ -91,6 +92,7 @@
         dest : "{{home}}/{{item.dst}}"
         owner: "{{user}}"
        with_items:
+          - { src : "gitignore", dst : ".gitignore"}
           - { src : "screenrc", dst : ".screenrc"}
           - { src : "vimrc", dst : ".vimrc"}
           - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
@@ -155,15 +157,32 @@
        with_items:
           - "export EDITOR='vim'"
           - "export PAGER='less'"
-          - "export LESS='-FSRXI'"
+          - "export LESS='{{ lessopts }}'"
           - "export ALTERNATE_EDITOR=''"
           - "alias ls='/bin/ls --color=auto -F'"
           - "alias ip='/bin/ip --color=auto'"
-          - "alias gits='git status -s'"
+          - "alias gits='git status'"
           - "alias gitd='git diff'"
+          - "alias gitg='git pull'"
+          - "alias gitp='git push'"
           - "alias gitw='git whatchanged'"
+          - "alias gitl='git tree'"
           - "source {{home}}/.bash_aliases 2>/dev/null"
-     - name: "Add git alias"
-       shell: 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
+     - name: "Add git alias and sane behaviors"
+       shell: "{{ item }}"
+       with_items:
+           - 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
+           - 'git config --global pull.rebase true'
+           - 'git config --global pull.tags true'
+           - 'git config --global status.short true'
+           - 'git config --global status.branch true'
+           - 'git config --global core.autocrlf input'
+           - 'git config --global core.editor vim'
+           - 'git config --global merge.tool vimdiff'
+           - 'git config --global diff.tool vimdiff'
+           - 'git config --global difftool.prompt false'
+           - 'git config --global core.excludesfile ~/.gitignore'
+           - 'git config --global help.autocorrect 20'
+           - 'git config --global core.page "less {{ lessopts }}"'
 
 
