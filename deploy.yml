@@ -45,13 +45,6 @@
        become: yes
        become_user : "{{user}}"
        when: not minimal|bool
-     - name: "Add splatmoji shortcut"
-       vars:
-           - name: "splatmoji"
-           - exec: "{{home}}/.splatmoji/splatmoji type"
-       template:
-           src: "res/app_template.desktop.j2"
-           dest: "{{ home }}/.local/share/applications/{{name}}.desktop"
      - name: "Clone Spacemacs from github"
        git:
           repo: "https://github.com/syl20bnr/spacemacs"
