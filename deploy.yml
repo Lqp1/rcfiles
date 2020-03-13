@@ -14,6 +14,7 @@
           - git
           - vim
           - ip
+          - less
      - name: "Check optional dependencies"
        command: "which {{ item }}"
        with_items:
@@ -163,7 +164,7 @@
           - "alias ip='/bin/ip --color=auto'"
           - "alias gits='git status'"
           - "alias gitd='git diff'"
-          - "alias gitg='git pull'"
+          - "alias gitg='git pull --tags'"
           - "alias gitp='git push'"
           - "alias gitw='git whatchanged'"
           - "alias gitl='git tree'"
@@ -173,7 +174,6 @@
        with_items:
            - 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
            - 'git config --global pull.rebase true'
-           - 'git config --global pull.tags true'
            - 'git config --global status.short true'
            - 'git config --global status.branch true'
            - 'git config --global core.autocrlf input'
