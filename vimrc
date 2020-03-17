@@ -7,13 +7,14 @@ set cursorline
 set history=100
 set hidden
 set timeoutlen=200
+set lazyredraw
 filetype plugin on
 filetype indent on
-au BufEnter * if &buftype == "" | cd %:p:h | endif
+autocmd BufEnter * if &buftype == "" && isdirectory(expand('%:p:h'))| cd %:p:h | endif
 set backspace=indent,eol,start
 
 " Set cursor to last known position
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Encoding
 set encoding=utf8
@@ -38,7 +39,7 @@ if has("terminal")
     tnoremap jk <C-\><C-n>
 end
 
-" Indent and dev
+" Indent and dev and tabs
 syntax on
 set smartindent
 set autoindent
@@ -53,16 +54,20 @@ set expandtab
 if has("colorcolumn")
     set cc=+80
 end
+augroup tabs
+    autocmd!
+    autocmd FileType make,go setlocal noexpandtab
+augroup end
 
-autocmd FileType make,go setlocal noexpandtab
 
 " Status line
-hi User1 ctermbg=124 ctermfg=white
-hi User2 ctermbg=214 ctermfg=black
 set laststatus=2
-au InsertEnter * hi StatusLine ctermfg=70
-au InsertLeave * hi StatusLine ctermfg=189
 set statusline=%1*%m%*%r%h\ %2*%f%*\ [%{strlen(&fenc)?&fenc:'none'},%{&ff},%{strlen(&ft)?&ft:'none'}]%=%c,%l/%L
+augroup statusline
+    autocmd!
+    autocmd InsertEnter * hi StatusLine ctermfg=70
+    autocmd InsertLeave * hi StatusLine ctermfg=189
+augroup end
 
 " Backup
 if !isdirectory($HOME . "/.vimdat")
@@ -84,21 +89,25 @@ set smartcase
 set incsearch
 
 " Spelling tips
-autocmd BufEnter *.txt,README,*.md set spell textwidth=80
+augroup textfiles
+    autocmd!
+    autocmd BufEnter *.txt,README,*.md set spell textwidth=80
+augroup end
 
 " Show line number
 set number relativenumber
 highlight LineNr term=bold ctermfg=darkgray guifg=darkgray
 
-" Highlight trailing Tabs and Spaces
-highlight Tab ctermbg=darkgray guibg=darkgray
-highlight Space ctermbg=darkblue guibg=darkblue
-au BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
-au BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
-
-" Highlight non ascii chars
-" highlight nonAscii ctermfg=blue guifg=blue
-" au BufWinEnter * let w:m4=matchadd('nonAscii', '[^\d0-\d127]', -1)
+" Highlight trailing Tabs, Spaces and special chars
+augroup specialchars
+    autocmd!
+    highlight Tab ctermbg=darkgray guibg=darkgray
+    highlight Space ctermbg=darkblue guibg=darkblue
+    highlight nonAscii ctermfg=blue guifg=blue
+    autocmd BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
+    autocmd BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
+    autocmd BufWinEnter *.txt,README,*.md let w:m4=matchadd('nonAscii', '[^\d0-\d127]', -1)
+augroup end
 
 " Use 256 colors
 set t_Co=256
