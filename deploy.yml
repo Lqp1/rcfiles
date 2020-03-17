@@ -181,8 +181,21 @@
            - 'git config --global merge.tool vimdiff'
            - 'git config --global diff.tool vimdiff'
            - 'git config --global difftool.prompt false'
-           - 'git config --global core.excludesfile ~/.gitignore'
+           - 'git config --global core.excludesfile {{ home }}/.gitignore'
            - 'git config --global help.autocorrect 20'
            - 'git config --global core.page "less {{ lessopts }}"'
-
-
+     - name: "Configure GTK-2.0 apps"
+       lineinfile:
+           create: yes
+           line: "gtk-key-theme-name = \"Emacs\""
+           path: "{{home}}/.gtkrc-2.0"
+     - name: "Configure minimal GTK-3.0 config file"
+       lineinfile:
+           create: yes
+           line: "[Settings]"
+           path: "{{home}}/.config/gtk-3.0/settings.ini"
+     - name: "Configure GTK-3.0 apps"
+       lineinfile:
+           line: "gtk-key-theme-name = \"Emacs\""
+           insertafter: "[Settings]"
+           path: "{{home}}/.config/gtk-3.0/settings.ini"
