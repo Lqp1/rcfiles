@@ -29,6 +29,7 @@
           - autojump
           - screen
           - tree
+          - curl
           # X11
           - i3
           - rofi
@@ -87,13 +88,13 @@
           - ".vim/colors"
           - ".config/nvim/"
           - ".config/i3/"
+          - ".githooks"
      - name: "Copy additionnal configuration files"
        copy:
         src:  "{{item.src}}"
         dest : "{{home}}/{{item.dst}}"
         owner: "{{user}}"
        with_items:
-          - { src : "gitignore", dst : ".gitignore"}
           - { src : "screenrc", dst : ".screenrc"}
           - { src : "vimrc", dst : ".vimrc"}
           - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
@@ -164,7 +165,7 @@
           - "alias ip='/bin/ip --color=auto'"
           - "alias gits='git status'"
           - "alias gitd='git diff'"
-          - "alias gitg='git pull --tags'"
+          - "alias gitg='git pull'"
           - "alias gitp='git push'"
           - "alias gitw='git whatchanged'"
           - "alias gitl='git tree'"
@@ -174,16 +175,21 @@
        with_items:
            - 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
            - 'git config --global pull.rebase true'
+           - 'git config --global remote.origin.tagOpt --tags'
+           - 'git config --global rebase.autoStash true'
+           - 'git config --global commit.verbose true'
            - 'git config --global status.short true'
            - 'git config --global status.branch true'
            - 'git config --global core.autocrlf input'
+           - 'git config --global core.safecrlf warn'
            - 'git config --global core.editor vim'
+           - 'git config --global core.excludesfile {{ home }}/.gitignore'
+           - 'git config --global core.hooksPath {{ home }}/.githooks'
+           - 'git config --global core.page "less {{ lessopts }}"'
+           - 'git config --global help.autocorrect 20'
            - 'git config --global merge.tool vimdiff'
            - 'git config --global diff.tool vimdiff'
            - 'git config --global difftool.prompt false'
-           - 'git config --global core.excludesfile {{ home }}/.gitignore'
-           - 'git config --global help.autocorrect 20'
-           - 'git config --global core.page "less {{ lessopts }}"'
      - name: "Configure GTK-2.0 apps"
        lineinfile:
            create: yes
@@ -199,3 +205,20 @@
            line: "gtk-key-theme-name = \"Emacs\""
            insertafter: "[Settings]"
            path: "{{home}}/.config/gtk-3.0/settings.ini"
+     - name: "Add curlrc config"
+       lineinfile:
+          dest: "{{home}}/.curlrc"
+          line: "{{item}}"
+          state: "present"
+       with_items:
+          - "--location"
+     - name: "Add global gitignore"
+       lineinfile:
+          dest: "{{home}}/.gitignore"
+          line: "{{item}}"
+          state: "present"
+       with_items:
+          - "TAGS"
+          - ".DS_Store"
+          - "Thumbs.db"
+          - "*~"
