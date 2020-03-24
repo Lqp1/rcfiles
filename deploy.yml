@@ -215,6 +215,7 @@
            path: "{{home}}/.config/gtk-3.0/settings.ini"
      - name: "Add curlrc config"
        lineinfile:
+          create: yes
           dest: "{{home}}/.curlrc"
           line: "{{item}}"
           state: "present"
@@ -222,6 +223,7 @@
           - "--location"
      - name: "Add global gitignore"
        lineinfile:
+          create: yes
           dest: "{{home}}/.gitignore"
           line: "{{item}}"
           state: "present"

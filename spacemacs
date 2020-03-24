@@ -340,6 +340,7 @@ you should place your code here."
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
 (setq tags-add-tables nil)
+(add-to-list 'spacemacs-large-file-modes-list 'tags-table-mode)
 (set-fontset-font t 'unicode "Symbola" nil 'prepend)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
