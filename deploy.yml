@@ -41,6 +41,14 @@
           - sbcl
        when: not minimal|bool
        ignore_errors: yes
+     - name: "Clone FZF"
+       git:
+           repo: "https://github.com/junegunn/fzf.git"
+           dest: "{{home}}/.fzf"
+       when: not minimal|bool
+     - name: "Install FZF"
+       shell: "{{home}}/.fzf/install"
+       when: not minimal|bool
      - name: "Clone Splatmoji"
        git:
           repo: "https://github.com/cspeterson/splatmoji"
@@ -137,7 +145,7 @@
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
-          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump)'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf)'
        when: not minimal|bool
      - name: "Add waiting dots"
        replace:
