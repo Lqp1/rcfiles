@@ -129,15 +129,7 @@ mode "resize" {
 
 default_border pixel 3
 exec --no-startup-id ~/.fehbg
-#exec --no-startup-id conky -d
 
-# i3-gaps config
-#smart_gaps on
-#gaps inner 5
-#gaps outer 5
-#gaps horizontal 5
-#gaps vertical 5
-#gaps top 5
-#gaps right 5
-#gaps bottom 5
-#gaps left 5
+# set floating window for some apps
+for_window [class="zoom" instance="zoom"] floating enable
+for_window [class="gnome-pomodoro"] floating enable
