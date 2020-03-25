@@ -130,6 +130,13 @@ mode "resize" {
 default_border pixel 3
 exec --no-startup-id ~/.fehbg
 
-# set floating window for some apps
+# Theming
+client.focused          #333333 #81A2BE #FFFFFF #81A2BE   #81A2BE
+client.focused_inactive #333333 #5F676A #B0C4BB #484E50   #3B3F6A
+client.unfocused        #333333 #5F676A #B0C4BB #688486   #688486
+client.urgent           #333333 #900000 #909090 #900000   #900000
+client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+# Set floating window for some apps
 for_window [class="zoom" instance="zoom"] floating enable
 for_window [class="gnome-pomodoro"] floating enable

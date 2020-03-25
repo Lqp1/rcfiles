@@ -111,6 +111,7 @@
           - { src : "bashrc", dst : ".bashrc"}
           - { src : "zshenv", dst : ".zshenv"}
           - { src : "spacemacs", dst : ".spacemacs"}
+          - { src : "xresources", dst : ".Xresources"}
      - name: "Copy minimal ZSH"
        copy:
            src: "zshrc"
@@ -232,3 +233,5 @@
           - ".DS_Store"
           - "Thumbs.db"
           - "*~"
+     - name: "Activate Xresources changes"
+       shell: "xrdb -load {{ home }}/.Xresources"
