@@ -342,6 +342,12 @@ you should place your code here."
 (setq tags-add-tables nil)
 (add-to-list 'spacemacs-large-file-modes-list 'tags-table-mode)
 (set-fontset-font t 'unicode "Symbola" nil 'prepend)
+(defun my-expand-lines ()
+  (interactive)
+  (let ((hippie-expand-try-functions-list
+         '(try-expand-line-all-buffers)))
+    (call-interactively 'hippie-expand)))
+(define-key evil-insert-state-map (kbd "C-x C-l") 'my-expand-lines)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
