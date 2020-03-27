@@ -139,4 +139,4 @@ client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 # Set floating window for some apps
 for_window [class="zoom" instance="zoom"] floating enable
-for_window [class="gnome-pomodoro"] floating enable
+for_window [instance="gnome-pomodoro"] floating enable
