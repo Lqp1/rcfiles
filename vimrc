@@ -1,7 +1,6 @@
 " VIMRC
 
 " Global settings
-silent! colorscheme solarized
 set nocompatible
 set cursorline
 set history=100
@@ -141,3 +140,7 @@ ab MODELINE vim: set ts=4 sw=4 ai ff=unix
 if filereadable(expand("~/.vim_local"))
     source ~/.vim_local
 endif
+
+" Theming
+silent! colorscheme solarized
+highlight Comment cterm=italic
