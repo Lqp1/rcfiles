@@ -5,6 +5,7 @@
 set $mod Mod4
 workspace_auto_back_and_forth yes
 focus_follows_mouse no
+workspace_layout tabbed
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -138,5 +139,5 @@ client.urgent           #333333 #900000 #909090 #900000   #900000
 client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 # Set floating window for some apps
-for_window [class="zoom" instance="zoom"] floating enable
+for_window [class="zoom" instance="zoom"] floating enable, popup_during_fullscreen leave_fullscreen
 for_window [instance="gnome-pomodoro"] floating enable
