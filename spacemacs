@@ -350,6 +350,12 @@ you should place your code here."
 (setq emojify-company-tooltips-p t)
 (global-emojify-mode)
 
+;; Make some beautiful org symbols
+(add-hook 'org-mode-hook (lambda ()
+                           "Beautify Org Symbol"
+                           (push '("->" .  "➡") prettify-symbols-alist)
+                           (prettify-symbols-mode)))
+
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
 
