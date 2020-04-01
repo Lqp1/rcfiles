@@ -335,8 +335,17 @@ you should place your code here."
 (setq magit-revision-show-gravatars nil)
 (setq evil-escape-key-sequence "jk")
 (setq evil-escape-delay 0.2)
-(add-hook 'org-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
-(add-hook 'markdown-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
+(defun my-notes-hook ()
+  "This function defines some hooks used in org/md modes"
+  (interactive)
+  (turn-on-auto-fill)
+  (set-fill-column 80)
+  (push '("->" .  "➡") prettify-symbols-alist)
+  (prettify-symbols-mode)
+  (linum-mode 0)
+  )
+(add-hook 'org-mode-hook 'my-notes-hook)
+(add-hook 'markdown-mode-hook 'my-notes-hook)
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
 (setq tags-add-tables nil)
@@ -350,11 +359,6 @@ you should place your code here."
 (setq emojify-company-tooltips-p t)
 (global-emojify-mode)
 
-;; Make some beautiful org symbols
-(add-hook 'org-mode-hook (lambda ()
-                           "Beautify Org Symbol"
-                           (push '("->" .  "➡") prettify-symbols-alist)
-                           (prettify-symbols-mode)))
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
