@@ -2,10 +2,27 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Define leader key
 set $mod Mod4
-workspace_auto_back_and_forth yes
+
+# Define workspaces
+set $ws1 "default"
+set $ws2 "internet"
+set $ws3 "terminal"
+set $ws4 "chat"
+set $ws5 "misc"
+
+# Don't put i3socket in /tmp
+ipc-socket ~/.i3-ipc.sock
+
+# Some sane configuration
 focus_follows_mouse no
 workspace_layout tabbed
+focus_on_window_activation smart
+force_display_urgency_hint 500 ms
+bindsym $mod+colon exec i3-input
+bindsym $mod+Tab exec rofi -show window
+bindsym $mod+semicolon exec ~/.splatmoji/splatmoji type
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -24,16 +41,14 @@ bindsym $mod+shift+p move container to output right
 bindsym $mod+shift+U move scratchpad
 bindsym $mod+u scratchpad show
 
-
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run
-bindsym $mod+semicolon exec ~/.splatmoji/splatmoji type
+# use rofi to start apps
+bindsym $mod+d exec rofi -show drun
 
 # change focus
 bindsym $mod+j focus down
@@ -84,28 +99,18 @@ bindsym $mod+a focus parent
 bindsym $mod+q focus child
 
 # switch to workspace
-bindsym $mod+ampersand workspace 1
-bindsym $mod+eacute workspace 2
-bindsym $mod+quotedbl workspace 3
-bindsym $mod+apostrophe workspace 4
-bindsym $mod+parenleft workspace 5
-bindsym $mod+minus workspace 6
-bindsym $mod+egrave workspace 7
-bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9
-bindsym $mod+agrave workspace 10
+bindsym $mod+ampersand workspace $ws1
+bindsym $mod+eacute workspace $ws2
+bindsym $mod+quotedbl workspace $ws3
+bindsym $mod+apostrophe workspace $ws4
+bindsym $mod+parenleft workspace $ws5
 
 # move focused container to workspace
-bindsym $mod+Shift+ampersand move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+underscore move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+ampersand move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -139,5 +144,17 @@ client.urgent           #333333 #900000 #909090 #900000   #900000
 client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 # Set floating window for some apps
-for_window [class="zoom" instance="zoom"] floating enable, popup_during_fullscreen leave_fullscreen
-for_window [instance="gnome-pomodoro"] floating enable
+for_window [class="zoom" window_role="pop-up"] floating enable
+for_window [class="Gnome-pomodoro"] floating enable
+
+# Browser
+for_window [class="Firefox"] move to workspace $ws2; workspace $ws2
+
+# IDE
+for_window [class="Emacs"] move to workspace $ws3; workspace $ws3
+for_window [class="Xfce4-terminal"] move to workspace $ws3; workspace $ws3
+
+# Chat
+for_window [class="Slack"] move to workspace $ws4; workspace $ws4
+for_window [class="Discord"] move to workspace $ws4; workspace $ws4
+for_window [class="zoom"] move to workspace $ws4; workspace $ws4
