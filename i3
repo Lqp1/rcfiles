@@ -17,8 +17,9 @@ ipc-socket ~/.i3-ipc.sock
 
 # Some sane configuration
 focus_follows_mouse no
-workspace_layout tabbed
+focus_wrapping force
 focus_on_window_activation smart
+workspace_layout tabbed
 force_display_urgency_hint 500 ms
 bindsym $mod+colon exec i3-input
 bindsym $mod+Tab exec rofi -show window
@@ -154,7 +155,8 @@ for_window [class="Firefox"] move to workspace $ws2; workspace $ws2
 for_window [class="Emacs"] move to workspace $ws3; workspace $ws3
 for_window [class="Xfce4-terminal"] move to workspace $ws3; workspace $ws3
 
-# Chat
+# Chat & Music
 for_window [class="Slack"] move to workspace $ws4; workspace $ws4
-for_window [class="Discord"] move to workspace $ws4; workspace $ws4
+for_window [class="discord"] move to workspace $ws4; workspace $ws4
 for_window [class="zoom"] move to workspace $ws4; workspace $ws4
+for_window [class="Spotify"] move to workspace $ws4; workspace $ws4
