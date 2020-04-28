@@ -183,6 +183,7 @@
        shell: "{{ item }}"
        with_items:
            - 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
+           - 'git config --global alias.clean "clean -dxe .dir-locals.el"'
            - 'git config --global pull.rebase true'
            - 'git config --global remote.origin.tagOpt --tags'
            - 'git config --global rebase.autoStash true'
