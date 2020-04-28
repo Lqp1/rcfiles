@@ -84,6 +84,25 @@
        become: yes
        become_user : "{{user}}"
        when: not minimal|bool
+     - name: "Clone FZF interactive CD plugin from github"
+       git:
+          repo: "https://github.com/changyuheng/zsh-interactive-cd"
+          dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
+       become: yes
+       become_user : "{{user}}"
+       when: not minimal|bool
+     - name: "Add FZF-man plugin"
+       copy:
+          src: "res/fzf-man"
+          dest: "{{home}}/.oh-my-zsh/custom/plugins/"
+          owner: "{{user}}"
+       when: not minimal|bool
+     - name: "Add FZF-j plugin"
+       copy:
+          src: "res/fzf-j"
+          dest: "{{home}}/.oh-my-zsh/custom/plugins/"
+          owner: "{{user}}"
+       when: not minimal|bool
      - name: "Create some directories"
        file:
           path: "{{home}}/{{item}}"
@@ -146,7 +165,7 @@
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
-          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf)'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf zsh-interactive-cd fzf-man fzf-j)'
        when: not minimal|bool
      - name: "Add waiting dots"
        replace:
