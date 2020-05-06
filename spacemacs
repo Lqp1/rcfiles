@@ -43,7 +43,7 @@ values."
      common-lisp
      python
      c-c++
-     ruby
+     (ruby :variables ruby-test-runner 'rspec)
      go
      syntax-checking
 
