@@ -145,11 +145,12 @@ client.urgent           #333333 #900000 #909090 #900000   #900000
 client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 # Set floating window for some apps
-for_window [class="zoom" window_role="pop-up"] floating enable
+for_window [class="zoom" title="zoom"] floating enable; resize set 200 20 px
 for_window [class="Gnome-pomodoro"] floating enable
 
 # Browser
 for_window [class="Firefox"] move to workspace $ws2; workspace $ws2
+for_window [class="Chromium"] move to workspace $ws2; workspace $ws2
 
 # IDE
 for_window [class="Emacs"] move to workspace $ws3; workspace $ws3
