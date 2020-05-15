@@ -133,7 +133,7 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 
 " Modeline
-ab MODELINE vim: set ts=4 sw=4 ai ff=unix
+ab MODELINE vim: set ts=4 sw=4 ai ff=unix:
 " set modeline
 
 " Local VIMRC

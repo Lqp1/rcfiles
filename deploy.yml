@@ -113,6 +113,7 @@
           - ".cache/zsh"
           - ".vim"
           - ".vim/colors"
+          - ".vim/autoload"
           - ".config/nvim/"
           - ".config/i3/"
           - ".githooks"
@@ -125,6 +126,7 @@
           - { src : "screenrc", dst : ".screenrc"}
           - { src : "vimrc", dst : ".vimrc"}
           - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
+          - { src : "res/vim-plug/plug.vim", dst : ".vim/autoload/plug.vim"}
           - { src : "nvimrc", dst : ".config/nvim/init.vim"}
           - { src : "i3", dst : ".config/i3/config"}
           - { src : "bashrc", dst : ".bashrc"}
@@ -165,7 +167,7 @@
        replace:
           dest: "{{home}}/.zshrc"
           regexp: 'plugins=.*'
-          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf zsh-interactive-cd fzf-man fzf-j)'
+          replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j)'
        when: not minimal|bool
      - name: "Add waiting dots"
        replace:

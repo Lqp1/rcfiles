@@ -62,6 +62,9 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# focus next container, fast switch on azerty
+bindsym $mod+twosuperior focus right
+
 # move focused window
 bindsym $mod+Shift+J move down
 bindsym $mod+Shift+K move up
