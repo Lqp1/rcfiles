@@ -1,0 +1,8 @@
+---
+lessopts: "-FSRXI"
+gitignore:
+     - "TAGS"
+     - ".DS_Store"
+     - "Thumbs.db"
+     - "*~"
+cleanignore: ".dir-locals.el"

@@ -1,0 +1,3 @@
+---
+- name: activate xres
+  shell: "xrdb -load {{ home }}/.Xresources"
