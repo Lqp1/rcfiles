@@ -1,0 +1,8 @@
+---
+- name: "Check dependencies"
+  command: "which {{ item }}"
+  with_items:
+     - eix
+# TODO:
+# - eix config
+# - local repo config
