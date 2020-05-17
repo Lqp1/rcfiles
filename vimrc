@@ -25,12 +25,17 @@ set autoread
 " Set Leader key to Space and add several shortcuts
 let mapleader=" "
 nnoremap <silent> <Leader><Tab> :bprev<CR>
-nnoremap <silent> <Leader>bn :bnext<CR>
-nnoremap <silent> <Leader>bb :ls<CR>
+nnoremap <silent> <Leader>n :bnext<CR>
+nnoremap <silent> <Leader>b :ls<CR>
+nnoremap <silent> <Leader>d :bdelete<CR>
 nnoremap <Leader><Leader> :
 
 " Shortcut to sudo-save a file
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
+" Auto-save sessions
+autocmd VimLeave * mksession! ~/.vimdat/session.vim
+autocmd VimEnter * silent! source ~/.vimdat/session.vim
 
 " Shortcut to exit insert mode faster
 inoremap jk <ESC>
