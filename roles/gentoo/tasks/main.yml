@@ -1,8 +1,44 @@
 ---
 - name: "Check dependencies"
-  command: "which {{ item }}"
+  portage:
+      package: "{{item}}"
+      state: "present"
   with_items:
-     - eix
-# TODO:
-# - eix config
-# - local repo config
+     - "app-portage/eix"
+     - "app-portage/gentoolkit"
+     - "app-portage/portpeek"
+     - "app-portage/layman"
+     - "app-portage/genlop"
+     - "app-portage/smart-live-rebuild"
+     - "app-admin/eclean-kernel"
+- name: "Copy eix config"
+  copy:
+      src: "00-eixrc"
+      dest: "/etc/eixrc/"
+      mode: 0644
+- name: "Copy eix exec in portage"
+  copy:
+      src: "eix"
+      dest: "/etc/portage/repo.postsync.d/"
+      mode: 0755
+- name: "Copy localrepo config"
+  template:
+      src: "localrepo.conf"
+      dest: "/etc/portage/repos.conf/"
+      mode: 0644
+- name: "Create localrepo dir"
+  file:
+      path: "{{item}}"
+      state: directory
+  with_items:
+      - "{{localrepo}}"
+      - "{{localrepo}}/metadata"
+      - "{{localrepo}}/profiles"
+- name: "Create metadata for localrepo"
+  copy:
+      dest: "{{localrepo}}/metadata/"
+      src: "layout.conf"
+- name: "Create repo_name for localrepo"
+  copy:
+      dest: "{{localrepo}}/profiles/repo_name"
+      content: "localrepo\n"
