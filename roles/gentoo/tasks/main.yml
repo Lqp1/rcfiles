@@ -42,3 +42,7 @@
   copy:
       dest: "{{localrepo}}/profiles/repo_name"
       content: "localrepo\n"
+- name: "Add memo in root folder"
+  get_url:
+      url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/7bfa98a36cdafc7e30d6c5b6a617eb0ebd334646/gentoo-notes.md"
+      dest: "/root/memo.md"
