@@ -1,5 +1,5 @@
 ---
- - hosts: local
+ - hosts: localhost
    connection: local
    vars:
        home: /home/{{user}}/
@@ -7,3 +7,4 @@
        minimal: false
    roles:
        - common
+       - user

@@ -1,0 +1,12 @@
+---
+- name: "Install share on desktop"
+  template:
+      src: "share.desktop"
+      dest: "{{shares_dir}}/{{item.name}}.desktop"
+      mode: 0755
+  with_items: "{{shares}}"
+- name: "Clone additionnal repositories"
+  git:
+      repo: "{{item.repo}}"
+      dest: "{{repos_dir}}/{{item.name}}"
+  with_items: "{{repos}}"

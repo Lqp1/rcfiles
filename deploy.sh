@@ -26,4 +26,4 @@ fi
 # Run install
 mv -v $2/.zshrc $2/.zshrc.old
 echo "Minimal install : $min"
-ansible-playbook -i "local," --extra-vars "{'user':\"$1\",'home':\"$2\",'minimal':$min}" deploy.yml
+ansible-playbook --extra-vars "{'user':\"$1\",'home':\"$2\",'minimal':$min}" deploy.yml
