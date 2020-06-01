@@ -34,7 +34,6 @@ values."
      ;; Chat
      erc
      gnus
-     ;;emoji
 
      ;; Scripting and dev
      vimscript
@@ -69,7 +68,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vimish-fold docker-tramp helm-lxc solarized-theme emojify)
+   dotspacemacs-additional-packages '(vimish-fold docker-tramp helm-lxc solarized-theme emojify unicode-fonts)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -337,12 +336,13 @@ you should place your code here."
 (setq evil-escape-delay 0.2)
 (defun my-notes-hook ()
   "This function defines some hooks used in org/md modes"
-  (interactive)
   (turn-on-auto-fill)
   (set-fill-column 80)
   (push '("->" .  "➡") prettify-symbols-alist)
   (prettify-symbols-mode)
+  (spacemacs|disable-company org-mode)
   (linum-mode 0)
+  (emojify-mode)
   )
 (add-hook 'org-mode-hook 'my-notes-hook)
 (add-hook 'markdown-mode-hook 'my-notes-hook)
@@ -356,9 +356,11 @@ you should place your code here."
          '(try-expand-line-all-buffers)))
     (call-interactively 'hippie-expand)))
 (define-key evil-insert-state-map (kbd "C-x C-l") 'my-expand-lines)
-(setq emojify-company-tooltips-p t)
-(global-emojify-mode)
-
+(setq unicode-fonts-block-font-mapping
+      '(("Emoticons"
+         ("Noto Color Emoji" "Symbola" "Quivira")))
+      unicode-fonts-fontset-names '("fontset-default"))
+(unicode-fonts-setup)
 
 ;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
 (add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))

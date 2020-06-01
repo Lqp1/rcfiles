@@ -4,6 +4,9 @@ repos:
       name: powerline-fonts
     - repo: https://github.com/speed47/spectre-meltdown-checker
       name: spectre-meltdown-checker
+    - repo: https://github.com/stove-panini/fontconfig-emoji
+      name: fontconfig-emoji
+
 shares:
     - name: Assurancetourix
       ip: 192.168.1.5
