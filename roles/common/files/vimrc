@@ -10,7 +10,7 @@ set lazyredraw
 set sessionoptions=buffers,folds
 filetype plugin on
 filetype indent on
-autocmd BufEnter * if &buftype == "" && isdirectory(expand('%:p:h'))| cd %:p:h | endif
+"autocmd BufEnter * if &buftype == "" && isdirectory(expand('%:p:h'))| cd %:p:h | endif
 set backspace=indent,eol,start
 
 " Set cursor to last known position
@@ -35,8 +35,8 @@ nnoremap <Leader><Leader> :
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Auto-save sessions
-autocmd VimLeave * mksession! ~/.vimdat/session.vim
-autocmd VimEnter * silent! source ~/.vimdat/session.vim | silent! edit #
+"autocmd VimLeave * mksession! ~/.vimdat/session.vim
+"autocmd VimEnter * silent! source ~/.vimdat/session.vim | silent! edit #
 
 " Shortcut to exit insert mode faster
 inoremap jk <ESC>
