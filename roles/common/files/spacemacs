@@ -489,20 +489,11 @@ before packages are loaded."
 (vimish-fold-global-mode 1)
 (setq tags-add-tables nil)
 (add-to-list 'spacemacs-large-file-modes-list 'tags-table-mode)
-(defun my-expand-lines ()
-  (interactive)
-  (let ((hippie-expand-try-functions-list
-         '(try-expand-line-all-buffers)))
-    (call-interactively 'hippie-expand)))
-(define-key evil-insert-state-map (kbd "C-x C-l") 'my-expand-lines)
 (setq unicode-fonts-block-font-mapping
       '(("Emoticons"
          ("Noto Color Emoji" "Symbola" "Quivira")))
       unicode-fonts-fontset-names '("fontset-default"))
 (unicode-fonts-setup)
-
-;; This fixes a bug in spacemacs; see : https://github.com/syl20bnr/spacemacs/issues/12560
-(add-hook 'pdf-view-mode-hook (lambda() (linum-mode 0)))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
