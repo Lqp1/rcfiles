@@ -52,6 +52,7 @@
   git:
      repo: "https://github.com/syl20bnr/spacemacs"
      dest: "{{home}}/.emacs.d"
+     version: "develop"
   become: yes
   become_user : "{{user}}"
   when: not minimal|bool
