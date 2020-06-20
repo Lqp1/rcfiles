@@ -5,8 +5,42 @@
       dest: "{{shares_dir}}/{{item.name}}.desktop"
       mode: 0755
   with_items: "{{shares}}"
+  when: not minimal|bool
 - name: "Clone additionnal repositories"
   git:
       repo: "{{item.repo}}"
       dest: "{{repos_dir}}/{{item.name}}"
   with_items: "{{repos}}"
+  when: not minimal|bool
+- name: "Install gem dependencies"
+  gem:
+      name: "{{item}}"
+      state: present
+  with_items:
+      - bundler
+      - pry
+      - rubocop
+      - rspec
+      - solargraph
+  when: not minimal|bool
+- name: "Install python dependencies"
+  pip:
+      name: "{{item}}"
+      state: present
+      extra_args: "--user"
+  with_items:
+      - python-language-server
+      - pyls-isort
+      - pyls-mypy
+      - pyls-black
+      - flake8
+      - autoflake
+      - ipython
+  when: not minimal|bool
+- name: "Install go dependencies"
+  shell: "go get -u -v {{item}}"
+  with_items:
+      - "golang.org/x/tools/gopls"
+      - "github.com/godoctor/godoctor"
+      - "github.com/rogpeppe/godef"
+  when: not minimal|bool

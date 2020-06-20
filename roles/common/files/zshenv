@@ -1,2 +1,5 @@
 typeset -U path
-path=(~/bin $path)
+path=(~/bin ~/go/bin $path)
+export PATH
+export GOBIN="$(go env GOPATH)/bin"
+export GOPATH="$(go env GOPATH)"

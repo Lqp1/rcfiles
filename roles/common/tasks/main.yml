@@ -27,8 +27,8 @@
      - rofi
      - xdotool
      # dev
-     - ipython
-     - pry
+     - python
+     - ruby
      - go
      - sbcl
   when: not minimal|bool
@@ -123,6 +123,7 @@
      - { src : "nvimrc", dst : ".config/nvim/init.vim"}
      - { src : "i3", dst : ".config/i3/config"}
      - { src : "bashrc", dst : ".bashrc"}
+     - { src : "profile", dst : ".profile"}
      - { src : "zshenv", dst : ".zshenv"}
      - { src : "spacemacs", dst : ".spacemacs"}
      - { src : "xresources", dst : ".Xresources"}
