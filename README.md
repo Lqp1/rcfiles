@@ -17,8 +17,11 @@ Actual rcfiles are in `roles/rcfiles/files/`
 
 >`git clone --recursive https://github.com/lqp1/rcfiles`
 
+>`sudo ansible-playbook gentoo.yml` (will bootstrap other needed binaries in
+Gentoo)`
+
 >`./deploy.sh myuser /home/myuser`
 
 
-__NOTE__ : For `root` user, the script installs a minimal and lither version,
+__NOTE__ : For `root` user, the script installs a minimal and lighter version,
 without oh my zsh, fzf, splamoji, and spacemacs.

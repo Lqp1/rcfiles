@@ -11,6 +11,9 @@
      - "app-portage/genlop"
      - "app-portage/smart-live-rebuild"
      - "app-admin/eclean-kernel"
+     - "dev-python/pip"
+     - "dev-lang/ruby"
+     - "dev-lang/go"
 - name: "Copy eix config"
   copy:
       src: "00-eixrc"

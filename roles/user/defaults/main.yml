@@ -6,6 +6,29 @@ repos:
       name: spectre-meltdown-checker
     - repo: https://github.com/stove-panini/fontconfig-emoji
       name: fontconfig-emoji
+    - repo: https://github.com/a13xp0p0v/kconfig-hardened-check
+      name: kconfig-hardened-check
+
+ruby_gems:
+      - bundler
+      - pry
+      - rubocop
+      - rspec
+      - solargraph
+
+python_eggs:
+      - python-language-server
+      - pyls-isort
+      - pyls-mypy
+      - pyls-black
+      - flake8
+      - autoflake
+      - ipython
+
+go_bundles:
+      - "golang.org/x/tools/gopls"
+      - "github.com/godoctor/godoctor"
+      - "github.com/rogpeppe/godef"
 
 shares:
     - name: Assurancetourix

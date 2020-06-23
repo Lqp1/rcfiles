@@ -1,4 +1,10 @@
 ---
+- name: "Check dependencies"
+  command: "which {{ item }}"
+  with_items:
+     - go
+     - ruby
+     - pip
 - name: "Install share on desktop"
   template:
       src: "share.desktop"
@@ -16,31 +22,15 @@
   gem:
       name: "{{item}}"
       state: present
-  with_items:
-      - bundler
-      - pry
-      - rubocop
-      - rspec
-      - solargraph
+  with_items: "{{ruby_gems}}"
   when: not minimal|bool
 - name: "Install python dependencies"
   pip:
-      name: "{{item}}"
+      name: "{{python_eggs}}"
       state: present
       extra_args: "--user"
-  with_items:
-      - python-language-server
-      - pyls-isort
-      - pyls-mypy
-      - pyls-black
-      - flake8
-      - autoflake
-      - ipython
   when: not minimal|bool
 - name: "Install go dependencies"
   shell: "go get -u -v {{item}}"
-  with_items:
-      - "golang.org/x/tools/gopls"
-      - "github.com/godoctor/godoctor"
-      - "github.com/rogpeppe/godef"
+  with_items: "{{go_bundles}}"
   when: not minimal|bool
