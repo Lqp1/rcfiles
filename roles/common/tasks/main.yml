@@ -24,6 +24,7 @@
      - curl
      # X11
      - i3
+     - feh
      - rofi
      - xdotool
      # dev
@@ -81,6 +82,21 @@
   git:
      repo: "https://github.com/changyuheng/zsh-interactive-cd"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
+  become: yes
+  become_user : "{{user}}"
+  when: not minimal|bool
+- name: "Add autotiling tool"
+  git:
+      repo: "https://github.com/nwg-piotr/autotiling"
+      dest: "{{home}}/.autotiling"
+  become: yes
+  become_user : "{{user}}"
+  when: not minimal|bool
+- name: "Install i3ipc for i3 autotiling"
+  pip:
+      name: "i3ipc"
+      state: present
+      extra_args: "--user"
   become: yes
   become_user : "{{user}}"
   when: not minimal|bool
