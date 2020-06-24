@@ -8,6 +8,7 @@
      - "app-portage/gentoolkit"
      - "app-portage/portpeek"
      - "app-portage/layman"
+     - "app-portage/repoman"
      - "app-portage/genlop"
      - "app-portage/smart-live-rebuild"
      - "app-admin/eclean-kernel"
