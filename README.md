@@ -25,6 +25,7 @@ Gentoo)`
 Then use ansible-playbook to deploy, overriding some variables:
 
 > `ansible-playbook --extra-vars "{'user':\"myuser\"}" deploy.yml`
+
 > `sudo ansible-playbook --extra-vars "{'user':\"root\",'home':\"/root\",'minimal':true}" deploy.yml`
 
 
