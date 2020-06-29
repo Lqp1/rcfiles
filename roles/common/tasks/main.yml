@@ -33,6 +33,7 @@
      - ruby
      - go
      - sbcl
+     - adb
   when: not minimal|bool
   ignore_errors: yes
 - name: "Clone FZF"
@@ -96,7 +97,7 @@
 - name: "Install i3ipc for i3 autotiling"
   pip:
       name: "i3ipc"
-      state: present
+      state: latest
       extra_args: "--user"
   become: yes
   become_user : "{{user}}"

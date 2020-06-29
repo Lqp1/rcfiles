@@ -18,16 +18,17 @@
       dest: "{{repos_dir}}/{{item.name}}"
   with_items: "{{repos}}"
   when: not minimal|bool
+  ignore_errors: yes
 - name: "Install gem dependencies"
   gem:
       name: "{{item}}"
-      state: present
+      state: latest
   with_items: "{{ruby_gems}}"
   when: not minimal|bool
 - name: "Install python dependencies"
   pip:
       name: "{{python_eggs}}"
-      state: present
+      state: latest
       extra_args: "--user"
   when: not minimal|bool
 - name: "Install go dependencies"
