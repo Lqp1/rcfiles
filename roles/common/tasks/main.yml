@@ -233,6 +233,8 @@
       - 'git config --global merge.tool vimdiff'
       - 'git config --global diff.tool vimdiff'
       - 'git config --global difftool.prompt false'
+      - 'git config --global user.email "{{git_mail}}"'
+      - 'git config --global user.name "{{git_user}}"'
 - name: "Configure GTK-2.0 apps"
   lineinfile:
       create: yes
