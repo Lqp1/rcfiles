@@ -154,6 +154,7 @@ for_window [class="Gnome-pomodoro"] floating enable
 
 # Browser
 for_window [class="Firefox"] move to workspace $ws2; workspace $ws2
+assign [class="Firefox"] $ws2
 for_window [class="Chromium"] move to workspace $ws2; workspace $ws2
 
 # IDE
