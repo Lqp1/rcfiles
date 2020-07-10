@@ -5,6 +5,7 @@
      - go
      - ruby
      - pip
+  when: not minimal|bool
 - name: "Install share on desktop"
   template:
       src: "share.desktop"

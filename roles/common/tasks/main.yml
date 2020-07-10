@@ -23,11 +23,6 @@
      - screen
      - tree
      - curl
-     # X11
-     - i3
-     - feh
-     - rofi
-     - xdotool
      # dev
      - python
      - ruby
@@ -43,13 +38,6 @@
   when: not minimal|bool
 - name: "Install FZF"
   shell: "{{home}}/.fzf/install"
-  when: not minimal|bool
-- name: "Clone Splatmoji"
-  git:
-     repo: "https://github.com/cspeterson/splatmoji"
-     dest: "{{home}}/.splatmoji"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Clone Spacemacs from github"
   git:
@@ -87,21 +75,6 @@
   become: yes
   become_user : "{{user}}"
   when: not minimal|bool
-- name: "Add autotiling tool"
-  git:
-      repo: "https://github.com/nwg-piotr/autotiling"
-      dest: "{{home}}/.autotiling"
-  become: yes
-  become_user : "{{user}}"
-  when: not minimal|bool
-- name: "Install i3ipc for i3 autotiling"
-  pip:
-      name: "i3ipc"
-      state: latest
-      extra_args: "--user"
-  become: yes
-  become_user : "{{user}}"
-  when: not minimal|bool
 - name: "Add FZF-man plugin"
   copy:
      src: "res/fzf-man"
@@ -126,7 +99,6 @@
      - ".vim/colors"
      - ".vim/autoload"
      - ".config/nvim/"
-     - ".config/i3/"
      - ".githooks"
 - name: "Copy additionnal configuration files"
   copy:
@@ -139,13 +111,10 @@
      - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
      - { src : "res/vim-plug/plug.vim", dst : ".vim/autoload/plug.vim"}
      - { src : "nvimrc", dst : ".config/nvim/init.vim"}
-     - { src : "i3", dst : ".config/i3/config"}
      - { src : "bashrc", dst : ".bashrc"}
      - { src : "profile", dst : ".profile"}
      - { src : "zshenv", dst : ".zshenv"}
      - { src : "spacemacs", dst : ".spacemacs"}
-     - { src : "xresources", dst : ".Xresources"}
-  notify: activate xres
 - name: "Copy minimal ZSH"
   copy:
       src: "zshrc"
@@ -236,21 +205,6 @@
       - 'git config --global difftool.prompt false'
       - 'git config --global user.email "{{git_mail}}"'
       # - 'git config --global user.name "{{git_user}}"'
-- name: "Configure GTK-2.0 apps"
-  lineinfile:
-      create: yes
-      line: "gtk-key-theme-name = \"Emacs\""
-      path: "{{home}}/.gtkrc-2.0"
-- name: "Configure minimal GTK-3.0 config file"
-  lineinfile:
-      create: yes
-      line: "[Settings]"
-      path: "{{home}}/.config/gtk-3.0/settings.ini"
-- name: "Configure GTK-3.0 apps"
-  lineinfile:
-      line: "gtk-key-theme-name = \"Emacs\""
-      insertafter: "[Settings]"
-      path: "{{home}}/.config/gtk-3.0/settings.ini"
 - name: "Add curlrc config"
   lineinfile:
      create: yes

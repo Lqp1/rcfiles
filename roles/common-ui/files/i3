@@ -139,6 +139,7 @@ mode "resize" {
 
 default_border pixel 3
 exec --no-startup-id ~/.fehbg
+exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 exec_always --no-startup-id ~/.autotiling/autotiling.py
 
 # Theming

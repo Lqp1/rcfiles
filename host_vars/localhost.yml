@@ -4,4 +4,4 @@ git_mail: "lqp1@users.noreply.github.com"
 #git_user: "Lqp1"
 home: "/home/{{user}}/"
 minimal: false
-user: foo
+user: "{{ ansible_user_id }}"
