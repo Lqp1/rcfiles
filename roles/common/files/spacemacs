@@ -495,7 +495,7 @@ before packages are loaded."
       unicode-fonts-fontset-names '("fontset-default"))
 (unicode-fonts-setup)
 
-(setq projectile-indexing-method 'native)
+(setq projectile-indexing-method 'hybrid)
 (eval-after-load "projectile" '(progn
                                  (add-to-list 'projectile-globally-ignored-directories ".bloop")
                                  ))
