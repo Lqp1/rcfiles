@@ -44,54 +44,41 @@
      repo: "https://github.com/syl20bnr/spacemacs"
      dest: "{{home}}/.emacs.d"
      version: "develop"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Clone Oh My ZSH from github"
   git:
      repo: "https://github.com/robbyrussell/oh-my-zsh"
      dest: "{{home}}/.oh-my-zsh"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Clone Autosuggestions from github"
   git:
      repo: "https://github.com/zsh-users/zsh-autosuggestions"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Clone Syntax from github"
   git:
      repo: "https://github.com/zsh-users/zsh-syntax-highlighting"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Clone FZF interactive CD plugin from github"
   git:
      repo: "https://github.com/changyuheng/zsh-interactive-cd"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
-  become: yes
-  become_user : "{{user}}"
   when: not minimal|bool
 - name: "Add FZF-man plugin"
   copy:
      src: "res/fzf-man"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/"
-     owner: "{{user}}"
   when: not minimal|bool
 - name: "Add FZF-j plugin"
   copy:
      src: "res/fzf-j"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/"
-     owner: "{{user}}"
   when: not minimal|bool
 - name: "Create some directories"
   file:
      path: "{{home}}/{{item}}"
      state: "directory"
-     owner: "{{user}}"
   with_items:
      - ".cache"
      - ".cache/zsh"
@@ -104,7 +91,6 @@
   copy:
    src:  "{{item.src}}"
    dest : "{{home}}/{{item.dst}}"
-   owner: "{{user}}"
   with_items:
      - { src : "screenrc", dst : ".screenrc"}
      - { src : "vimrc", dst : ".vimrc"}
@@ -119,13 +105,11 @@
   copy:
       src: "zshrc"
       dest: "{{home}}/.zshrc"
-      owner: "{{user}}"
   when: minimal|bool
 - name: "Link ZSH RC"
   copy:
      src: "{{home}}/.oh-my-zsh/templates/zshrc.zsh-template"
      dest: "{{home}}/.zshrc"
-     owner: "{{user}}"
      remote_src: true
   when: not minimal|bool
 - name: "Configure Oh My ZSH home dir"

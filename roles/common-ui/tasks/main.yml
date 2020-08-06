@@ -1,76 +1,60 @@
 ---
-- name: "Check optional dependencies"
-  command: "which {{ item }}"
-  with_items:
-     - i3
-     - feh
-     - rofi
-     - xdotool
-     - polybar
+- name: "Common ui config"
+  block:
+    - name: "Check optional dependencies"
+      command: "which {{ item }}"
+      with_items:
+         - i3
+         - feh
+         - rofi
+         - xdotool
+         - polybar
+    - name: "Clone Splatmoji"
+      git:
+         repo: "https://github.com/cspeterson/splatmoji"
+         dest: "{{home}}/.splatmoji"
+    - name: "Add autotiling tool"
+      git:
+          repo: "https://github.com/nwg-piotr/autotiling"
+          dest: "{{home}}/.autotiling"
+    - name: "Install i3ipc for i3 autotiling"
+      pip:
+          name: "i3ipc"
+          state: latest
+          extra_args: "--user"
+    - name: "Create some directories"
+      file:
+         path: "{{home}}/{{item}}"
+         state: "directory"
+      with_items:
+         - ".config/i3/"
+         - ".config/polybar/"
+    - name: "Copy additionnal configuration files"
+      copy:
+       src:  "{{item.src}}"
+       dest : "{{home}}/{{item.dst}}"
+      with_items:
+         - { src : "i3", dst : ".config/i3/config"}
+         - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
+         - { src : "xresources", dst : ".Xresources"}
+      notify: activate xres
+    - name: "Configure GTK-2.0 apps"
+      lineinfile:
+          create: yes
+          line: "gtk-key-theme-name = \"Emacs\""
+          path: "{{home}}/.gtkrc-2.0"
+    - name: "Configure minimal GTK-3.0 config file"
+      lineinfile:
+          create: yes
+          line: "[Settings]"
+          path: "{{home}}/.config/gtk-3.0/settings.ini"
+    - name: "Configure GTK-3.0 apps"
+      lineinfile:
+          line: "gtk-key-theme-name = \"Emacs\""
+          insertafter: "[Settings]"
+          path: "{{home}}/.config/gtk-3.0/settings.ini"
+    - name: "Copy fonts"
+      copy:
+          src: "res/fonts/"
+          dest: "{{home}}/.local/share/fonts/"
   when: not minimal|bool
-- name: "Clone Splatmoji"
-  git:
-     repo: "https://github.com/cspeterson/splatmoji"
-     dest: "{{home}}/.splatmoji"
-  become: yes
-  become_user : "{{user}}"
-  when: not minimal|bool
-- name: "Add autotiling tool"
-  git:
-      repo: "https://github.com/nwg-piotr/autotiling"
-      dest: "{{home}}/.autotiling"
-  become: yes
-  become_user : "{{user}}"
-  when: not minimal|bool
-- name: "Install i3ipc for i3 autotiling"
-  pip:
-      name: "i3ipc"
-      state: latest
-      extra_args: "--user"
-  become: yes
-  become_user : "{{user}}"
-  when: not minimal|bool
-- name: "Create some directories"
-  file:
-     path: "{{home}}/{{item}}"
-     state: "directory"
-     owner: "{{user}}"
-  with_items:
-     - ".config/i3/"
-     - ".config/polybar/"
-  when: not minimal|bool
-- name: "Copy additionnal configuration files"
-  copy:
-   src:  "{{item.src}}"
-   dest : "{{home}}/{{item.dst}}"
-   owner: "{{user}}"
-  with_items:
-     - { src : "i3", dst : ".config/i3/config"}
-     - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
-     - { src : "xresources", dst : ".Xresources"}
-  when: not minimal|bool
-  notify: activate xres
-- name: "Configure GTK-2.0 apps"
-  lineinfile:
-      create: yes
-      line: "gtk-key-theme-name = \"Emacs\""
-      path: "{{home}}/.gtkrc-2.0"
-  when: not minimal|bool
-- name: "Configure minimal GTK-3.0 config file"
-  lineinfile:
-      create: yes
-      line: "[Settings]"
-      path: "{{home}}/.config/gtk-3.0/settings.ini"
-  when: not minimal|bool
-- name: "Configure GTK-3.0 apps"
-  lineinfile:
-      line: "gtk-key-theme-name = \"Emacs\""
-      insertafter: "[Settings]"
-      path: "{{home}}/.config/gtk-3.0/settings.ini"
-  when: not minimal|bool
-- name: "Copy fonts"
-  copy:
-      src: "res/fonts/"
-      dest: "{{home}}/.local/share/fonts/"
-  when: not minimal|bool
-

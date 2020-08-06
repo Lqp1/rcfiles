@@ -1,38 +1,35 @@
 ---
-- name: "Check dependencies"
-  command: "which {{ item }}"
-  with_items:
-     - go
-     - ruby
-     - pip
-  when: not minimal|bool
-- name: "Install share on desktop"
-  template:
-      src: "share.desktop"
-      dest: "{{shares_dir}}/{{item.name}}.desktop"
-      mode: 0755
-  with_items: "{{shares}}"
-  when: not minimal|bool
-- name: "Clone additionnal repositories"
-  git:
-      repo: "{{item.repo}}"
-      dest: "{{repos_dir}}/{{item.name}}"
-  with_items: "{{repos}}"
-  when: not minimal|bool
-  ignore_errors: yes
-- name: "Install gem dependencies"
-  gem:
-      name: "{{item}}"
-      state: latest
-  with_items: "{{ruby_gems}}"
-  when: not minimal|bool
-- name: "Install python dependencies"
-  pip:
-      name: "{{python_eggs}}"
-      state: latest
-      extra_args: "--user"
-  when: not minimal|bool
-- name: "Install go dependencies"
-  shell: "go get -u -v {{item}}"
-  with_items: "{{go_bundles}}"
+- name: "User config"
+  block:
+    - name: "Check dependencies"
+      command: "which {{ item }}"
+      with_items:
+         - go
+         - ruby
+         - pip
+    - name: "Install share on desktop"
+      template:
+          src: "share.desktop"
+          dest: "{{shares_dir}}/{{item.name}}.desktop"
+          mode: 0755
+      with_items: "{{shares}}"
+    - name: "Clone additionnal repositories"
+      git:
+          repo: "{{item.repo}}"
+          dest: "{{repos_dir}}/{{item.name}}"
+      with_items: "{{repos}}"
+      ignore_errors: yes
+    - name: "Install gem dependencies"
+      gem:
+          name: "{{item}}"
+          state: latest
+      with_items: "{{ruby_gems}}"
+    - name: "Install python dependencies"
+      pip:
+          name: "{{python_eggs}}"
+          state: latest
+          extra_args: "--user"
+    - name: "Install go dependencies"
+      shell: "go get -u -v {{item}}"
+      with_items: "{{go_bundles}}"
   when: not minimal|bool
