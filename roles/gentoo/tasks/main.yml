@@ -12,6 +12,8 @@
      - "app-portage/genlop"
      - "app-portage/smart-live-rebuild"
      - "app-admin/eclean-kernel"
+     - "app-portage/portage-utils"
+     - "app-forensics/chkrootkit"
      - "dev-python/pip"
      - "dev-lang/ruby"
      - "dev-lang/go"
