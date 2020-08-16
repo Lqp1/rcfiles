@@ -1,4 +1,12 @@
-export PATH="~/bin:$(go env GOPATH)/bin:~/.local/bin:$PATH"
-export GOPATH="$(go env GOPATH)"
-export GOBIN="$(go env GOPATH)/bin"
-
+if which go >/dev/null; then
+    export GOPATH="$(go env GOPATH)"
+    export GOBIN="$GOPATH/bin"
+fi
+if which ruby >/dev/null && which gem >/dev/null; then
+    export GEMPATH="$(ruby -r rubygems -e 'puts Gem.user_dir')"
+    export GEMBIN="$GEMPATH/bin"
+fi
+if which python >/dev/null; then
+    export PYTHONBIN="$(python -c 'import site; print(site.USER_BASE)')/bin"
+fi
+export PATH="~/bin:$GOBIN:$GEMPATH:$PYTHONBIN:$PATH"
