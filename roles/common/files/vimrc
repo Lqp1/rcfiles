@@ -25,7 +25,7 @@ set autoread
 
 " Set Leader key to Space and add several shortcuts
 let mapleader=" "
-nnoremap <silent> <Leader><Tab> :bprev<CR>
+nnoremap <silent> <Leader><Tab> :b#<CR>
 nnoremap <silent> <Leader>n :bnext<CR>
 nnoremap <silent> <Leader>b :ls<CR>
 nnoremap <silent> <Leader>d :bdelete<CR>
