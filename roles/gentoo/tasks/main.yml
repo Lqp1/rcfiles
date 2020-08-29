@@ -11,6 +11,7 @@
      - "app-portage/repoman"
      - "app-portage/genlop"
      - "app-portage/smart-live-rebuild"
+     - "app-portage/cpuid2cpuflags"
      - "app-admin/eclean-kernel"
      - "app-portage/portage-utils"
      - "app-forensics/chkrootkit"
@@ -52,3 +53,14 @@
   get_url:
       url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/7bfa98a36cdafc7e30d6c5b6a617eb0ebd334646/gentoo-notes.md"
       dest: "/root/memo.md"
+- name: "Register CPU flags"
+  command: "cpuid2cpuflags"
+  register: flags
+- name: "Setup CPU flags as use flags"
+  template:
+      src: "00cpu-flags.j2"
+      dest: "/etc/portage/package.use/00cpu-flags"
+- name: "Ensure we build binary package, and use it as much as possible"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      line: 'FEATURES="buildpkg getbinpkg"'
