@@ -64,3 +64,7 @@
   lineinfile:
       path: "/etc/portage/make.conf"
       line: 'FEATURES="buildpkg getbinpkg"'
+- name: "Setup personnal use flags (hardware agnostic)"
+  copy:
+      src: "01personal"
+      dest: "/etc/portage/package.use/01personal"
