@@ -1,2 +1,3 @@
 ---
 localrepo: "/var/db/repos/localrepo"
+personaloverlay: "/var/db/repos/lqp1/"

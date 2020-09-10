@@ -33,6 +33,11 @@
       src: "localrepo.conf"
       dest: "/etc/portage/repos.conf/"
       mode: 0644
+- name: "Copy personal overlay config"
+  template:
+      src: "overlay.conf"
+      dest: "/etc/portage/repos.conf/lqp1.conf"
+      mode: 0644
 - name: "Create localrepo dir"
   file:
       path: "{{item}}"
@@ -64,7 +69,7 @@
   lineinfile:
       path: "/etc/portage/make.conf"
       line: 'FEATURES="buildpkg getbinpkg"'
-- name: "Setup personnal use flags (hardware agnostic)"
+- name: "Setup personal use flags (hardware agnostic)"
   copy:
       src: "01personal"
       dest: "/etc/portage/package.use/01personal"
