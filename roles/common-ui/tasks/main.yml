@@ -1,6 +1,11 @@
 ---
 - name: "Common ui config"
   block:
+    - stat:
+        path: '/etc/NIXOS'
+      register: nixos_file
+    - set_fact:
+        nixos: nixos_file.stat.exists
     - name: "Check optional dependencies"
       command: "which {{ item }}"
       with_items:
@@ -22,6 +27,7 @@
           name: "i3ipc"
           state: latest
           extra_args: "--user"
+      when: not nixos
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
