@@ -123,7 +123,7 @@ set t_Co=256
 
 " Allow mouse and system clipboard smoothly
 set mouse=a
-" set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 " Misc
 set wildmode=longest,list,full

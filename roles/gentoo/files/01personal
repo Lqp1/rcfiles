@@ -15,6 +15,7 @@ media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 m
 net-analyzer/wireshark qt5
 net-fs/samba -ads client cups
 net-misc/networkmanager connection-sharing
+sys-firmware/intel-microcode initramfs
 www-client/firefox-bin -alsa
 x11-misc/polybar curl i3wm network ipc
 x11-misc/rofi windowmode
