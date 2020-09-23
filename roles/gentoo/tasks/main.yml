@@ -58,7 +58,7 @@
       mode: 0644
 - name: "Add memo in root folder"
   get_url:
-      url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/7bfa98a36cdafc7e30d6c5b6a617eb0ebd334646/gentoo-notes.md"
+      url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/gentoo-notes.md"
       dest: "/root/memo.md"
 - name: "Register CPU flags"
   command: "cpuid2cpuflags"
