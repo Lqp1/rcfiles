@@ -71,7 +71,13 @@
 - name: "Ensure we build binary package, and use it as much as possible"
   lineinfile:
       path: "/etc/portage/make.conf"
+      regexp: 'FEATURES=.*'
       line: 'FEATURES="buildpkg getbinpkg"'
+- name: "Ensure sane defaults for emerge"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'EMERGE_DEFAULT_OPTS=.*'
+      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --columns --read-news --oneshot --verbose-conflicts --quiet-build"'
 - name: "Setup personal use flags (hardware agnostic)"
   copy:
       src: "01personal"
