@@ -50,10 +50,12 @@
   copy:
       dest: "{{localrepo}}/metadata/"
       src: "layout.conf"
+      mode: 0644
 - name: "Create repo_name for localrepo"
   copy:
       dest: "{{localrepo}}/profiles/repo_name"
       content: "localrepo\n"
+      mode: 0644
 - name: "Add memo in root folder"
   get_url:
       url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/7bfa98a36cdafc7e30d6c5b6a617eb0ebd334646/gentoo-notes.md"
@@ -65,6 +67,7 @@
   template:
       src: "00cpu-flags.j2"
       dest: "/etc/portage/package.use/00cpu-flags"
+      mode: 0644
 - name: "Ensure we build binary package, and use it as much as possible"
   lineinfile:
       path: "/etc/portage/make.conf"
@@ -73,3 +76,4 @@
   copy:
       src: "01personal"
       dest: "/etc/portage/package.use/01personal"
+      mode: 0644
