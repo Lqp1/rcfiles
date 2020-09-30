@@ -4,7 +4,6 @@ app-admin/sudo offensive -sendmail
 app-editors/emacs xft imagemagick harfbuzz
 app-editors/vim terminal vim-pager ruby lua python
 app-office/libreoffice-bin -gnome
-dev-lang/scala binary
 dev-util/ctags json yaml
 gnome-base/gvfs -http gphoto2 archive mtp samba -cdda fuse
 media-gfx/gimp xpm
