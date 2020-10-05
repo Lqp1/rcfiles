@@ -4,8 +4,6 @@
     - stat:
         path: '/etc/NIXOS'
       register: nixos_file
-    - set_fact:
-        nixos: nixos_file.stat.exists
     - name: "Check optional dependencies"
       command: "which {{ item }}"
       with_items:
@@ -27,7 +25,7 @@
           name: "i3ipc"
           state: latest
           extra_args: "--user"
-      when: not nixos
+      when: nixos_file.stat.exists == false
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
@@ -42,6 +40,7 @@
       with_items:
          - { src : "i3", dst : ".config/i3/config"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
+         - { src : "redshift.conf", dst : ".config/redshift.conf"}
          - { src : "xresources", dst : ".Xresources"}
       notify: activate xres
     - name: "Configure GTK-2.0 apps"

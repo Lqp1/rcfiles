@@ -41,7 +41,3 @@ __Credits__:
 * Polybar theme comes from https://github.com/adi1090x/polybar-themes; slightly
   modified.
 * res/fonts/* are not mine, all credit go to their respective author.
-
-__TODO__:
-- [ ] Redshift config
-- [ ] i3 local autostart

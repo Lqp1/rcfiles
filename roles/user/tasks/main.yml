@@ -29,7 +29,7 @@
           name: "{{python_eggs}}"
           state: latest
           extra_args: "--user"
-      when: not nixos
+      when: nixos_file.stat.exists == false
     - name: "Install go dependencies"
       shell: "go get -u -v {{item}}"
       with_items: "{{go_bundles}}"
