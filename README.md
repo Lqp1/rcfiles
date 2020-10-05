@@ -29,9 +29,13 @@ Usage:
 ```bash
 git clone --recursive https://github.com/lqp1/rcfiles
 vim host_vars/localhost.yml
-sudo ansible-playbook gentoo.yml
+
+# To set everything for the user:
 ansible-playbook deploy.yml
-sudo ansible-playbook --extra-vars "{'home':\"/root\",'minimal':true}" deploy.yml
+
+# To setup root user config and gentoo:
+sudo ansible-playbook deploy.yml
+sudo ansible-playbook gentoo.yml
 ```
 
 __NOTE__ : When running with `minimal:true` the script installs a minimal and lighter version,

@@ -2,6 +2,7 @@
  - hosts: localhost
    connection: local
    roles:
+       - facts
        - common
        - common-ui
        - user
