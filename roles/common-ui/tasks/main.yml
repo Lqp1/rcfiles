@@ -16,13 +16,9 @@
       git:
          repo: "https://github.com/cspeterson/splatmoji"
          dest: "{{home}}/.splatmoji"
-    - name: "Add autotiling tool"
-      git:
-          repo: "https://github.com/nwg-piotr/autotiling"
-          dest: "{{home}}/.autotiling"
-    - name: "Install i3ipc for i3 autotiling"
+    - name: "Install autotiling from pip"
       pip:
-          name: "i3ipc"
+          name: "autotiling"
           state: latest
           extra_args: "--user"
       when: nixos_file.stat.exists == false
