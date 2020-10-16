@@ -83,3 +83,10 @@
       src: "01personal"
       dest: "/etc/portage/package.use/01personal"
       mode: 0644
+- name: "Blacklist some modules"
+  copy:
+      dest: "/etc/modprobe.d/{{item}}.conf"
+      content: "blacklist {{item}}\n"
+      mode: 0644
+  with_items:
+      - 'pcspkr'
