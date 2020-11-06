@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#vim: set ft=sh:
+
+BASTION="{{bastion.local}}"
+BASTION_USER="{{bastion.user}}"
+SYNC_CMD="rsync -av"
+
+if [ "$1" = "push_packages" ]
+then
+    $SYNC_CMD /var/cache/binpkgs $BASTION_USER@$BASTION:/gentoo
+fi
+
+if [ "$1" = "pull_packages" ]
+then
+    # Should no be used except before leaving in the forest without internet
+    # as it's easier to leverage HTTP reception through PORTAGE_BINHOST
+    $SYNC_CMD --delete-after $BASTION_USER@$BASTION:/gentoo/binpkgs /var/cache
+fi

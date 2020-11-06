@@ -1,9 +1,6 @@
 ---
 - name: "Common ui config"
   block:
-    - stat:
-        path: '/etc/NIXOS'
-      register: nixos_file
     - name: "Check optional dependencies"
       command: "which {{ item }}"
       with_items:

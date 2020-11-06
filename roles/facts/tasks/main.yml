@@ -8,3 +8,8 @@
 - name: "Minimal"
   debug:
       var: minimal
+
+- name: "Check is host is NixOS"
+  stat:
+    path: '/etc/NIXOS'
+  register: nixos_file
