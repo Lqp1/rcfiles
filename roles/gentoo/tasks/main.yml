@@ -90,3 +90,4 @@
       mode: 0644
   with_items:
       - 'pcspkr'
+      - 'snd_pcsp'
