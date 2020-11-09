@@ -3,16 +3,21 @@
 
 BASTION="{{bastion.local}}"
 BASTION_USER="{{bastion.user}}"
+BASTION_KEY="~{{user}}/.ssh/id_rsa"
 SYNC_CMD="rsync -av"
 
+
+# Push local content in the remote
+# Deletes non existent binpkgs as they would not be present in metadata file
 if [ "$1" = "push_packages" ]
 then
-    $SYNC_CMD /var/cache/binpkgs $BASTION_USER@$BASTION:/gentoo
+    $SYNC_CMD --delete-after /var/cache/binpkgs $BASTION_USER@$BASTION:/gentoo
 fi
 
+# Get remote files, put them locally, then rebuild metadata
+# Can be used for local install, or to push afterwards with newly built packages
 if [ "$1" = "pull_packages" ]
 then
-    # Should no be used except before leaving in the forest without internet
-    # as it's easier to leverage HTTP reception through PORTAGE_BINHOST
-    $SYNC_CMD --delete-after $BASTION_USER@$BASTION:/gentoo/binpkgs /var/cache
+    sudo $SYNC_CMD -e "ssh -i $BASTION_KEY" $BASTION_USER@$BASTION:/gentoo/binpkgs /var/cache
+    sudo emaint binhost --fix
 fi
