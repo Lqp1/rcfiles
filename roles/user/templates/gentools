@@ -14,6 +14,12 @@ then
     $SYNC_CMD --delete-after /var/cache/binpkgs $BASTION_USER@$BASTION:/gentoo
 fi
 
+if [ "$1" = "diff_packages" ]
+then
+    $SYNC_CMD $BASTION_USER@$BASTION:/gentoo/binpkgs/Packages /tmp/Packages
+    vimdiff /tmp/Packages /var/cache/binpkgs/Packages
+fi
+
 # Get remote files, put them locally, then rebuild metadata
 # Can be used for local install, or to push afterwards with newly built packages
 if [ "$1" = "pull_packages" ]
