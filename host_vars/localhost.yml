@@ -1,7 +1,7 @@
 shares_dir: "{{home}}/Bureau/"
 repos_dir: "{{home}}/Documents/Repo/"
-git_mail: "lqp1@users.noreply.github.com"
-#git_user: "Lqp1"
+git_mail: "thomas.lange.oss@gmail.com"
+git_user: "Thomas Langé"
 home: "/home/{{user}}/"
 minimal: false
 user: "{{ ansible_user_id }}"

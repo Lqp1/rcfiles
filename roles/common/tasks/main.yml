@@ -188,7 +188,7 @@
       - 'git config --global diff.tool vimdiff'
       - 'git config --global difftool.prompt false'
       - 'git config --global user.email "{{git_mail}}"'
-      # - 'git config --global user.name "{{git_user}}"'
+      - 'git config --global user.name "{{git_user}}"'
       - 'git config --global core.attributesfile {{ home }}/.gitattributes'
 - name: "Add curlrc config"
   lineinfile:
