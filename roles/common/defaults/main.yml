@@ -1,4 +1,7 @@
 ---
+exa_version: "0.9.0"
+ls_cmd: "{{home}}/bin/exa-linux-x86_64 --git --icons"
+
 lessopts: "-FSRXI"
 gitignore:
      - "TAGS"

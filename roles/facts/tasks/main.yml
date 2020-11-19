@@ -3,6 +3,7 @@
   set_fact:
       home: "/root" 
       minimal: true
+      ls_cmd: "ls"
   when: ansible_user_id == 'root'
 
 - name: "Minimal"
