@@ -13,4 +13,6 @@ if [[ $(id -u) -ne 0 ]]; then
     fi
     path=(~/bin $GOBIN $GEMBIN $PYTHONBIN $path)
     export PATH
+
+    export TERMINAL="kitty"
 fi

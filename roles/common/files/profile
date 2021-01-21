@@ -12,4 +12,6 @@ then
         export PYTHONBIN="$(python -c 'import site; print(site.USER_BASE)')/bin"
     fi
     export PATH="~/bin:${GOBIN}:${GEMBIN}:${PYTHONBIN}:${PATH}"
+
+    export TERMINAL="kitty"
 fi
