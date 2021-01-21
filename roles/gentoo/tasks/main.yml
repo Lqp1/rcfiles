@@ -88,6 +88,11 @@
       dest: "/etc/portage/package.accept_keywords/01personal"
       content: "{{gentoo_accepted_unstable | join(' ~amd64\n')}} ~amd64\n"
       mode: 0644
+- name: "Setup accepted licenses"
+  copy:
+      dest: "/etc/portage/package.license/01personal"
+      content: "{{gentoo_accepted_licenses | join(' \n')}}\n"
+      mode: 0644
 - name: "Blacklist some modules"
   copy:
       dest: "/etc/modprobe.d/{{item}}.conf"

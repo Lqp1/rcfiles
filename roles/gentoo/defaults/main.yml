@@ -4,3 +4,12 @@ personaloverlay: "/var/db/repos/lqp1/"
 gentoo_accepted_unstable:
     - "x11-terms/kitty"
     - "x11-terms/kitty-terminfo"
+    - "net-wireless/blueman"
+    - "media-fonts/quivira"
+    - "x11-misc/miraclecast"
+    - "app-crypt/veracrypt"
+gentoo_accepted_licenses:
+    - "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE"
+    - "sys-firmware/intel-microcode intel-ucode"
+    - "app-crypt/veracrypt truecrypt-3.0"
+    - ">=media-fonts/corefonts-1-r7 MSttfEULA"
