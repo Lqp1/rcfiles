@@ -26,12 +26,14 @@
       with_items:
          - ".config/i3/"
          - ".config/polybar/"
+         - ".config/kitty/"
     - name: "Copy additionnal configuration files"
       copy:
        src:  "{{item.src}}"
        dest : "{{home}}/{{item.dst}}"
       with_items:
          - { src : "i3", dst : ".config/i3/config"}
+         - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}
          - { src : "xresources", dst : ".Xresources"}
