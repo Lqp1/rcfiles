@@ -1,3 +1,6 @@
 ---
 localrepo: "/var/db/repos/localrepo"
 personaloverlay: "/var/db/repos/lqp1/"
+gentoo_accepted_unstable:
+    - "x11-terms/kitty"
+    - "x11-terms/kitty-terminfo"

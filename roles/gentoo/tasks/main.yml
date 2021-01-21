@@ -83,6 +83,11 @@
       src: "01personal"
       dest: "/etc/portage/package.use/01personal"
       mode: 0644
+- name: "Setup accepted keywords"
+  copy:
+      dest: "/etc/portage/package.accept_keywords/01personal"
+      content: "{{gentoo_accepted_unstable | join(' ~amd64\n')}} ~amd64\n"
+      mode: 0644
 - name: "Blacklist some modules"
   copy:
       dest: "/etc/modprobe.d/{{item}}.conf"
