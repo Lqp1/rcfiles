@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+#vim: set ftype=sh
+
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+    return
+fi
+
+if [ -d ~/.aliases ]; then
+    for f in ~/.aliases/*; do source $f; done
+    return
+fi

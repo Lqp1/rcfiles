@@ -37,6 +37,7 @@
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}
          - { src : "xresources", dst : ".Xresources"}
+         - { src : "kittyaliases", dst : ".aliases/10kitty"}
       notify: activate xres
     - name: "Configure GTK-2.0 apps"
       lineinfile:

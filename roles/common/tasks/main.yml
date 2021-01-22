@@ -81,6 +81,7 @@
      state: "directory"
   with_items:
      - ".cache"
+     - ".aliases"
      - ".cache/zsh"
      - ".vim"
      - ".vim/colors"
@@ -101,6 +102,12 @@
      - { src : "profile", dst : ".profile"}
      - { src : "zshenv", dst : ".zshenv"}
      - { src : "spacemacs", dst : ".spacemacs"}
+     - { src : "bash_aliases", dst : ".bash_aliases"}
+- name: "Copy user oh my ZSH config"
+  copy:
+      src: "omzsh"
+      dest: "{{home}}/.oh-my-zsh/custom/omzsh.zsh"
+  when: not minimal|bool
 - name: "Copy minimal ZSH"
   copy:
       src: "zshrc"
@@ -148,26 +155,10 @@
      replace: 'DISABLE_AUTO_UPDATE="true"'
   when: not minimal|bool
 - name: "Add custom aliases and xports"
-  lineinfile:
-     dest: "{{home}}/.zshrc"
-     line: "{{item}}"
-     state: "present"
-  with_items:
-     - "export EDITOR='vim'"
-     - "export PAGER='less'"
-     - "export LESS='{{ lessopts }}'"
-     - "export ALTERNATE_EDITOR=''"
-     - "alias ls='{{ls_cmd}} --color=auto -F'"
-     - "alias cp='cp -iv'"
-     - "alias mv='mv -iv'"
-     - "alias ip='ip --color=auto'"
-     - "alias gits='git status'"
-     - "alias gitd='git diff'"
-     - "alias gitg='git pull'"
-     - "alias gitp='git push'"
-     - "alias gitw='git whatchanged'"
-     - "alias gitl='git tree'"
-     - "source {{home}}/.bash_aliases 2>/dev/null"
+  copy:
+     dest: "{{home}}/.aliases/common"
+     content: "{{aliases | join('\n')}}\n"
+     mode: 0600
 - name: "Add git alias and sane behaviors"
   shell: "{{ item }}"
   with_items:

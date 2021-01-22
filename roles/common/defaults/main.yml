@@ -2,7 +2,14 @@
 exa_version: "0.9.0"
 ls_cmd: "{{home}}/bin/exa-linux-x86_64 --git --icons"
 
-lessopts: "-FSRXI"
+# -S Chop long lines
+# -R Print Raw control chars
+# -F exit LESS if buffer fits in one screen
+# -X Drop init
+# -I Do case insensitive searches
+# -W Highlight unread lines on scroll
+lessopts: "-FSRXIW"
+
 gitignore:
      - "TAGS"
      - ".DS_Store"
@@ -39,4 +46,21 @@ gitattributes:
     - "*.rs    diff=rust"
     - "*.ts    diff=javascript"
     - "*.xhtml diff=html"
+
 cleanignore: ".dir-locals.el"
+
+aliases:
+    - "export EDITOR='vim'"
+    - "export PAGER='less'"
+    - "export LESS='{{ lessopts }}'"
+    - "export ALTERNATE_EDITOR=''"
+    - "alias ls='{{ls_cmd}} --color=auto -F'"
+    - "alias cp='cp -iv'"
+    - "alias mv='mv -iv'"
+    - "alias ip='ip --color=auto'"
+    - "alias gits='git status'"
+    - "alias gitd='git diff'"
+    - "alias gitg='git pull'"
+    - "alias gitp='git push'"
+    - "alias gitw='git whatchanged'"
+    - "alias gitl='git tree'"

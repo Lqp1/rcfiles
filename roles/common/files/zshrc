@@ -51,6 +51,8 @@ ll ()
 }
 
 # Add some aliases
+alias ls='/bin/ls --color=auto -F'
+alias la='ll -A'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
