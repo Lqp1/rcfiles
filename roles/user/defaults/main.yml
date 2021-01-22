@@ -31,11 +31,11 @@ go_bundles:
       - "github.com/rogpeppe/godef"
 
 shares:
-    - name: Assurancetourix
-      ip: 192.168.1.5
-    - name: Obelix
-      ip: 192.168.1.2
+    - name: "Fake"
+      ip: "127.0.0.1"
 
 bastion:
-    local: 192.168.1.5
-    user: "thomas"
+    local: "127.0.0.1"
+    remote: "x.x.x.x"
+    user: "{{user}}"
+
