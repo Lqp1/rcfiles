@@ -6,15 +6,9 @@
   with_items:
      - "app-portage/eix"
      - "app-portage/gentoolkit"
-     - "app-portage/portpeek"
      - "app-portage/layman"
      - "app-portage/repoman"
-     - "app-portage/genlop"
-     - "app-portage/smart-live-rebuild"
      - "app-portage/cpuid2cpuflags"
-     - "app-admin/eclean-kernel"
-     - "app-portage/portage-utils"
-     - "app-forensics/chkrootkit"
      - "dev-python/pip"
      - "dev-lang/ruby"
      - "dev-lang/go"
@@ -106,3 +100,12 @@
       dest: "/etc/sudoers.d/ansible"
       src: "sudoers"
       mode: 0440
+- name: "Ensure set directory exists"
+  file:
+      path: "/etc/portage/sets/"
+      state: directory
+- name: "Setup sets/personal package set"
+  copy:
+      dest: "/etc/portage/sets/personal"
+      content: "{{gentoo_packages | join(' \n')}}\n"
+      mode: 0644
