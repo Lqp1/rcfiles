@@ -106,3 +106,8 @@
       dest: "/etc/portage/sets/personal"
       content: "{{gentoo_packages | join(' \n')}}\n"
       mode: 0644
+- name: "Setup sets/personalX11 package set"
+  copy:
+      dest: "/etc/portage/sets/personalX11"
+      content: "{{gentoo_packages_X11 | join(' \n')}}\n"
+      mode: 0644
