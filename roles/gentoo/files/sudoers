@@ -1,0 +1,8 @@
+Defaults insults
+
+# Users from wheel can use sudo
+%wheel ALL=(ALL) ALL
+
+# Users from wheel can use veracrypt as root
+# Not asking passwd is dangerous but acceptable on a 1 user laptop
+%wheel ALL=(root) NOPASSWD:/usr/bin/veracrypt, /usr/bin/uptime

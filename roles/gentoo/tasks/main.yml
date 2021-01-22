@@ -101,3 +101,8 @@
   with_items:
       - 'pcspkr'
       - 'snd_pcsp'
+- name: "Setup sudoers rules"
+  copy:
+      dest: "/etc/sudoers.d/ansible"
+      src: "sudoers"
+      mode: 0440
