@@ -2,35 +2,10 @@
 - name: "Check dependencies"
   command: "which {{ item }}"
   with_items:
-     - bash
      - git
-     - vim
      - ip
      - less
-- name: "Check optional dependencies"
-  command: "which {{ item }}"
-  with_items:
-     #debug
-     - htop
-     - iotop
-     - iftop
-     - powertop
-     - dfc
-     # editors and shell
-     - emacs
-     - zsh
-     - autojump
-     - screen
-     - tree
      - curl
-     # dev
-     - python
-     - ruby
-     - go
-     - sbcl
-     - adb
-  when: not minimal|bool
-  ignore_errors: yes
 - name: "Clone FZF"
   git:
       repo: "https://github.com/junegunn/fzf.git"

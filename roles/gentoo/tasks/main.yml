@@ -9,9 +9,6 @@
      - "app-portage/layman"
      - "app-portage/repoman"
      - "app-portage/cpuid2cpuflags"
-     - "dev-python/pip"
-     - "dev-lang/ruby"
-     - "dev-lang/go"
 - name: "Copy eix config"
   copy:
       src: "00-eixrc"

@@ -1,12 +1,6 @@
 ---
 - name: "User config"
   block:
-    - name: "Check dependencies"
-      command: "which {{ item }}"
-      with_items:
-         - go
-         - ruby
-         - pip
     - name: "Install share on desktop"
       template:
           src: "share.desktop"

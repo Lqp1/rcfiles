@@ -1,14 +1,6 @@
 ---
 - name: "Common ui config"
   block:
-    - name: "Check optional dependencies"
-      command: "which {{ item }}"
-      with_items:
-         - i3
-         - feh
-         - rofi
-         - xdotool
-         - polybar
     - name: "Clone Splatmoji"
       git:
          repo: "https://github.com/cspeterson/splatmoji"
