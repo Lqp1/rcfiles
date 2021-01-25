@@ -32,5 +32,9 @@
           src: gentools
           dest: "~/bin/"
           mode: 0755
-
+    - name: "Put smount config"
+      copy:
+          dest: "~/.smount/01personal"
+          content: "{{smount_config|to_nice_yaml}}"
+          mode: 0644
   when: not minimal|bool

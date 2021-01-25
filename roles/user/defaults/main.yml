@@ -39,3 +39,10 @@ bastion:
     remote: "x.x.x.x"
     user: "{{user}}"
 
+smount_config:
+    mounts:
+        - example:
+            src: "xx"
+            target: "yy"
+            type: "unknown"
+
