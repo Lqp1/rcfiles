@@ -63,6 +63,7 @@
      - ".vim/autoload"
      - ".config/nvim/"
      - ".githooks"
+     - "bin"
 - name: "Copy additionnal configuration files"
   copy:
    src:  "{{item.src}}"

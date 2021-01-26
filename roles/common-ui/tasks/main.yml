@@ -19,6 +19,7 @@
          - ".config/i3/"
          - ".config/polybar/"
          - ".config/kitty/"
+         - ".smount/"
     - name: "Copy additionnal configuration files"
       copy:
        src:  "{{item.src}}"
