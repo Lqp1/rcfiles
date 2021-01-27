@@ -193,3 +193,9 @@
       dest: "{{home}}/bin/"
       src: "/tmp/exa-{{exa_version}}.zip"
   when: not minimal|bool
+- name: "Create link for exa binary"
+  file:
+      src: "{{home}}/bin/exa-linux-x86_64"
+      dest: "{{home}}/bin/exa"
+      state: "link"
+  when: (not minimal|bool) and (nixos_file.stat.exists == false)
