@@ -79,6 +79,7 @@
      - { src : "zshenv", dst : ".zshenv"}
      - { src : "spacemacs", dst : ".spacemacs"}
      - { src : "bash_aliases", dst : ".bash_aliases"}
+     - { src : "vgrep", dst : ".aliases/10vgrep"}
 - name: "Copy user oh my ZSH config"
   copy:
       src: "omzsh"
@@ -132,7 +133,7 @@
   when: not minimal|bool
 - name: "Add custom aliases and xports"
   copy:
-     dest: "{{home}}/.aliases/common"
+     dest: "{{home}}/.aliases/00common"
      content: "{{aliases | join('\n')}}\n"
      mode: 0600
 - name: "Add git alias and sane behaviors"

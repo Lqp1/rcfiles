@@ -1,0 +1,7 @@
+# vim: set ft=sh
+# Alias and functions to use vgrep
+
+alias ag='vgrep'
+open() {
+    vgrep --show ${@:-0}
+}
