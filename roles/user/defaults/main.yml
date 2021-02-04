@@ -33,6 +33,7 @@ go_bundles:
 shares:
     - name: "Fake"
       ip: "127.0.0.1"
+      user: "usr"
 
 bastion:
     local: "127.0.0.1"

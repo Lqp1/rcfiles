@@ -4,5 +4,5 @@ Type=Link
 Name={{item.name}}
 Comment=
 Icon=network-server
-URL=smb://{{item.ip}}/
+URL=smb://{{item.user}}@{{item.ip}}/
 Name[fr_FR.utf8]={{item.name}}
