@@ -36,6 +36,7 @@ gentoo_packages:
     - "app-text/evince"
     - "app-text/tree"
     - "app-text/vgrep"
+    - "dev-java/openjdk-bin"
     - "dev-lang/go"
     - "dev-lang/ruby"
     - "dev-libs/libcgroup"
@@ -71,6 +72,7 @@ gentoo_packages:
     - "sys-power/powertop"
     - "sys-process/htop"
     - "sys-process/iotop"
+
 gentoo_packages_X11:
     - "app-arch/file-roller"
     - "app-office/libreoffice-bin"
