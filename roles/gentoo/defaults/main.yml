@@ -54,6 +54,7 @@ gentoo_packages:
     - "net-fs/sshfs"
     - "net-misc/rclone"
     - "net-p2p/transmission"
+    - "net-print/hplip"
     - "net-wireless/blueman"
     - "sys-apps/gsmartcontrol"
     - "sys-apps/hdparm"
