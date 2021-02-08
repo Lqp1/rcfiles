@@ -1,2 +1,4 @@
 command -v kitty 2>&1 >/dev/null && alias ssh="kitty +kitten ssh"
 command -v kitty 2>&1 >/dev/null && alias icat="kitty +kitten icat"
+
+# TODO: have a in ssh alias to sudo without issue with kitty
