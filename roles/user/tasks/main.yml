@@ -17,6 +17,7 @@
       gem:
           name: "{{item}}"
           state: latest
+          user_install: no # https://github.com/ansible/ansible/issues/50434
       with_items: "{{ruby_gems}}"
     - name: "Install python dependencies"
       pip:
