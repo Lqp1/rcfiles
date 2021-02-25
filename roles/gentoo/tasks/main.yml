@@ -79,6 +79,11 @@
       dest: "/etc/portage/package.accept_keywords/01personal"
       content: "{{gentoo_accepted_unstable | join(' ~amd64\n')}} ~amd64\n"
       mode: 0644
+- name: "Setup accepted keywords"
+  copy:
+      dest: "/etc/portage/package.accept_keywords/02personal"
+      content: "{{gentoo_accepted_all | join(' **\n')}} **\n"
+      mode: 0644
 - name: "Setup accepted licenses"
   copy:
       dest: "/etc/portage/package.license/01personal"
