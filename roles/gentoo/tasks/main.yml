@@ -19,6 +19,12 @@
       src: "eix"
       dest: "/etc/portage/repo.postsync.d/"
       mode: 0755
+- name: "Copy binrepos config"
+  template:
+      src: "binrepos.conf"
+      dest: "/etc/portage/binrepos.conf"
+      mode: 0644
+  when: gentoo_bin_uri is defined
 - name: "Copy localrepo config"
   template:
       src: "localrepo.conf"
