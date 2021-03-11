@@ -11,6 +11,7 @@ gentoo_accepted_unstable:
     - "x11-terms/kitty"
     - "x11-terms/kitty-terminfo"
     - "sys-apps/gentoo-changelog-tracker"
+    - "sys-apps/bat"
 gentoo_accepted_all:
     - "sys-apps/smount"
 gentoo_accepted_licenses:
@@ -57,9 +58,11 @@ gentoo_packages:
     - "net-fs/samba"
     - "net-fs/sshfs"
     - "net-misc/rclone"
+    - "net-misc/httpie"
     - "net-p2p/transmission"
     - "net-print/hplip"
     - "net-wireless/blueman"
+    - "sys-apps/bat"
     - "sys-apps/gentoo-changelog-tracker"
     - "sys-apps/gsmartcontrol"
     - "sys-apps/hdparm"

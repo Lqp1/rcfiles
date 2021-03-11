@@ -80,6 +80,7 @@
      - { src : "spacemacs", dst : ".spacemacs"}
      - { src : "bash_aliases", dst : ".bash_aliases"}
      - { src : "vgrep", dst : ".aliases/10vgrep"}
+     - { src : "bat", dst : ".aliases/11bat"}
 - name: "Copy user oh my ZSH config"
   copy:
       src: "omzsh"
