@@ -40,6 +40,11 @@
      repo: "https://github.com/changyuheng/zsh-interactive-cd"
      dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
   when: not minimal|bool
+- name: "Clone zsh-autoenv plugin from github"
+  git:
+     repo: "https://github.com/Tarrasch/zsh-autoenv"
+     dest: "{{home}}/.oh-my-zsh/custom/plugins/autoenv"
+  when: not minimal|bool
 - name: "Add FZF-man plugin"
   copy:
      src: "res/fzf-man"
@@ -118,7 +123,7 @@
   replace:
      dest: "{{home}}/.zshrc"
      regexp: 'plugins=.*'
-     replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j)'
+     replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j zsh-interactive-cd autoenv)'
   when: not minimal|bool
 - name: "Add waiting dots"
   replace:
