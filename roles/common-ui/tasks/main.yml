@@ -19,6 +19,7 @@
          - ".config/i3/"
          - ".config/polybar/"
          - ".config/kitty/"
+         - ".config/dunst/"
          - ".smount/"
     - name: "Copy additionnal configuration files"
       copy:
@@ -26,6 +27,7 @@
        dest : "{{home}}/{{item.dst}}"
       with_items:
          - { src : "i3", dst : ".config/i3/config"}
+         - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}

@@ -6,11 +6,10 @@
 set $mod Mod4
 
 # Define workspaces
-set $ws1 "default"
-set $ws2 "internet"
-set $ws3 "terminal"
-set $ws4 "chat"
-set $ws5 "misc"
+set $ws1 "internet"
+set $ws2 "terminal"
+set $ws3 "chat"
+set $ws4 "misc"
 
 # Don't put i3socket in /tmp
 ipc-socket ~/.i3-ipc.sock
@@ -122,8 +121,8 @@ bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+E exec i3-msg 'exit'
-bindsym $mod+Shift+E exec xfce4-session-logout
+bindsym $mod+Shift+E exec /bin/systemctl poweroff
+bindsym $mod+Shift+X exec /usr/bin/slock
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
