@@ -9,7 +9,8 @@ set $mod Mod4
 set $ws1 "internet"
 set $ws2 "terminal"
 set $ws3 "chat"
-set $ws4 "misc"
+set $ws4 "misc1"
+set $ws5 "misc2"
 
 # Don't put i3socket in /tmp
 ipc-socket ~/.i3-ipc.sock
