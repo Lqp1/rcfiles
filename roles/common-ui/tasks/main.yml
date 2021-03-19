@@ -53,4 +53,9 @@
       copy:
           src: "res/fonts/"
           dest: "{{home}}/.local/share/fonts/"
+    - name: "Add kitty TERMINAL variable in profile"
+      copy:
+          dest: "{{home}}/.profile.d/10kitty"
+          content: "export TERMINAL=\"kitty\"\n"
+          mode: 0644
   when: not minimal|bool

@@ -68,6 +68,7 @@
      - ".vim/autoload"
      - ".config/nvim/"
      - ".githooks"
+     - ".profile.d"
      - "bin"
 - name: "Copy additionnal configuration files"
   copy:
@@ -205,3 +206,8 @@
       dest: "{{home}}/bin/exa"
       state: "link"
   when: (not minimal|bool) and (nixos_file.stat.exists == false)
+- name: Create a symbolic link for bash_profile
+  file:
+    src: "{{home}}/.profile"
+    dest: "{{home}}/.bash_profile"
+    state: link

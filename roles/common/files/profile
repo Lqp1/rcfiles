@@ -13,5 +13,7 @@ then
     fi
     export PATH="~/bin:${GOBIN}:${GEMBIN}:${PYTHONBIN}:${PATH}"
 
-    export TERMINAL="kitty"
+    if [ -d ~/.profile.d ]; then
+        for f in ~/.profile.d/*; do source $f; done
+    fi
 fi
