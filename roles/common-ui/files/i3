@@ -123,7 +123,7 @@ bindsym $mod+Shift+C reload
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exec systemctl poweroff
-bindsym $mod+Shift+X exec slock
+bindsym $mod+Shift+X exec i3lock -c 000000
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
