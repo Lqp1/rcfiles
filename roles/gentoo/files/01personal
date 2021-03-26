@@ -1,4 +1,4 @@
-*/* -less -qt5 -qt4 -kde -ldap networkmanager dbus jpeg lock session startup-notification thunar udev X lm-sensors alsa pulseaudio gnome-keyring emacs vim less pm-utils glamor udisks lvm vaapi vdpau
+*/* -less -qt5 -qt4 -kde -ldap networkmanager dbus jpeg lock session startup-notification thunar udev X lm-sensors alsa pulseaudio gnome-keyring emacs vim less pm-utils glamor udisks lvm vaapi vdpau cryptsetup
 app-admin/conky curl iostats thinkpad hddtemp wifi
 app-admin/keepassxc autotype
 app-admin/sudo offensive -sendmail
