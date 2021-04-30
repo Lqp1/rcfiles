@@ -6,11 +6,11 @@
 set $mod Mod4
 
 # Define workspaces
-set $ws1 "internet"
-set $ws2 "terminal"
-set $ws3 "chat"
-set $ws4 "misc1"
-set $ws5 "misc2"
+set $ws1 "1:internet"
+set $ws2 "2:terminal"
+set $ws3 "3:chat"
+set $ws4 "4:misc1"
+set $ws5 "5:misc2"
 
 # Don't put i3socket in /tmp
 ipc-socket ~/.i3-ipc.sock
