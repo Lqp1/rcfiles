@@ -1,6 +1,8 @@
 rcfiles
 =======
 
+# Summary
+
 My personal RC files (zshrc, screenrc, vimrc, i3...)
 
 This repository contains 4 Ansible roles:
@@ -25,7 +27,8 @@ packages/gems, ...
 
 Actual rcfiles are in `roles/common/files/` and in `roles/common-ui/files/`.
 
-Usage:
+# Usage
+
 ```bash
 git clone --recursive https://github.com/lqp1/rcfiles
 vim host_vars/localhost.yml
@@ -41,7 +44,18 @@ sudo ansible-playbook gentoo.yml
 __NOTE__ : When running with `minimal:true` the script installs a minimal and lighter version,
 without oh my zsh, fzf, splamoji, and spacemacs and no UI config
 
-__Credits__:
+# Screenshots
+
+Some screenshots of the features it sets up:
+
+<img src="https://github.com/lqp1/rcfiles/blob/master/doc/screenshot.png?raw=true" alt="i3 and polybar setup" width="250"/>
+
+<img src="https://github.com/lqp1/rcfiles/blob/master/doc/screenshot2.png?raw=true" alt="exa listing" width="250"/>
+
+<img src="https://github.com/lqp1/rcfiles/blob/master/doc/screenshot3.png?raw=true" alt="vgrep and fzf setup" width="250"/>
+
+# Credits
+
 * Polybar theme comes from https://github.com/adi1090x/polybar-themes; slightly
   modified.
 * res/fonts/* are not mine, all credit go to their respective author.
