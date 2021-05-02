@@ -1,5 +1,8 @@
 # SCREENRC
 
+# Use login shell in screen
+shell -${SHELL}
+
 # Detach on hangup
 autodetach on
 
