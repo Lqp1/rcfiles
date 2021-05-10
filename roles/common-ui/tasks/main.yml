@@ -58,4 +58,17 @@
           dest: "{{home}}/.profile.d/10kitty"
           content: "export TERMINAL=\"kitty\"\n"
           mode: 0644
+    - name: "Create autostart script"
+      lineinfile:
+          create: 'yes'
+          insertbefore: "BOF"
+          line: "#!/usr/bin/env bash"
+          path: "{{home}}/.config/i3/autostart.sh"
+          mode: 0500
+    - name: "Add autostart programs"
+      lineinfile:
+          line: "{{item}} &"
+          path: "{{home}}/.config/i3/autostart.sh"
+          mode: 0500
+      with_items: "{{autostart}}"
   when: not minimal|bool
