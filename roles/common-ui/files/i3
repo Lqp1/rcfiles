@@ -143,11 +143,14 @@ exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 exec_always --no-startup-id bash -c "source ~/.profile && autotiling"
 
 # Theming
-client.focused          #333333 #81A2BE #FFFFFF #81A2BE   #81A2BE
-client.focused_inactive #333333 #5F676A #B0C4BB #484E50   #3B3F6A
-client.unfocused        #333333 #5F676A #B0C4BB #688486   #688486
-client.urgent           #333333 #900000 #909090 #900000   #900000
-client.placeholder      #333333 #0C0C0C #FFFFFF #000000   #0C0C0C
+# class                 border  backgr. text    indicator child_border
+client.focused          #0D47A1 #42A5F5 #FFFFFF #43A047   #42A5F5
+client.focused_inactive #0D47A1 #64B5F6 #333333 #43A047   #64B5F6
+client.unfocused        #0D47A1 #90CAF9 #333333 #43A047   #90CAF9
+client.urgent           #0D47A1 #900000 #909090 #43A047   #900000
+client.placeholder      #0D47A1 #0C0C0C #FFFFFF #43A047   #0C0C0C
+
+client.background       #ffffff
 
 # Set floating window for some apps
 for_window [class="zoom" title="zoom"] floating enable; resize set 200 20 px
