@@ -74,7 +74,7 @@
   lineinfile:
       path: "/etc/portage/make.conf"
       regexp: 'EMERGE_DEFAULT_OPTS=.*'
-      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --getbinpkg=y"'
+      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --getbinpkg=y --jobs=2"'
 - name: "Setup personal use flags (hardware agnostic)"
   copy:
       src: "01personal"
