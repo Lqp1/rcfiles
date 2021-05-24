@@ -137,7 +137,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-default_border pixel 3
+default_border pixel 5
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id polybar -c ~/.config/polybar/config.ini main
 exec_always --no-startup-id bash -c "source ~/.profile && autotiling"
