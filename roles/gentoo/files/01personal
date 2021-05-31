@@ -13,6 +13,7 @@ media-tv/v4l-utils -bpf
 media-video/ffmpeg webp
 media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 mtp samba fontconfig libass x265
 net-analyzer/wireshark qt5
+net-dns/avahi python # for hplip
 net-fs/samba -ads client cups
 net-misc/networkmanager connection-sharing
 sys-firmware/intel-microcode initramfs
