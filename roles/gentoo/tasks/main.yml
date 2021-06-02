@@ -69,12 +69,22 @@
   lineinfile:
       path: "/etc/portage/make.conf"
       regexp: 'FEATURES=.*'
-      line: 'FEATURES="buildpkg"'
-- name: "Ensure sane defaults for emerge"
+      line: 'FEATURES="buildpkg getbinpkg strict collision-protect parallel-install cgroup ipc-sandbox"'
+- name: "Ensure sane defaults for portage"
   lineinfile:
       path: "/etc/portage/make.conf"
       regexp: 'EMERGE_DEFAULT_OPTS=.*'
-      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --getbinpkg=y --jobs=2"'
+      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4 --load-average=4"'
+- name: "Ensure portage niceness"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'PORTAGE_NICENESS=.*'
+      line: 'PORTAGE_NICENESS=19'
+- name: "Ensure portage niceness"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'PORTAGE_IONICE_COMMAND=.*'
+      line: 'PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"'
 - name: "Setup personal use flags (hardware agnostic)"
   copy:
       src: "01personal"
