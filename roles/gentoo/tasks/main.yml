@@ -9,6 +9,21 @@
      - "app-portage/layman"
      - "app-portage/repoman"
      - "app-portage/cpuid2cpuflags"
+- name: "Create common directories"
+  file:
+      path: "{{item}}"
+      state: directory
+  with_items:
+      - "/etc/eixrc/"
+      - "/etc/portage/repo.postsync.d/"
+      - "/etc/portage/repos.conf/"
+      - "/etc/portage/profile/"
+      - "/etc/portage/sets/"
+      - "/etc/portage/package.use"
+      - "/etc/portage/package.mask"
+      - "/etc/portage/package.unmask"
+      - "/etc/portage/package.license"
+      - "/etc/portage/package.accept_keywords"
 - name: "Copy eix config"
   copy:
       src: "00-eixrc"
