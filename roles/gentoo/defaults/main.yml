@@ -55,6 +55,7 @@ gentoo_packages:
     - "media-sound/pavucontrol"
     - "media-video/vlc"
     - "net-analyzer/iftop"
+    - "net-analyzer/iptraf-ng"
     - "net-fs/samba"
     - "net-fs/sshfs"
     - "net-misc/rclone"
