@@ -102,6 +102,7 @@ gentoo_packages_X11:
     - "www-client/firefox-bin"
     - "x11-base/xorg-server"
     - "x11-misc/arandr"
+    - "x11-misc/compton"
     - "x11-misc/dunst"
     - "x11-misc/polybar"
     - "x11-misc/redshift"

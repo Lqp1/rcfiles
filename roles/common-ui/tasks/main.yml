@@ -28,6 +28,7 @@
       with_items:
          - { src : "i3", dst : ".config/i3/config"}
          - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
+         - { src : "compton.conf", dst : ".compton.conf"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}
