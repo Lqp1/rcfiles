@@ -100,6 +100,7 @@ gentoo_packages_X11:
     - "media-gfx/ristretto"
     - "sys-block/gparted"
     - "www-client/firefox-bin"
+    - "x11-apps/xbacklight"
     - "x11-base/xorg-server"
     - "x11-misc/arandr"
     - "x11-misc/compton"
