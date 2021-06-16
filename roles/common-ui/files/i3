@@ -126,14 +126,6 @@ bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 
-# reload the configuration file
-bindsym $mod+Shift+C reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exec systemctl poweroff
-bindsym $mod+Shift+X exec i3lock -c $color_black
-
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -142,6 +134,26 @@ mode "resize" {
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+shift+e mode "power"
+mode "power" {
+        # exit i3 (logs you out of your X session)
+        bindsym q exit
+        # poweroff
+        bindsym e exec systemctl poweroff
+        # reboot
+        bindsym b exec systemctl reboot
+        # lock
+        bindsym x exec i3lock -c $color_black; mode "default"
+        # reload the configuration file
+        bindsym c reload; mode "default"
+        # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+        bindsym r restart; mode "default"
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
