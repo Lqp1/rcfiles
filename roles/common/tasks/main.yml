@@ -138,6 +138,13 @@
      regexp: '# DISABLE_AUTO_UPDATE="true"'
      replace: 'DISABLE_AUTO_UPDATE="true"'
   when: not minimal|bool
+- name: "Fix fg color for zsh autosuggestions"
+  lineinfile:
+     dest: "{{home}}/.zshrc"
+     regexp: 'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=.*'
+     line: "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'"
+     state: present
+  when: not minimal|bool
 - name: "Add custom aliases and xports"
   copy:
      dest: "{{home}}/.aliases/00common"
