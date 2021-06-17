@@ -113,6 +113,7 @@ gentoo_packages_X11:
     - "x11-misc/i3lock"
     - "x11-misc/xclip"
     - "x11-misc/xdotool"
+    - "x11-misc/xss-lock"
     - "x11-terms/kitty"
     - "x11-themes/arc-icon-theme"
     - "x11-themes/arc-theme"
