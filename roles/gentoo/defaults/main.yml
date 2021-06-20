@@ -1,7 +1,7 @@
 ---
 localrepo: "/var/db/repos/localrepo"
 personaloverlay: "/var/db/repos/lqp1/"
-#gentoo_bin_uri: "rsync://xx.xx.xx.xx/gentoo/binpkgs/"
+gentoo_bin_uri: "rsync://xx.xx.xx.xx/gentoo/binpkgs/"
 gentoo_accepted_unstable:
     - "app-crypt/veracrypt"
     - "app-text/vgrep" # to replace ag
