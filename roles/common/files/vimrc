@@ -16,6 +16,9 @@ set backspace=indent,eol,start
 " Set cursor to last known position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" Auto create directories when writing files
+autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+
 " Encoding
 set encoding=utf8
 set ffs=unix,dos,mac
