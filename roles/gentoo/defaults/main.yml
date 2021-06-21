@@ -50,6 +50,7 @@ gentoo_packages:
     - "dev-python/pip"
     - "dev-util/android-tools"
     - "dev-util/ctags"
+    - "dev-util/git-delta"
     - "dev-vcs/tig"
     - "media-plugins/alsa-plugins"
     - "media-sound/alsa-utils"

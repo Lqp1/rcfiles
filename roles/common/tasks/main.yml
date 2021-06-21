@@ -175,6 +175,17 @@
       - 'git config --global user.name "{{git_user}}"'
       - 'git config --global core.attributesfile {{ home }}/.gitattributes'
       - 'git config --global alias.root "rev-parse --show-toplevel"'
+      - 'git config --global pager.diff "delta"'
+      - 'git config --global pager.log "delta"'
+      - 'git config --global pager.reflog "delta"'
+      - 'git config --global pager.show "delta"'
+      - 'git config --global interactive.diffFilter "delta --color-only"'
+      - 'git config --global delta.plus-style "syntax #5D755C"'
+      - 'git config --global delta.minus-style "syntax #644A4A"'
+      - 'git config --global delta.navigate true'
+      - 'git config --global delta.line-numbers true'
+      - 'git config --global delta.hunk-header-decoration-style none'
+      - 'git config --global delta.syntax-theme "Solarized (dark)"'
 - name: "Add curlrc config"
   lineinfile:
      create: yes
