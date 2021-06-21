@@ -211,12 +211,12 @@
 - name: "Pull exa zip"
   get_url:
       url: "https://github.com/ogham/exa/releases/download/v{{exa_version}}/exa-linux-x86_64-{{exa_version}}.zip"
-      dest: "/tmp/exa-{{exa_version}}.zip"
+      dest: "/tmp/exa-{{user}}-{{exa_version}}.zip"
   when: not minimal|bool
 - name: "Extract exa into path"
   unarchive:
       dest: "{{home}}/bin/"
-      src: "/tmp/exa-{{exa_version}}.zip"
+      src: "/tmp/exa-{{user}}-{{exa_version}}.zip"
   when: not minimal|bool
 - name: "Create link for exa binary"
   file:
