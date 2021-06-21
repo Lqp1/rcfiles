@@ -27,7 +27,6 @@ python_eggs:
 
 go_bundles:
       - "golang.org/x/tools/gopls"
-      - "github.com/godoctor/godoctor"
       - "github.com/rogpeppe/godef"
 
 shares:
