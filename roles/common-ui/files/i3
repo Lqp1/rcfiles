@@ -185,9 +185,9 @@ exec_always --no-startup-id bash -c "source ~/.profile && autotiling"
 
 # Theming
 # class                 border  backgr. text    indicator child_border
-client.focused          $color_border $color_shade6 $color_white $color_green   $color_shade6
+client.focused          $color_border $color_shade8 $color_black $color_green   $color_shade8
 client.focused_inactive $color_border $color_shade7 $color_black $color_green   $color_shade7
-client.unfocused        $color_border $color_shade8 $color_black $color_green   $color_shade8
+client.unfocused        $color_border $color_shade6 $color_white $color_green   $color_shade6
 client.urgent           $color_border $color_red $color_grey $color_green   $color_ref
 client.placeholder      $color_border $color_black $color_white $color_green   $color_black
 
