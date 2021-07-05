@@ -33,6 +33,12 @@
           src: gentools
           dest: "~/bin/"
           mode: 0755
+    - name: "Create target directories for smount"
+      file:
+        path: "{{(item.values()|list|first)['target']}}"
+        state: "directory"
+        mode: 0755
+      with_items: "{{smount_config.mounts}}"
     - name: "Put smount config"
       copy:
           dest: "~/.smount/01personal"
