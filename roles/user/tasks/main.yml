@@ -1,6 +1,11 @@
 ---
 - name: "User config"
   block:
+    - name: "Add TV Shortcut"
+      template:
+        src: tv.j2
+        dest: "{{shares_dir}}/tv.desktop" # Shares dir is ok I guess
+        mode: 0755
     - name: "Install share on desktop"
       template:
           src: "share.desktop"
