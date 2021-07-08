@@ -66,6 +66,7 @@ gentoo_packages:
     - "net-print/hplip"
     - "net-wireless/blueman"
     - "sys-apps/bat"
+    - "sys-apps/firejail"
     - "sys-apps/gentoo-changelog-tracker"
     - "sys-apps/gsmartcontrol"
     - "sys-apps/hdparm"
