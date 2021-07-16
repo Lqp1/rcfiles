@@ -67,6 +67,7 @@ gentoo_packages:
     - "net-wireless/blueman"
     - "sys-apps/bat"
     - "sys-apps/firejail"
+    - "sys-apps/fwupd"
     - "sys-apps/gentoo-changelog-tracker"
     - "sys-apps/gsmartcontrol"
     - "sys-apps/hdparm"

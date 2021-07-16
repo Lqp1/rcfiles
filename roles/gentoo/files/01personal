@@ -17,6 +17,7 @@ net-dns/avahi python # for hplip
 net-fs/samba -ads client cups
 net-misc/networkmanager connection-sharing
 sys-firmware/intel-microcode initramfs
+sys-apps/fwupd dell uefi synaptics tpm nvme thunderbolt gnutls
 www-client/firefox-bin -alsa
 x11-misc/polybar curl i3wm network ipc
 x11-misc/rofi windowmode
