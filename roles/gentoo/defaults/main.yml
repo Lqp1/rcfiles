@@ -78,6 +78,7 @@ gentoo_packages:
     - "sys-apps/smount"
     - "sys-apps/the_silver_searcher"
     - "sys-apps/usbutils"
+    - "sys-process/lsof"
     - "sys-fs/dfc"
     - "sys-fs/dosfstools"
     - "sys-fs/exfat-utils"
