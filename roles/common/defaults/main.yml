@@ -65,4 +65,5 @@ aliases:
     - "alias gitp='git push'"
     - "alias gitw='git whatchanged'"
     - "alias gitl='git tree'"
+    - "alias gite='git ls-files -o -m --exclude-standard|fzf -m|xargs -r -o vim'"
     - "alias serve='python3 -m http.server'"
