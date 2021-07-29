@@ -100,6 +100,12 @@
       path: "/etc/portage/make.conf"
       regexp: 'PORTAGE_IONICE_COMMAND=.*'
       line: 'PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"'
+# not used with hplip (it provides hpaio backend), but I keep it for older printers
+- name: "Set SANE backends"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'SANE_BACKENDS=.*'
+      line: 'SANE_BACKENDS="hp hp3500 hp3900 hp4200 hp5400 hp5590"'
 - name: "Setup personal use flags (hardware agnostic)"
   copy:
       src: "01personal"

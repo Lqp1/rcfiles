@@ -1,4 +1,4 @@
-*/* -less -qt5 -qt4 -kde -ldap networkmanager dbus jpeg lock session startup-notification thunar udev X lm-sensors alsa pulseaudio gnome-keyring emacs vim less pm-utils glamor udisks lvm vaapi vdpau cryptsetup
+*/* -less -qt5 -qt4 -kde -ldap networkmanager dbus jpeg lock session startup-notification thunar udev X lm-sensors alsa pulseaudio gnome-keyring emacs vim less pm-utils glamor udisks lvm vaapi vdpau cryptsetup cups scanner v4l zeroconf
 app-admin/conky curl iostats thinkpad hddtemp wifi
 app-admin/keepassxc autotype
 app-admin/sudo offensive -sendmail
@@ -8,14 +8,16 @@ app-office/libreoffice-bin -gnome
 dev-util/ctags json yaml
 gnome-base/gvfs -http gphoto2 archive mtp samba -cdda fuse
 media-gfx/gimp xpm
+media-gfx/xsane gimp
 media-libs/mesa gles2 -gallium -llvm -vdpau #vdpau is not available without gallium
 media-tv/v4l-utils -bpf
 media-video/ffmpeg webp
 media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 mtp samba fontconfig libass x265
 net-analyzer/wireshark qt5
 net-dns/avahi python # for hplip
-net-fs/samba -ads client cups
+net-fs/samba -ads client
 net-misc/networkmanager connection-sharing
+net-print/hplip snmp
 sys-firmware/intel-microcode initramfs
 sys-apps/fwupd dell uefi synaptics tpm nvme thunderbolt gnutls
 www-client/firefox-bin -alsa
