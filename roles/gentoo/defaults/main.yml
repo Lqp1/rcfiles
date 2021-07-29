@@ -25,6 +25,7 @@ gentoo_packages:
     - "app-admin/keepassxc"
     - "app-admin/sudo"
     - "app-antivirus/clamav"
+    - "app-antivirus/clamtk"
     - "app-arch/p7zip"
     - "app-arch/unzip"
     - "app-crypt/veracrypt"

@@ -1,7 +1,8 @@
-*/* -less -qt5 -qt4 -kde -ldap networkmanager dbus jpeg lock session startup-notification thunar udev X lm-sensors alsa pulseaudio gnome-keyring emacs vim less pm-utils glamor udisks lvm vaapi vdpau cryptsetup cups scanner v4l zeroconf
+*/* -qt5 -kde -ldap networkmanager dbus udev lm-sensors pulseaudio gnome-keyring emacs vim lvm vaapi vdpau cryptsetup cups zeroconf
 app-admin/conky curl iostats thinkpad hddtemp wifi
 app-admin/keepassxc autotype
 app-admin/sudo offensive -sendmail
+app-antivirus/clamtk thunar
 app-editors/emacs xft imagemagick harfbuzz
 app-editors/vim terminal vim-pager ruby lua python
 app-office/libreoffice-bin -gnome
@@ -17,7 +18,7 @@ net-analyzer/wireshark qt5
 net-dns/avahi python # for hplip
 net-fs/samba -ads client
 net-misc/networkmanager connection-sharing
-net-print/hplip snmp
+net-print/hplip snmp scanner
 sys-firmware/intel-microcode initramfs
 sys-apps/fwupd dell uefi synaptics tpm nvme thunderbolt gnutls
 www-client/firefox-bin -alsa
