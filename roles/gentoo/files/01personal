@@ -1,4 +1,4 @@
-*/* -qt5 -kde -ldap networkmanager dbus udev lm-sensors pulseaudio gnome-keyring emacs vim lvm vaapi vdpau cryptsetup cups zeroconf
+*/* -qt5 -kde -ldap networkmanager lm-sensors pulseaudio gnome-keyring emacs vim lvm vaapi vdpau cryptsetup zeroconf
 app-admin/conky curl iostats thinkpad hddtemp wifi
 app-admin/keepassxc autotype
 app-admin/sudo offensive -sendmail
