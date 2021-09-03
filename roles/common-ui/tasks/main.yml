@@ -21,6 +21,14 @@
          - ".config/kitty/"
          - ".config/dunst/"
          - ".smount/"
+    - name: "Copy defaults"
+      copy:
+       src:  "{{item.src}}"
+       dest : "{{home}}/{{item.dst}}"
+       force: no
+      with_items:
+         - { src : "kitty_default_theme.conf", dst : ".config/kitty/current-theme.conf"}
+      notify: activate xres
     - name: "Copy additionnal configuration files"
       copy:
        src:  "{{item.src}}"
