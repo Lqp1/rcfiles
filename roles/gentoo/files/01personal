@@ -17,7 +17,7 @@ media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 m
 net-analyzer/wireshark qt5
 net-dns/avahi python # for hplip
 net-fs/samba -ads client
-net-misc/networkmanager connection-sharing
+net-misc/networkmanager connection-sharing iptables
 net-print/hplip snmp scanner
 sys-firmware/intel-microcode initramfs
 sys-apps/fwupd dell uefi synaptics tpm nvme thunderbolt gnutls
