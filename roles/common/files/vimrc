@@ -78,16 +78,23 @@ augroup statusline
 augroup end
 
 " Backup
-if !isdirectory($HOME . "/.vimdat")
-    call mkdir($HOME . "/.vimdat/backups", "p", 0700)
-    call mkdir($HOME . "/.vimdat/swaps", "p", 0700)
-    call mkdir($HOME . "/.vimdat/undos", "p", 0700)
+if has("nvim")
+    let vimdat=$HOME . "/.nvimdat/"
+else
+    let vimdat=$HOME . "/.vimdat/"
+end
+
+if !isdirectory(vimdat)
+    call mkdir(vimdat . "backups", "p", 0700)
+    call mkdir(vimdat . "swaps", "p", 0700)
+    call mkdir(vimdat . "undos", "p", 0700)
 endif
+
 set backup
 set udf
-set backupdir=~/.vimdat/backups
-set dir=~/.vimdat/swaps
-set udir=~/.vimdat/undos
+execute "set backupdir=".vimdat."backups"
+execute "set dir=".vimdat."swaps"
+execute "set udir=".vimdat."undos"
 
 " Search tips
 set wrapscan
