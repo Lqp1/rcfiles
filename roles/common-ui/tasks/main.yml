@@ -21,6 +21,12 @@
          - ".config/kitty/"
          - ".config/dunst/"
          - ".smount/"
+    - name: "Remove legacy configs"
+      file:
+        path: "{{home}}/{{item}}"
+        state: "absent"
+      with_items:
+        - ".compton.conf"
     - name: "Copy defaults"
       copy:
        src:  "{{item.src}}"
@@ -36,7 +42,7 @@
       with_items:
          - { src : "i3", dst : ".config/i3/config"}
          - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
-         - { src : "compton.conf", dst : ".compton.conf"}
+         - { src : "compton.conf", dst : ".config/picom.conf"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}

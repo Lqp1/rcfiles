@@ -5,4 +5,4 @@ autostart:
     - blueman-applet
     - dunst
     - xfce4-clipman
-    - compton
+    - picom
