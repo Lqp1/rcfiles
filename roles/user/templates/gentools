@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #vim: set ft=sh:
 
-BASTION="{{bastion.local}}"
-BASTION_USER="{{bastion.user}}"
+BASTION="{{gentoo_remote_host}}"
+BASTION_USER="gentoo"
 BASTION_KEY="~{{user}}/.ssh/id_rsa"
 SYNC_CMD="rsync -av"
 
