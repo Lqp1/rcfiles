@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
 #vim: set ft=sh:
 
-BASTION="{{gentoo_remote_host}}"
-BASTION_USER="gentoo"
-BASTION_KEY="~{{user}}/.ssh/id_rsa"
-SYNC_CMD="rsync -av"
 
+# rclone needs to be setup beforehands
+SYNC_CMD="sudo rclone"
 
 # Push local content in the remote
 # Deletes non existent binpkgs as they would not be present in metadata file
 if [ "$1" = "push_packages" ]
 then
-    $SYNC_CMD --delete-after /var/cache/binpkgs $BASTION_USER@$BASTION:/gentoo
+    $SYNC_CMD sync -P /var/cache/binpkgs gentoo:/gentoo/binpkgs
 fi
 
 if [ "$1" = "diff_packages" ]
 then
-    $SYNC_CMD $BASTION_USER@$BASTION:/gentoo/binpkgs/Packages /tmp/Packages
+    $SYNC_CMD copy gentoo:/gentoo/binpkgs/Packages /tmp
     vimdiff /tmp/Packages /var/cache/binpkgs/Packages
 fi
 
@@ -24,6 +22,6 @@ fi
 # Can be used for local install, or to push afterwards with newly built packages
 if [ "$1" = "pull_packages" ]
 then
-    sudo $SYNC_CMD -e "ssh -i $BASTION_KEY" $BASTION_USER@$BASTION:/gentoo/binpkgs /var/cache
+    $SYNC_CMD copy -P gentoo:/gentoo/binpkgs /var/cache/binpkgs
     sudo emaint binhost --fix
 fi
