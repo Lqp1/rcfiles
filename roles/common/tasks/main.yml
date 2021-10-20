@@ -112,7 +112,7 @@
 - name: "Add a fork of cypher prompt, with time"
   copy:
     dest: "{{home}}/.oh-my-zsh/themes/timed-cypher.zsh-theme"
-    content: "PROMPT=\"[%*] %m %{${fg_bold[red]}%}:: %{${fg[green]}%}%3~%(0?. . %{${fg[red]}%}%? )%{${fg[blue]}%}»%{${reset_color}%} \""
+    src: "prompt.zsh-theme"
   when: not minimal|bool
 - name: "Configure Oh My ZSH prompt"
   replace:
