@@ -73,6 +73,11 @@
           dest: "{{home}}/.profile.d/10kitty"
           content: "export TERMINAL=\"kitty\"\n"
           mode: 0644
+    - name: "Add custom polybar script"
+      copy:
+          src: "polybar-custom.sh"
+          dest: "{{home}}/.config/polybar/custom.sh"
+          mode: 0500
     - name: "Create autostart script"
       lineinfile:
           create: 'yes'
