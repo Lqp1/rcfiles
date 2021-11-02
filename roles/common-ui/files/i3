@@ -237,6 +237,8 @@ assign [class="(?i)spotify"]        $ws3
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
 
 # UI
+# title_window_icon yes # >= 4.20
+
 # Inspired from https://gist.github.com/dmelliot/437924ff581f3f1edd59f44833be6cc6
 for_window [class="(?i)emacs"] title_format "<tt></tt><span> 🐃 </span><tt> </tt>%title"
 for_window [class="(?i)(.*)terminal(.*)"] title_format "<tt></tt><span foreground='#00FF00' background='#000000'>  </span><tt> </tt>%title"
