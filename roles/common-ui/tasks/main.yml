@@ -5,12 +5,15 @@
       git:
          repo: "https://github.com/cspeterson/splatmoji"
          dest: "{{home}}/.splatmoji"
-    - name: "Install autotiling from pip"
+    - name: "Install python dependencies"
       pip:
-          name: "autotiling"
+          name: "{{item}}"
           state: latest
           extra_args: "--user"
       when: nixos_file.stat.exists == false
+      with_items:
+        - "autotiling" # for i3
+        - "pyyml" # for kitty-hintsconfig
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
@@ -34,7 +37,6 @@
        force: no
       with_items:
          - { src : "kitty_default_theme.conf", dst : ".config/kitty/current-theme.conf"}
-      notify: activate xres
     - name: "Copy additionnal configuration files"
       copy:
        src:  "{{item.src}}"
@@ -49,6 +51,10 @@
          - { src : "xresources", dst : ".Xresources"}
          - { src : "kittyaliases", dst : ".aliases/10kitty"}
       notify: activate xres
+    - name: "Clone kitty-hitnsconfig from github"
+      git:
+        repo: "https://github.com/Lqp1/kitty-hintsconfig"
+        dest: "{{home}}/.config/kitty/kitty-hintsconfig"
     - name: "Configure GTK-2.0 apps"
       lineinfile:
           create: yes
