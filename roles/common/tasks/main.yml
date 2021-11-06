@@ -135,8 +135,8 @@
 - name: "Disable auto updates"
   replace:
      dest: "{{home}}/.zshrc"
-     regexp: '# DISABLE_AUTO_UPDATE="true"'
-     replace: 'DISABLE_AUTO_UPDATE="true"'
+     regexp: "# zstyle ':omz:update' mode disabled.*"
+     replace: "zstyle ':omz:update' mode disabled"
   when: not minimal|bool
 - name: "Fix fg color for zsh autosuggestions"
   lineinfile:
