@@ -11,7 +11,7 @@ gnome-base/gvfs -http gphoto2 archive mtp samba -cdda fuse
 media-gfx/gimp xpm
 media-gfx/xsane gimp
 media-libs/mesa gles2 -gallium -llvm -vdpau #vdpau is not available without gallium
-media-sound/pulseaudio native-headset ofono-headset
+media-sound/pulseaudio ofono-headset
 media-tv/v4l-utils -bpf
 media-video/ffmpeg webp
 media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 mtp samba fontconfig libass x265
@@ -23,6 +23,7 @@ net-print/hplip snmp scanner
 sys-firmware/intel-microcode initramfs
 sys-apps/fwupd dell uefi synaptics tpm nvme thunderbolt gnutls
 www-client/firefox-bin -alsa
+x11-libs/wxGTK gstreamer
 x11-misc/polybar curl i3wm network ipc
 x11-misc/rofi windowmode
 x11-themes/arc-theme xfce
