@@ -12,6 +12,8 @@
           dest: "{{shares_dir}}/{{item.name}}.desktop"
           mode: 0755
       with_items: "{{shares}}"
+    - name: "Ensure Thunar is default file browser"
+      shell: "xdg-mime default thunar.desktop inode/directory"
     - name: "Clone additionnal repositories"
       git:
           repo: "{{item.repo}}"
