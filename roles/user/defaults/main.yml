@@ -2,8 +2,6 @@
 tv_playlist: "https://iptv-org.github.io/iptv/languages/fra.m3u"
 
 repos:
-    - repo: https://github.com/powerline/fonts.git
-      name: powerline-fonts
     - repo: https://github.com/speed47/spectre-meltdown-checker
       name: spectre-meltdown-checker
     - repo: https://github.com/stove-panini/fontconfig-emoji

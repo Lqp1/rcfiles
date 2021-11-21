@@ -51,7 +51,7 @@
          - { src : "xresources", dst : ".Xresources"}
          - { src : "kittyaliases", dst : ".aliases/10kitty"}
       notify: activate xres
-    - name: "Clone kitty-hitnsconfig from github"
+    - name: "Clone kitty-hintsconfig from github"
       git:
         repo: "https://github.com/Lqp1/kitty-hintsconfig"
         dest: "{{home}}/.config/kitty/kitty-hintsconfig"
@@ -73,6 +73,10 @@
     - name: "Copy fonts"
       copy:
           src: "res/fonts/"
+          dest: "{{home}}/.local/share/fonts/"
+    - name: "Copy powerline Noto Mono"
+      copy:
+          src: "res/powerline-fonts/NotoMono/Noto Mono for Powerline.ttf"
           dest: "{{home}}/.local/share/fonts/"
     - name: "Add kitty TERMINAL variable in profile"
       copy:
