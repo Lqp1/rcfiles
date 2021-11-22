@@ -22,6 +22,7 @@
          - ".config/i3/"
          - ".config/polybar/"
          - ".config/kitty/"
+         - ".config/rofi/"
          - ".config/dunst/"
          - ".smount/"
     - name: "Remove legacy configs"
@@ -46,6 +47,7 @@
          - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
          - { src : "compton.conf", dst : ".config/picom.conf"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
+         - { src : "rofi.rasi", dst : ".config/rofi/config.rasi"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}
          - { src : "xresources", dst : ".Xresources"}
