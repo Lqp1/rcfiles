@@ -17,7 +17,7 @@ configuration {
   case-sensitive: false;
   combi-modi: "window,drun,ssh";
   theme: "solarized";
-  window-thumbnail: true;
+  window-thumbnail: false;
   timeout {
       action: "kb-cancel";
       delay:  0;
