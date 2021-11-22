@@ -5,15 +5,16 @@ gentoo_remote_host: "xxxxx"
 gentoo_bin_uri: "rsync://{{gentoo_remote_host}}/gentoo/binpkgs/"
 
 gentoo_systemd_services:
+    - "acpid"
     - "bluetooth"
     - "clamav-daemon"
     - "clamav-freshclam"
+    - "cronie"
     - "cups"
     - "laptop-mode"
+    - "pcscd"
     - "slim"
     - "thermald"
-    - "pcscd"
-    - "cronie"
 
 gentoo_accepted_unstable:
     - "app-crypt/veracrypt"

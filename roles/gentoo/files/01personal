@@ -10,7 +10,7 @@ dev-util/ctags json yaml
 gnome-base/gvfs -http gphoto2 archive mtp samba -cdda fuse
 media-gfx/gimp xpm
 media-gfx/xsane gimp
-media-libs/mesa gles2 -gallium -llvm -vdpau #vdpau is not available without gallium
+media-libs/mesa gles2 -llvm
 media-sound/pulseaudio ofono-headset
 media-tv/v4l-utils -bpf
 media-video/ffmpeg webp

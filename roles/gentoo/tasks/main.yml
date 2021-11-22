@@ -163,4 +163,5 @@
     name: "{{item}}.service"
     enabled: true
   with_items: "{{gentoo_systemd_services}}"
+  ignore_errors: yes
 
