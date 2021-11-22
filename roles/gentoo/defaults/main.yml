@@ -3,6 +3,18 @@ localrepo: "/var/db/repos/localrepo"
 personaloverlay: "/var/db/repos/lqp1/"
 gentoo_remote_host: "xxxxx"
 gentoo_bin_uri: "rsync://{{gentoo_remote_host}}/gentoo/binpkgs/"
+
+gentoo_systemd_services:
+    - "bluetooth"
+    - "clamav-daemon"
+    - "clamav-freshclam"
+    - "cups"
+    - "laptop-mode"
+    - "slim"
+    - "thermald"
+    - "pcscd"
+    - "cronie"
+
 gentoo_accepted_unstable:
     - "app-crypt/veracrypt"
     - "app-text/vgrep" # to replace ag
@@ -30,7 +42,7 @@ gentoo_packages:
     - "app-arch/p7zip"
     - "app-arch/unzip"
     - "app-crypt/veracrypt"
-    #- "app-crypt/ccid"
+    - "app-crypt/ccid"
     - "app-editors/emacs"
     - "app-editors/vim"
     - "app-forensics/chkrootkit"
@@ -80,11 +92,12 @@ gentoo_packages:
     - "sys-apps/lshw"
     - "sys-apps/moreutils"
     - "sys-apps/pciutils"
-    #- "sys-apps/pcsc-tools"
+    - "sys-apps/pcsc-tools"
     - "sys-apps/smount"
     - "sys-apps/the_silver_searcher"
     - "sys-apps/usbutils"
     - "sys-process/lsof"
+    - "sys-process/cronie"
     - "sys-fs/dfc"
     - "sys-fs/dosfstools"
     - "sys-fs/exfat-utils"
@@ -92,6 +105,7 @@ gentoo_packages:
     - "sys-fs/mtpfs"
     - "sys-fs/ntfs3g"
     - "sys-power/powertop"
+    - "sys-power/thermald"
     - "sys-process/htop"
     - "sys-process/iotop"
 
@@ -134,3 +148,6 @@ gentoo_packages_X11:
     - "xfce-extra/tumbler"
     - "xfce-extra/xfce4-clipman-plugin"
     - "xfce-extra/xfce4-screenshooter"
+
+gentoo_packages_laptop:
+    - "app-laptop/laptop-mode-tools"
