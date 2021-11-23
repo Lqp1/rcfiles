@@ -211,20 +211,21 @@
   with_items: "{{gitattributes}}"
 - name: "Pull exa zip"
   get_url:
-      url: "https://github.com/ogham/exa/releases/download/v{{exa_version}}/exa-linux-x86_64-{{exa_version}}.zip"
+      url: "https://github.com/ogham/exa/releases/download/v{{exa_version}}/exa-linux-x86_64-v{{exa_version}}.zip"
       dest: "/tmp/exa-{{user}}-{{exa_version}}.zip"
   when: not minimal|bool
 - name: "Extract exa into path"
   unarchive:
-      dest: "{{home}}/bin/"
+      dest: "{{home}}/"
+      include: "bin/exa"
       src: "/tmp/exa-{{user}}-{{exa_version}}.zip"
-  when: not minimal|bool
-- name: "Create link for exa binary"
-  file:
-      src: "{{home}}/bin/exa-linux-x86_64"
-      dest: "{{home}}/bin/exa"
-      state: "link"
   when: (not minimal|bool) and (nixos_file.stat.exists == false)
+    #- name: "Create link for exa binary"
+    #  file:
+    #      src: "{{home}}/bin/exa-linux-x86_64"
+    #      dest: "{{home}}/bin/exa"
+    #      state: "link"
+    #  when: (not minimal|bool) and (nixos_file.stat.exists == false)
 - name: Create a symbolic link for bash_profile
   file:
     src: "{{home}}/.profile"

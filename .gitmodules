@@ -4,6 +4,3 @@
 [submodule "res/vim-plug"]
 	path = res/vim-plug
 	url = https://github.com/junegunn/vim-plug
-[submodule "res/powerline-fonts"]
-	path = res/powerline-fonts
-	url = https://github.com/powerline/fonts.git

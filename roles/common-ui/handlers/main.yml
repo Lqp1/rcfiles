@@ -1,3 +1,5 @@
 ---
 - name: activate xres
   shell: "xrdb -load {{ home }}/.Xresources"
+- name: update fc-cache
+  shell: "fc-cache -r {{ home }}/.local/share/fonts"

@@ -58,4 +58,4 @@ Some screenshots of the features it sets up:
 
 * Polybar theme comes from https://github.com/adi1090x/polybar-themes; slightly
   modified.
-* res/fonts/* are not mine, all credit go to their respective author.
+* Fonts owner! (in particular Noto, Iosevka, Fira-code and Nerd Fonts)

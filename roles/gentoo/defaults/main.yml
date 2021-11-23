@@ -120,6 +120,7 @@ gentoo_packages_X11:
     - "media-fonts/droid"
     - "media-fonts/noto"
     - "media-fonts/noto-emoji"
+    - "media-fonts/fira-code"
     - "media-fonts/quivira"
     - "media-gfx/feh"
     - "media-gfx/gimp"

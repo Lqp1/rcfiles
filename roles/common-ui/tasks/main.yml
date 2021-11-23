@@ -25,12 +25,14 @@
          - ".config/rofi/"
          - ".config/dunst/"
          - ".smount/"
+         - ".local/share/fonts/fira-code"
     - name: "Remove legacy configs"
       file:
         path: "{{home}}/{{item}}"
         state: "absent"
       with_items:
         - ".compton.conf"
+        - "bin/exa-linux-x86_64"
     - name: "Copy defaults"
       copy:
        src:  "{{item.src}}"
@@ -72,14 +74,24 @@
           line: "gtk-key-theme-name = \"Emacs\""
           insertafter: "[Settings]"
           path: "{{home}}/.config/gtk-3.0/settings.ini"
-    - name: "Copy fonts"
-      copy:
-          src: "res/fonts/"
-          dest: "{{home}}/.local/share/fonts/"
-    - name: "Copy powerline Noto Mono"
-      copy:
-          src: "res/powerline-fonts/NotoMono/Noto Mono for Powerline.ttf"
-          dest: "{{home}}/.local/share/fonts/"
+    - name: "Fetch jira-code font family"
+      unarchive:
+        remote_src: yes
+        src: "https://github.com/tonsky/FiraCode/releases/download/5.2/Fira_Code_v5.2.zip"
+        dest: "{{home}}/.local/share/fonts/fira-code"
+      notify: update fc-cache
+    - name: "Fetch other various fonts from internet"
+      get_url:
+        url: "{{item.src}}"
+        dest: "{{home}}/.local/share/fonts/{{item.name}}.ttf"
+      notify: update fc-cache
+      with_items:
+        - src: "https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf"
+          name: "NotoColorEmoji"
+        - src: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Regular/complete/Iosevka%20Nerd%20Font%20Complete.ttf"
+          name: "Iosevka Nerd Font Complete"
+        - src: "https://github.com/googlefonts/noto-fonts/raw/main/hinted/ttf/NotoSansMono/NotoSansMono-Regular.ttf"
+          name: "NotoSansMono-Regular"
     - name: "Add kitty TERMINAL variable in profile"
       copy:
           dest: "{{home}}/.profile.d/10kitty"
