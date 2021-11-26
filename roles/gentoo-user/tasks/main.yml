@@ -6,3 +6,8 @@
     scope: "user"
     state: "started"
   with_items: "{{systemd_services}}"
+- name: "Create Gentoo tooling"
+  template:
+      src: gentools
+      dest: "~/bin/"
+      mode: 0755

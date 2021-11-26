@@ -35,11 +35,6 @@
     - name: "Install go dependencies"
       shell: "go get -u -v {{item}}"
       with_items: "{{go_bundles}}"
-    - name: "Create Gentoo tooling" # Not to be put in Gentoo role as it's more user tooling than real OS conf
-      template:
-          src: gentools
-          dest: "~/bin/"
-          mode: 0755
     - name: "Create target directories for smount"
       file:
         path: "{{(item.values()|list|first)['target']}}"
