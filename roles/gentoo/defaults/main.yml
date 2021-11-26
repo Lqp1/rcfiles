@@ -13,7 +13,7 @@ gentoo_systemd_services:
     - "cups"
     - "laptop-mode"
     - "pcscd"
-    - "slim"
+    - "sddm"
     - "thermald"
 
 gentoo_accepted_unstable:
@@ -135,7 +135,7 @@ gentoo_packages_X11:
     - "x11-misc/polybar"
     - "x11-misc/redshift"
     - "x11-misc/rofi"
-    - "x11-misc/slim"
+    - "x11-misc/sddm"
     - "x11-misc/i3lock"
     - "x11-misc/xclip"
     - "x11-misc/xdotool"

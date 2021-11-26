@@ -32,13 +32,13 @@ Actual rcfiles are in `roles/common/files/` and in `roles/common-ui/files/`.
 ```bash
 git clone --recursive https://github.com/lqp1/rcfiles
 vim host_vars/localhost.yml
+echo '---' > host_vars/vault.yml # contains only my overrides
 
 # To set everything for the user:
 ansible-playbook deploy.yml
 
-# To setup root user config and gentoo:
-sudo ansible-playbook deploy.yml
-sudo ansible-playbook gentoo.yml
+# To setup gentoo config:
+ansible-playbook gentoo.yml -K
 ```
 
 __NOTE__ : When running with `minimal:true` the script installs a minimal and lighter version,

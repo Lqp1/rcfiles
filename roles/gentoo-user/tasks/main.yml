@@ -1,0 +1,8 @@
+---
+- name: Enable servoces
+  systemd:
+    name: "{{item}}.service"
+    enabled: true
+    scope: "user"
+    state: "started"
+  with_items: "{{systemd_services}}"

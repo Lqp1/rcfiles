@@ -1,6 +1,5 @@
 ---
 autostart:
-    - redshift-gtk
     - nm-applet
     - blueman-applet
     - dunst

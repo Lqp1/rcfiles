@@ -87,6 +87,11 @@
      - { src : "bash_aliases", dst : ".bash_aliases"}
      - { src : "vgrep", dst : ".aliases/10vgrep"}
      - { src : "bat", dst : ".aliases/11bat"}
+- name: "Link zprofile to zshenv"
+  file:
+      src: "{{home}}/.zshenv"
+      dest: "{{home}}/.zprofile"
+      state: link
 - name: "Copy user oh my ZSH config"
   copy:
       src: "omzsh"
