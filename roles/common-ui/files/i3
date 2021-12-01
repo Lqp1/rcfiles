@@ -9,8 +9,8 @@ set $mod Mod4
 set $ws1 "1:internet"
 set $ws2 "2:terminal"
 set $ws3 "3:chat"
-set $ws4 "4:misc1"
-set $ws5 "5:misc2"
+set $ws4 "4:music"
+set $ws5 "5:misc"
 
 # Set colors
 set $color_border "#0D47A1"
@@ -227,11 +227,13 @@ assign [class="(?i)emacs"]          $ws2
 assign [class="(?i)kitty"]          $ws2
 assign [class="(?i).*terminal.*"]   $ws2
 
-# Chat & Music
+# Chat
 assign [class="(?i)zoom"]           $ws3
 assign [class="(?i)discord"]        $ws3
 assign [class="(?i)slack"]          $ws3
-assign [class="(?i)spotify"]        $ws3
+
+# Music
+assign [class="(?i)spotify"]        $ws4
 
 # Set autostart
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
