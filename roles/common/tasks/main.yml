@@ -18,7 +18,7 @@
   git:
      repo: "https://github.com/syl20bnr/spacemacs"
      dest: "{{home}}/.emacs.d"
-     version: "develop"
+     version: "master"
   when: not minimal|bool
 - name: "Clone Oh My ZSH from github"
   git:

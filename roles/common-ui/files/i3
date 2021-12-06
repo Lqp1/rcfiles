@@ -234,12 +234,14 @@ assign [class="(?i)slack"]          $ws3
 
 # Music
 assign [class="(?i)spotify"]        $ws4
+# Due to bug in how spotify assigns its class; workaround:
+for_window [class="Spotify"] move to workspace $ws4
 
 # Set autostart
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
 
 # UI
-# title_window_icon yes # >= 4.20
+# for_window [class=".*"] title_window_icon on # >= 4.20
 
 # Inspired from https://gist.github.com/dmelliot/437924ff581f3f1edd59f44833be6cc6
 for_window [class="(?i)emacs"] title_format "<tt></tt><span> 🐃 </span><tt> </tt>%title"
