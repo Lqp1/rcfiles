@@ -1,0 +1,6 @@
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+
+# Gentoo fix (not sure exactly why, but XDG_DATA_DIRS got rewriten by gentoo wrappers somewhere)
+unset __HM_SESS_VARS_SOURCED
+
+if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh; fi
