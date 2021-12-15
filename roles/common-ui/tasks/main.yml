@@ -1,10 +1,10 @@
 ---
 - name: "Common ui config"
   block:
-    - name: "Clone Splatmoji"
+    - name: "Clone Rofimoji"
       git:
-         repo: "https://github.com/cspeterson/splatmoji"
-         dest: "{{home}}/.splatmoji"
+         repo: "https://github.com/fdw/rofimoji"
+         dest: "{{home}}/.rofimoji"
     - name: "Install python dependencies"
       pip:
           name: "{{item}}"
@@ -33,6 +33,7 @@
       with_items:
         - ".compton.conf"
         - "bin/exa-linux-x86_64"
+        - ".splatmoji"
     - name: "Copy defaults"
       copy:
        src:  "{{item.src}}"

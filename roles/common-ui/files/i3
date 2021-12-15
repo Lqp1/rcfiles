@@ -34,7 +34,7 @@ workspace_layout tabbed
 force_display_urgency_hint 500 ms
 bindsym $mod+colon exec i3-input
 bindsym $mod+Tab exec rofi -show window
-bindsym $mod+semicolon exec ~/.splatmoji/splatmoji type
+bindsym $mod+semicolon exec bash -c 'export PYTHONPATH=~/.rofimoji/src/ && python ~/.rofimoji/src/picker/rofimoji.py'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -188,7 +188,7 @@ exec_always --no-startup-id bash -c "source ~/.profile && autotiling"
 client.focused        $color_border $color_shade6 $color_white $color_green   $color_shade6
 client.focused_inactive $color_border $color_shade7 $color_black $color_green   $color_shade7
 client.unfocused          $color_border $color_shade8 $color_black $color_green   $color_shade8
-client.urgent           $color_border $color_red $color_grey $color_green   $color_ref
+client.urgent           $color_border $color_red $color_grey $color_green   $color_red
 client.placeholder      $color_border $color_black $color_white $color_green   $color_black
 
 client.background       $color_white
@@ -240,8 +240,8 @@ for_window [class="Spotify"] move to workspace $ws4
 # Set autostart
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
 
-# UI
-for_window [class=".*"] title_window_icon on # >= 4.20
+# UI >= 4.20
+for_window [class=".*"] title_window_icon on
 
 # Inspired from https://gist.github.com/dmelliot/437924ff581f3f1edd59f44833be6cc6
 # for_window [class="(?i)emacs"] title_format "<tt></tt><span> 🐃 </span><tt> </tt>%title"
