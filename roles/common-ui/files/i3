@@ -34,7 +34,7 @@ workspace_layout tabbed
 force_display_urgency_hint 500 ms
 bindsym $mod+colon exec i3-input
 bindsym $mod+Tab exec rofi -show window
-bindsym $mod+semicolon exec bash -c 'export PYTHONPATH=~/.rofimoji/src/ && python ~/.rofimoji/src/picker/rofimoji.py'
+bindsym $mod+semicolon exec bash -c 'export PYTHONPATH=~/.rofimoji/src/ && python ~/.rofimoji/src/picker/rofimoji.py -s neutral'
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
