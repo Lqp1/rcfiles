@@ -497,6 +497,7 @@ From: https://www.reddit.com/r/emacs/comments/idz35e/emacs_27_can_take_svg_scree
     (message filename)))
 (add-hook 'org-mode-hook 'my-notes-hook)
 (add-hook 'markdown-mode-hook 'my-notes-hook)
+(add-hook 'text-mode-hook 'my-notes-hook)
 (setq helm-lxc-hosts '(("localhost" . "/su::")))
 (vimish-fold-global-mode 1)
 (setq tags-add-tables nil)

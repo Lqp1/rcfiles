@@ -109,8 +109,8 @@ set conceallevel=2
 " Spelling tips
 augroup textfiles
     autocmd!
-    autocmd BufEnter *.txt,README,*.md set spell textwidth=80
-    autocmd BufEnter *.txt,README,*.md syntax match arrow "->" conceal cchar=→
+    autocmd BufEnter *.txt,README,*.md,*.org set spell textwidth=80
+    autocmd BufEnter *.txt,README,*.md,*.org syntax match arrow "->" conceal cchar=→
 augroup end
 
 " Show line number
