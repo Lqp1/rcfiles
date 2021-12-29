@@ -117,6 +117,14 @@ augroup end
 set number relativenumber
 highlight LineNr term=bold ctermfg=darkgray guifg=darkgray
 
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+
 " Highlight trailing Tabs, Spaces and special chars
 augroup specialchars
     autocmd!
