@@ -24,6 +24,7 @@ gentoo_accepted_unstable:
     - "x11-misc/miraclecast"
     - "x11-terms/kitty"
     - "x11-terms/kitty-terminfo"
+    - "x11-terms/kitty-shell-integration"
     - "sys-apps/gentoo-changelog-tracker"
     - "sys-apps/bat"
 gentoo_accepted_all:
@@ -69,6 +70,7 @@ gentoo_packages:
     - "dev-util/git-delta"
     - "dev-vcs/tig"
     - "media-gfx/sane-backends"
+    - "media-gfx/sane-airscan"
     - "media-plugins/alsa-plugins"
     - "media-sound/alsa-utils"
     - "media-sound/pavucontrol"
