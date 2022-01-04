@@ -1,41 +1,44 @@
-- name: Check if Nix pkg manager is already installed
-  stat:
-      path: "/nix"
-  register: nix_info
-- name: Check if running NixOS
-  stat:
-      path: "/etc/nixos"
-  register: nixos_info
-- name: Download installer
-  get_url:
-      url: https://nixos.org/nix/install
-      dest: "/tmp/nix-install"
-  when: not nix_info.stat.exists
-- name: Install Nix
-  shell: /bin/bash /tmp/nix-install
-  when: not nix_info.stat.exists
-
-- name: Add nixgl channel if not running inside NixOS
-  shell: nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl
-  when: not nixos_info.stat.exists
-- name: Update channels
-  shell: nix-channel --update
-- name: Cleanup env
-  shell: nix-collect-garbage
-  when: nix_info.stat.exists
-- name: Create local app directory
-  file:
-    path: "~/.local/share/applications/"
-    state: directory
-- name: Setup Chrome wrapper when not running in NixOS
-  template:
-      src: "google-chrome-gl.desktop"
-      dest: "~/.local/share/applications/google-chrome-gl.desktop"
-  when: not nixos_info.stat.exists
-- name: install nixglIntel on non NixOS system
-  shell: nix-env -iA nixgl.nixGLIntel
-  when: not nixos_info.stat.exists
-- name: Setup nix and hm variables in profiles
-  copy:
-      src: "env"
-      dest: "~/.profile.d/20nix"
+- name: Install nix
+  block:
+  - name: Check if Nix pkg manager is already installed
+    stat:
+        path: "/nix"
+    register: nix_info
+  - name: Check if running NixOS
+    stat:
+        path: "/etc/nixos"
+    register: nixos_info
+  - name: Download installer
+    get_url:
+        url: https://nixos.org/nix/install
+        dest: "/tmp/nix-install"
+    when: not nix_info.stat.exists
+  - name: Install Nix
+    shell: /bin/bash /tmp/nix-install
+    when: not nix_info.stat.exists
+  
+  - name: Add nixgl channel if not running inside NixOS
+    shell: nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl
+    when: not nixos_info.stat.exists
+  - name: Update channels
+    shell: nix-channel --update
+  - name: Cleanup env
+    shell: nix-collect-garbage
+    when: nix_info.stat.exists
+  - name: Create local app directory
+    file:
+      path: "~/.local/share/applications/"
+      state: directory
+  - name: Setup Chrome wrapper when not running in NixOS
+    template:
+        src: "google-chrome-gl.desktop"
+        dest: "~/.local/share/applications/google-chrome-gl.desktop"
+    when: not nixos_info.stat.exists
+  - name: install nixglIntel on non NixOS system
+    shell: nix-env -iA nixgl.nixGLIntel
+    when: not nixos_info.stat.exists
+  - name: Setup nix and hm variables in profiles
+    copy:
+        src: "env"
+        dest: "~/.profile.d/20nix"
+  when: not minimal|bool
