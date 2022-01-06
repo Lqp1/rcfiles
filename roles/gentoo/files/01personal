@@ -11,7 +11,7 @@ gnome-base/gvfs -http gphoto2 archive mtp samba -cdda fuse
 media-gfx/gimp xpm
 media-gfx/xsane gimp
 media-libs/mesa gles2 -llvm
-media-sound/pulseaudio ofono-headset
+media-sound/pulseaudio native-headset
 media-tv/v4l-utils -bpf
 media-video/ffmpeg webp
 media-video/vlc ffmpeg mpeg dts a52 ogg flac theora matroska bidi live lua qt5 mtp samba fontconfig libass x265
