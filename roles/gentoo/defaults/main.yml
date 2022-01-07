@@ -103,6 +103,7 @@ gentoo_packages:
     - "sys-process/cronie"
     - "sys-fs/dfc"
     - "sys-fs/dosfstools"
+    - "sys-fs/e2fsprogs"
     - "sys-fs/exfat-utils"
     - "sys-fs/fuse-exfat"
     - "sys-fs/mtpfs"

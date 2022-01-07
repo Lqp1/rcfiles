@@ -35,10 +35,13 @@ vim host_vars/localhost.yml
 echo '---' > host_vars/vault.yml # contains only my overrides
 
 # To set everything for the user:
-ansible-playbook deploy.yml
+ansible-playbook deploy.yml --ask-vault-pass
 
 # To setup gentoo config:
-ansible-playbook gentoo.yml -K
+ansible-playbook gentoo.yml -K --ask-vault-pass
+
+# Adapt to the sets you're interested in:
+echo -e "@personal\n@personalLaptop\n@personalX11\n" | sudo tee -a /var/lib/portage/world_sets
 ```
 
 __NOTE__ : When running with `minimal:true` the script installs a minimal and lighter version,
