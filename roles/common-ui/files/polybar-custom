@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+import i3ipc
+
+output = '🦆'
+
+if len(i3ipc.Connection().get_tree().scratchpad().leaves()):
+    output += ' 🐈'
+
+print(output)
