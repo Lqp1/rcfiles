@@ -14,6 +14,7 @@
       with_items:
         - "autotiling" # for i3
         - "pyyml" # for kitty-hintsconfig
+        - "configargparse" # for rofimoji
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
