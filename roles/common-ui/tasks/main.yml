@@ -118,4 +118,15 @@
           path: "{{home}}/.config/i3/autostart.sh"
           mode: 0500
       with_items: "{{autostart}}"
+    - name: "Settup XFCE config (for thunar for example)"
+      shell: "xfconf-query -c xsettings -p {{item.path}} -s {{item.value}}"
+      with_items:
+        - path: "/Net/IconThemeName"
+          value: "Arc"
+        - path: "/Net/ThemeName"
+          value: "Arc"
+        - path: "/Gtk/FontName"
+          value: "Fira Code 10"
+        - path: "/Gtk/MonospaceFontName"
+          value: "Fira Code 10"
   when: not minimal|bool
