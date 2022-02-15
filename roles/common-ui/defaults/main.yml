@@ -5,3 +5,12 @@ autostart:
     - dunst
     - xfce4-clipman
     - picom
+gtk_config:
+    - key: "gtk-key-theme-name"
+      value: "Emacs"
+    - key: "gtk-icon-theme-name"
+      value: "Arc"
+    - key: "gtk-theme-name"
+      value: "Arc"
+    - key: "gtk-font-name"
+      value: "Noto Sans Mono 12"
