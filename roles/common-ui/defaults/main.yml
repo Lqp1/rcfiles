@@ -13,4 +13,4 @@ gtk_config:
     - key: "gtk-theme-name"
       value: "Arc"
     - key: "gtk-font-name"
-      value: "Noto Sans Mono 12"
+      value: "Noto Sans 12"
