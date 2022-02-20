@@ -25,6 +25,7 @@
          - ".config/kitty/"
          - ".config/rofi/"
          - ".config/dunst/"
+         - ".config/gtk-3.0/"
          - ".smount/"
          - ".local/share/fonts/fira-code"
     - name: "Remove legacy configs"
