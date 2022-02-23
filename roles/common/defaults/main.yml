@@ -52,6 +52,7 @@ cleanignore: ".dir-locals.el"
 aliases:
     - "export EDITOR='vim'"
     - "export PAGER='less'"
+    - "export RIPGREP_CONFIG_PATH='{{home}}/.ripgreprc'"
     - "export LESS='{{ lessopts }}'"
     - "export ALTERNATE_EDITOR=''"
     - "export CDPATH=\"$CDPATH:$HOME\""

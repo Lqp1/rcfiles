@@ -67,6 +67,13 @@ augroup tabs
     autocmd FileType make,go setlocal noexpandtab
 augroup end
 
+" Ripgrep search setup
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
+nnoremap gw :grep <cword> . <cr>
+
 
 " Status line
 set laststatus=2

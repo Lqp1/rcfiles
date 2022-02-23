@@ -81,6 +81,7 @@
      - { src : "res/vim-plug/plug.vim", dst : ".vim/autoload/plug.vim"}
      - { src : "nvimrc", dst : ".config/nvim/init.vim"}
      - { src : "bashrc", dst : ".bashrc"}
+     - { src : "ripgreprc", dst : ".ripgreprc"}
      - { src : "profile", dst : ".profile"}
      - { src : "zshenv", dst : ".zshenv"}
      - { src : "spacemacs", dst : ".spacemacs"}
