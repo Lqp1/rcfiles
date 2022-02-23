@@ -160,6 +160,7 @@
   with_items:
       - 'git config --global alias.tree "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"'
       - 'git config --global alias.clean "clean -dxe {{cleanignore}}"'
+      - 'git config --global alias.vgrep "!__git_vgrep () { git grep --color=always \"$@\" | vgrep; }; __git_vgrep"'
       - 'git config --global advice.skippedCherryPicks false'
       - 'git config --global pull.rebase true'
       - 'git config --global rebase.stat true'

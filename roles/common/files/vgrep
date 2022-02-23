@@ -1,7 +1,7 @@
 # vim: set ft=sh
 # Alias and functions to use vgrep
 
-ag() {
+search() {
   if [ "$1" != "" ]
   then
       vgrep -i $@
@@ -14,3 +14,5 @@ ag() {
 open() {
     vgrep --show ${@:-0}
 }
+
+alias ag='search'
