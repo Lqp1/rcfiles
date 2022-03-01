@@ -21,6 +21,7 @@ gentoo_accepted_unstable:
     - "app-text/vgrep" # to replace ag
     - "media-fonts/quivira"
     - "net-wireless/blueman"
+    - "media-gfx/sane-airscan"
     - "x11-misc/miraclecast"
     - "x11-terms/kitty"
     - "x11-terms/kitty-terminfo"
