@@ -15,6 +15,7 @@ gentoo_systemd_services:
     - "pcscd"
     - "sddm"
     - "thermald"
+    - "rtkit-daemon"
 
 gentoo_accepted_unstable:
     - "app-crypt/veracrypt"
@@ -101,6 +102,7 @@ gentoo_packages:
     - "sys-apps/smount"
     - "sys-apps/ripgrep"
     - "sys-apps/usbutils"
+    - "sys-auth/rtkit"
     - "sys-process/lsof"
     - "sys-process/cronie"
     - "sys-fs/dfc"
