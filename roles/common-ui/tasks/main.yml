@@ -53,6 +53,7 @@
          - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
          - { src : "compton.conf", dst : ".config/picom.conf"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
+         - { src : "kitty-ssh.conf", dst : ".config/kitty/ssh.conf"}
          - { src : "rofi.rasi", dst : ".config/rofi/config.rasi"}
          - { src : "polybar.ini", dst : ".config/polybar/config.ini"}
          - { src : "redshift.conf", dst : ".config/redshift.conf"}
