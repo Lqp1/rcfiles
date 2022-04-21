@@ -26,4 +26,5 @@ www-client/firefox-bin -alsa
 x11-libs/wxGTK gstreamer
 x11-misc/polybar curl i3wm network ipc
 x11-misc/rofi windowmode
+x11-terms/kitty transfer
 x11-themes/arc-theme xfce
