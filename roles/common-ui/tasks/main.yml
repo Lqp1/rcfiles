@@ -7,14 +7,10 @@
          dest: "{{home}}/.rofimoji"
     - name: "Install python dependencies"
       pip:
-          name: "{{item}}"
+          name: "{{python_dependencies}}"
           state: latest
           extra_args: "--user"
       when: nixos_file.stat.exists == false
-      with_items:
-        - "autotiling" # for i3
-        - "pyyml" # for kitty-hintsconfig
-        - "configargparse" # for rofimoji
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
