@@ -26,8 +26,8 @@ python_eggs:
       - ipython
 
 go_bundles:
-      - "golang.org/x/tools/gopls"
-      - "github.com/rogpeppe/godef"
+      - "golang.org/x/tools/gopls@latest"
+      - "github.com/rogpeppe/godef@latest"
 
 shares:
     - name: "Fake"

@@ -38,7 +38,7 @@
           extra_args: "--user"
       when: nixos_file.stat.exists == false
     - name: "Install go dependencies"
-      shell: "go get -u -v {{item}}"
+      shell: "go install -v {{item}}"
       with_items: "{{go_bundles}}"
     - name: "Create target directories for smount"
       file:
