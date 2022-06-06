@@ -1,8 +1,8 @@
 ---
 localrepo: "/var/db/repos/localrepo"
 personaloverlay: "/var/db/repos/lqp1/"
-gentoo_remote_host: "xxxxx"
-gentoo_bin_uri: "rsync://{{gentoo_remote_host}}/gentoo/binpkgs/"
+gentoo_remote_host: ""
+gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{gentoo_remote_host}}/gentoo/binpkgs/{% endif %}"
 
 gentoo_systemd_services:
     - "acpid"
