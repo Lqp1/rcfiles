@@ -4,6 +4,14 @@ personaloverlay: "/var/db/repos/lqp1/"
 gentoo_remote_host: ""
 gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{gentoo_remote_host}}/gentoo/binpkgs/{% endif %}"
 
+gentoo_features:
+  - "buildpkg"
+  - "strict"
+  - "collision-protect"
+  - "parallel-install"
+  - "cgroup"
+  - "ipc-sandbox"
+
 gentoo_systemd_services:
     - "acpid"
     - "bluetooth"

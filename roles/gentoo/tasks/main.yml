@@ -80,11 +80,11 @@
       src: "00cpu-flags.j2"
       dest: "/etc/portage/package.use/00cpu-flags"
       mode: 0644
-- name: "Ensure we build binary package, and use it as much as possible"
+- name: "Setup portage feature flags properly"
   lineinfile:
       path: "/etc/portage/make.conf"
       regexp: 'FEATURES=.*'
-      line: 'FEATURES="buildpkg getbinpkg strict collision-protect parallel-install cgroup ipc-sandbox"'
+      line: 'FEATURES="{{gentoo_features | join(" ")}}{% if gentoo_bin_uri != "" %} getbinpkg{% endif %}"'
 - name: "Ensure sane defaults for portage"
   lineinfile:
       path: "/etc/portage/make.conf"
