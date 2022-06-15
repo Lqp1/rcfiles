@@ -1,3 +1,5 @@
 systemd_services:
-    - "redshift-gtk"
+    - "redshift-gtk.service"
+    - "pulseaudio.service"
+    - "pulseaudio.socket"
 
