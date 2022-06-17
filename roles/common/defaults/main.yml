@@ -56,6 +56,7 @@ aliases:
     - "export LESS='{{ lessopts }}'"
     - "export ALTERNATE_EDITOR=''"
     - "export CDPATH=\"$CDPATH:$HOME\""
+    - "export FZF_DEFAULT_COMMAND='rg --files --glob \"!.git/*\"'"
     - "alias ls='{{ls_cmd}} --color=auto -F'"
     - "alias cp='cp -iv'"
     - "alias mv='mv -iv'"
