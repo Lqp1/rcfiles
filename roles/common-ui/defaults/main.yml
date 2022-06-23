@@ -17,4 +17,4 @@ gtk_config:
 python_dependencies:
     - "autotiling" # for i3
     - "pyyml" # for kitty-hintsconfig
-    - "configargparse" # for rofimoji
+    - "rofimoji"

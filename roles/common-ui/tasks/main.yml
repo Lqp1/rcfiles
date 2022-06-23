@@ -1,10 +1,6 @@
 ---
 - name: "Common ui config"
   block:
-    - name: "Clone Rofimoji"
-      git:
-         repo: "https://github.com/fdw/rofimoji"
-         dest: "{{home}}/.rofimoji"
     - name: "Install python dependencies"
       pip:
           name: "{{python_dependencies}}"
@@ -32,6 +28,7 @@
         - ".compton.conf"
         - "bin/exa-linux-x86_64"
         - ".splatmoji"
+        - ".rofimoji"
         - ".config/polybar/custom.sh"
     - name: "Copy defaults"
       copy:
