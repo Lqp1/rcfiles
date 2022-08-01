@@ -88,6 +88,7 @@
      - { src : "bash_aliases", dst : ".bash_aliases"}
      - { src : "vgrep", dst : ".aliases/10vgrep"}
      - { src : "bat", dst : ".aliases/11bat"}
+     - { src : "secrets", dst : ".aliases/05secrets"}
 - name: "Link zprofile to zshenv"
   file:
       src: "{{home}}/.zshenv"
