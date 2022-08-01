@@ -2,4 +2,6 @@ systemd_services:
     - "redshift-gtk.service"
     - "pulseaudio.service"
     - "pulseaudio.socket"
+    - "gnome-keyring-daemon.service"
+    - "gnome-keyring-daemon.socket"
 
