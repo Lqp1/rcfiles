@@ -204,6 +204,7 @@
      state: "present"
   with_items:
      - "--location"
+     - "--compressed"
 - name: "Add global gitignore"
   lineinfile:
      create: yes
