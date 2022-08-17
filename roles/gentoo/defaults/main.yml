@@ -19,6 +19,8 @@ gentoo_systemd_services:
     - "clamav-freshclam"
     - "cronie"
     - "cups"
+    - "iptables-restore"
+    - "ip6tables-restore"
     - "laptop-mode"
     - "pcscd"
     - "sddm"
