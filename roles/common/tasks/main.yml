@@ -79,6 +79,7 @@
      - { src : "vimrc", dst : ".vimrc"}
      - { src : "res/vim-colors-solarized/colors/solarized.vim", dst : ".vim/colors/solarized.vim"}
      - { src : "res/vim-plug/plug.vim", dst : ".vim/autoload/plug.vim"}
+     - { src : "res/fzf-git.sh/fzf-git.sh", dst : ".aliases/fzf-git.sh"}
      - { src : "nvimrc", dst : ".config/nvim/init.vim"}
      - { src : "bashrc", dst : ".bashrc"}
      - { src : "ripgreprc", dst : ".ripgreprc"}

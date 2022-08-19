@@ -4,3 +4,6 @@
 [submodule "res/vim-plug"]
 	path = res/vim-plug
 	url = https://github.com/junegunn/vim-plug
+[submodule "res/fzf-git.sh"]
+	path = res/fzf-git.sh
+	url = https://github.com/junegunn/fzf-git.sh
