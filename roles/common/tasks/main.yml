@@ -12,7 +12,7 @@
       dest: "{{home}}/.fzf"
   when: not minimal|bool
 - name: "Install FZF"
-  shell: "{{home}}/.fzf/install"
+  shell: "{{home}}/.fzf/install --bin"
   when: not minimal|bool
 - name: "Clone Spacemacs from github"
   git:
