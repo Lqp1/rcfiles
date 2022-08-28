@@ -1,6 +1,10 @@
 ---
 - name: "Common ui config"
   block:
+    - name: "Setup a simple target for i3 to load graphical-session.target"
+      template:
+        src: "i3-session.target.j2"
+        dest: "~/.config/systemd/user/i3-session.target"
     - name: "Install python dependencies"
       pip:
           name: "{{python_dependencies}}"

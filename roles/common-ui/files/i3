@@ -138,6 +138,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
+# Screen locking
+bindsym XF86ScreenSaver exec --no-startup-id exec loginctl lock-session
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -164,7 +166,7 @@ mode "power" {
         # sleep
         bindsym s exec systemctl suspend
         # lock
-        bindsym x mode "default"; exec i3lock -c $color_black
+        bindsym x mode "default"; exec loginctl lock-session
         # reload the configuration file
         bindsym c mode "default"; reload
         # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -238,6 +240,7 @@ assign [class="(?i)spotify"]        $ws4
 for_window [class="Spotify"] move to workspace $ws4
 
 # Set autostart
+exec_always --no-startup-id exec systemctl --user start --no-block i3-session.target
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
 
 # UI >= 4.20
