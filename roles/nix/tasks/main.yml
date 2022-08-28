@@ -17,7 +17,7 @@
     shell: /bin/bash /tmp/nix-install
     when: not nix_info.stat.exists
   - name: Setup nix and hm variables in profiles
-    copy:
+    template:
         src: "env"
         dest: "~/.profile.d/20nix"
   - name: Add nixgl channel if not running inside NixOS
