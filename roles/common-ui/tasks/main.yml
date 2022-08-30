@@ -1,16 +1,6 @@
 ---
 - name: "Common ui config"
   block:
-    - name: "Setup a simple target for i3 to load graphical-session.target"
-      template:
-        src: "i3-session.target.j2"
-        dest: "~/.config/systemd/user/i3-session.target"
-    - name: "Install python dependencies"
-      pip:
-          name: "{{python_dependencies}}"
-          state: latest
-          extra_args: "--user"
-      when: nixos_file.stat.exists == false
     - name: "Create some directories"
       file:
          path: "{{home}}/{{item}}"
@@ -22,6 +12,7 @@
          - ".config/rofi/"
          - ".config/dunst/"
          - ".config/gtk-3.0/"
+         - ".config/systemd/user/"
          - ".smount/"
          - ".local/share/fonts/fira-code"
     - name: "Remove legacy configs"
@@ -34,6 +25,16 @@
         - ".splatmoji"
         - ".rofimoji"
         - ".config/polybar/custom.sh"
+    - name: "Setup a simple target for i3 to load graphical-session.target"
+      template:
+        src: "i3-session.target.j2"
+        dest: "{{home}}/.config/systemd/user/i3-session.target"
+    - name: "Install python dependencies"
+      pip:
+          name: "{{python_dependencies}}"
+          state: latest
+          extra_args: "--user"
+      when: nixos_file.stat.exists == false
     - name: "Copy defaults"
       copy:
        src:  "{{item.src}}"
