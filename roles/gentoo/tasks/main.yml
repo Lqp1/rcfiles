@@ -7,7 +7,7 @@
      - "app-portage/eix"
      - "app-portage/gentoolkit"
      - "app-portage/layman"
-     - "app-portage/repoman"
+     - "dev-util/pkgdev"
      - "app-portage/cpuid2cpuflags"
 - name: "Create common directories"
   file:
