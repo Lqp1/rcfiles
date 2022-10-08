@@ -16,6 +16,44 @@ gitignore:
      - "Thumbs.db"
      - "*~"
 
+gitaliases:
+    - {name: "alias.tree", value: "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"}
+    - {name: "alias.clean", value: "clean -dxe {{cleanignore}}"}
+    - {name: "alias.vgrep", value: "!__git_vgrep () { git grep --color=always \"$@\" | vgrep; }; __git_vgrep"}
+    - {name: "advice.skippedCherryPicks", value: "false"}
+    - {name: "pull.rebase", value: "true"}
+    - {name: "rebase.stat", value: "true"}
+    - {name: "remote.origin.tagOpt", value: "--tags"}
+    - {name: "rebase.autoStash", value: "true"}
+    - {name: "commit.verbose", value: "true"}
+    - {name: "status.short", value: "true"}
+    - {name: "status.branch", value: "true"}
+    - {name: "core.autocrlf", value: "input"}
+    - {name: "core.safecrlf", value: "warn"}
+    - {name: "core.editor", value: "vim"}
+    - {name: "core.excludesfile", value: "{{ home }}/.gitignore"}
+    - {name: "core.hooksPath", value: "{{ home }}/.githooks"}
+    - {name: "core.page", value: "less {{ lessopts }}"}
+    - {name: "help.autocorrect", value: 20}
+    - {name: "merge.tool", value: "vimdiff"}
+    - {name: "diff.tool", value: "vimdiff"}
+    - {name: "difftool.prompt", value: "false"}
+    - {name: "user.email", value: "{{git_mail}}"}
+    - {name: "user.name", value: "{{git_user}}"}
+    - {name: "core.attributesfile", value: "{{ home }}/.gitattributes"}
+    - {name: "alias.root", value: "rev-parse --show-toplevel"}
+    - {name: "pager.diff", value: "delta"}
+    - {name: "pager.log", value: "delta"}
+    - {name: "pager.reflog", value: "delta"}
+    - {name: "pager.show", value: "delta"}
+    - {name: "interactive.diffFilter", value: "delta --color-only"}
+    - {name: "delta.plus-style", value: "syntax #5D755C"}
+    - {name: "delta.minus-style", value: "syntax #644A4A"}
+    - {name: "delta.navigate", value: "true"}
+    - {name: "delta.line-numbers", value: "true"}
+    - {name: "delta.hunk-header-decoration-style", value: "none"}
+    - {name: "delta.syntax-theme", value: "Solarized (dark)"}
+
 # https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
 gitattributes:
     - "*.c     diff=cpp"
