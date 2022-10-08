@@ -2,6 +2,11 @@
 # ~/.bashrc
 #
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -20,9 +25,6 @@ alias la='ll -A'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-
-# Some envvars
-export TERM="xterm-256color"
 
 # Colored man
 man() {
