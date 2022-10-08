@@ -1,4 +1,9 @@
 ---
+fonts_versions:
+  emoji: 'v2.038' # Unicode 15.0
+  nerdfonts: 'v2.0.0' # Old version only works with polybar for now?
+  fira: '6.2'
+  noto: 'v2.010'
 autostart:
     - nm-applet
     - blueman-applet
