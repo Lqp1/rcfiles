@@ -6,5 +6,3 @@ fi
 # Those are not very useful but I keep them here just in case
 # command -v kitty 2>&1 >/dev/null && kitty + complete setup zsh | source /dev/stdin
 # Or for bash: source /dev/stdin <<<"$(kitty + complete setup bash)"
-
-# TODO: have a in ssh alias to sudo without issue with kitty

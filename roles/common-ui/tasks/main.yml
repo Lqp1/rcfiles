@@ -50,6 +50,7 @@
          - { src : "i3", dst : ".config/i3/config"}
          - { src : "dunstrc", dst : ".config/dunst/dunstrc"}
          - { src : "compton.conf", dst : ".config/picom.conf"}
+         - { src : "kitty-ssh-bashrc", dst : ".sshbashrc"}
          - { src : "kitty.conf", dst : ".config/kitty/kitty.conf"}
          - { src : "kitty-ssh.conf", dst : ".config/kitty/ssh.conf"}
          - { src : "rofi.rasi", dst : ".config/rofi/config.rasi"}
