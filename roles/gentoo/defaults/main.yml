@@ -164,10 +164,10 @@ gentoo_packages_X11:
     - "x11-themes/arc-icon-theme"
     - "x11-themes/arc-theme"
     - "x11-wm/i3"
+    - "xfce-base/thunar-volman"
+    - "xfce-base/tumbler"
     - "xfce-extra/thunar-archive-plugin"
     - "xfce-extra/thunar-shares-plugin"
-    - "xfce-extra/thunar-volman"
-    - "xfce-extra/tumbler"
     - "xfce-extra/xfce4-clipman-plugin"
     - "xfce-extra/xfce4-screenshooter"
 
