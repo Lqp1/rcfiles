@@ -6,3 +6,13 @@ alias sudo='sudo --preserve-env=TERMINFO'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias ip='ip --color=auto'
+
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+    return
+fi
+
+if [ -d ~/.aliases ]; then
+    for f in ~/.aliases/*; do source $f; done
+    return
+fi
