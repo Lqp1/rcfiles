@@ -46,7 +46,7 @@ gentoo_accepted_licenses:
     - "sys-firmware/intel-microcode intel-ucode"
     - "app-crypt/veracrypt truecrypt-3.0"
     - ">=media-fonts/corefonts-1-r7 MSttfEULA"
-    - "x11-libs/libva-intel-media-driver no-source-code"
+    - "media-libs/libva-intel-media-driver no-source-code"
     - ">=sys-firmware/alsa-firmware-1.2.4-r1 freedist all-rights-reserved"
 
 gentoo_packages:
