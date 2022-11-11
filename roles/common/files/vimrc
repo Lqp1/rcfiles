@@ -156,11 +156,11 @@ set wildmode=longest,list,full
 set wildmenu
 set path+=**
 set showcmd
-imap <C-d> <C-o>daw
+imap <C-d> <C-o>dw
 
 " Folding
 set foldmethod=syntax
-set foldlevel=20
+set foldlevel=99
 
 " NetRW config
 let g:netrw_banner=0
