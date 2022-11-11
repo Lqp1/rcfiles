@@ -43,7 +43,7 @@ command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
 " Shortcut to exit insert mode faster
 inoremap jk <ESC>
-if has("terminal")
+if has("terminal") || has("nvim")
     tnoremap jk <C-\><C-n>
 end
 
@@ -59,9 +59,8 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set expandtab
-if has("colorcolumn")
-    set cc=+80
-end
+set cc=80
+
 augroup tabs
     autocmd!
     autocmd FileType make,go setlocal noexpandtab
