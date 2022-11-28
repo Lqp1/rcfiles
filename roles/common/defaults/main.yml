@@ -20,6 +20,7 @@ gitaliases:
     - {name: "alias.tree", value: "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"}
     - {name: "alias.clean", value: "clean -dxe {{cleanignore}}"}
     - {name: "alias.vgrep", value: "!__git_vgrep () { git grep --color=always \"$@\" | vgrep; }; __git_vgrep"}
+    - {name: "alias.today", value: "whatchanged --since='6am' -p"}
     - {name: "advice.skippedCherryPicks", value: "false"}
     - {name: "pull.rebase", value: "true"}
     - {name: "rebase.stat", value: "true"}
