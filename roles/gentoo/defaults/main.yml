@@ -7,7 +7,7 @@ gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{gentoo_remote_host}}
 gentoo_features:
   - "buildpkg"
   - "strict"
-  - "collision-protect"
+  - "protect-owned"
   - "parallel-install"
   - "cgroup"
   - "ipc-sandbox"
