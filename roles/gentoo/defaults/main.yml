@@ -145,6 +145,7 @@ gentoo_packages_X11:
     - "media-gfx/gimp"
     - "media-gfx/ristretto"
     - "media-sound/audacity"
+    - "media-video/pipewire"
     - "sys-block/gparted"
     - "sys-power/acpilight"
     - "www-client/firefox-bin"
