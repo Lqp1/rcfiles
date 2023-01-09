@@ -139,6 +139,11 @@
       dest: "/etc/sudoers.d/ansible"
       src: "sudoers"
       mode: 0440
+- name: "Setup X11 compose key"
+  copy:
+      dest: "/etc/X11/xorg.conf.d/00-keyboard-compose.conf"
+      src: "00-keyboard-compose.conf"
+      mode: 0440
 - name: "Ensure set directory exists"
   file:
       path: "/etc/portage/sets/"
