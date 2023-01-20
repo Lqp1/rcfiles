@@ -143,7 +143,12 @@
   copy:
       dest: "/etc/X11/xorg.conf.d/00-keyboard-compose.conf"
       src: "00-keyboard-compose.conf"
-      mode: 0440
+      mode: 0444
+- name: "Setup X11 touchpad tapping"
+  copy:
+      dest: "/etc/X11/xorg.conf.d/00-libinput.conf"
+      src: "00-libinput.conf"
+      mode: 0444
 - name: "Ensure set directory exists"
   file:
       path: "/etc/portage/sets/"
