@@ -1,9 +1,9 @@
-[submodule "res/vim-colors-solarized"]
-	path = res/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized
 [submodule "res/vim-plug"]
 	path = res/vim-plug
 	url = https://github.com/junegunn/vim-plug
 [submodule "res/fzf-git.sh"]
 	path = res/fzf-git.sh
 	url = https://github.com/junegunn/fzf-git.sh
+[submodule "res/vim-solarized8"]
+	path = res/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git

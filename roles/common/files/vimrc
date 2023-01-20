@@ -178,5 +178,6 @@ if filereadable(expand("~/.vim_local"))
 endif
 
 " Theming
+set background=dark
 silent! colorscheme solarized
 highlight Comment cterm=italic
