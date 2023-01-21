@@ -6,6 +6,7 @@ function update_repo {
     git fetch
     git log $BRANCH..origin/$BRANCH --oneline
     git rebase origin/$BRANCH
+    git submodule update --init
 }
 
 update_repo $@
