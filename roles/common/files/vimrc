@@ -144,9 +144,6 @@ augroup specialchars
     autocmd BufWinEnter *.txt,README,*.md let w:m4=matchadd('nonAscii', '[^\d0-\d127]', -1)
 augroup end
 
-" Use 256 colors
-set t_Co=256
-
 " Allow mouse and system clipboard smoothly
 set mouse=a
 set clipboard=unnamedplus
