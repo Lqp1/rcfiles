@@ -176,5 +176,6 @@ endif
 
 " Theming
 set background=dark
+set t_ut=
 silent! colorscheme solarized
 highlight Comment cterm=italic
