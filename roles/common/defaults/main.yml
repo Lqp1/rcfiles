@@ -54,6 +54,7 @@ gitaliases:
     - {name: "delta.line-numbers", value: "true"}
     - {name: "delta.hunk-header-decoration-style", value: "none"}
     - {name: "delta.syntax-theme", value: "Solarized (dark)"}
+    - {name: "rerere.enabled", value: "true"}
 
 # https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
 gitattributes:
