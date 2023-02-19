@@ -178,8 +178,10 @@
   layman:
     name: "{{item}}"
   with_items: "{{gentoo_layers}}"
+  when: gentoo_layers is iterable
 - name: "Mask additional layers masked by default"
   copy:
     dest: "/etc/portage/package.mask/00layers"
     content: "*/*::{{gentoo_layers | join('\n*/*::')}}\n"
     mode: 0644
+  when: gentoo_layers is iterable
