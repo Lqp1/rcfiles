@@ -174,3 +174,6 @@ gentoo_packages_X11:
 
 gentoo_packages_laptop:
     - "app-laptop/laptop-mode-tools"
+
+gentoo_layers:
+  - "guru"

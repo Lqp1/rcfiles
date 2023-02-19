@@ -174,4 +174,12 @@
     enabled: true
   with_items: "{{gentoo_systemd_services}}"
   ignore_errors: yes
-
+- name: "Add additional layers"
+  layman:
+    name: "{{item}}"
+  with_items: "{{gentoo_layers}}"
+- name: "Mask additional layers masked by default"
+  copy:
+    dest: "/etc/portage/package.mask/00layers"
+    content: "*/*::{{gentoo_layers | join('\n*/*::')}}\n"
+    mode: 0644
