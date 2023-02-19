@@ -24,6 +24,8 @@ python_eggs:
       - flake8
       - autoflake
       - ipython
+      - autopep8
+      - pylint
 
 go_bundles:
       - "golang.org/x/tools/gopls@latest"
