@@ -79,9 +79,9 @@ set laststatus=2
 set statusline=%1*%m%*%r%h\ %2*%f%*\ [%{strlen(&fenc)?&fenc:'none'},%{&ff},%{strlen(&ft)?&ft:'none'}]%=%c,%l/%L
 augroup statusline
     autocmd!
-    autocmd VimEnter * if &readonly | hi StatusLine ctermfg=52 | endif
-    autocmd InsertEnter * hi StatusLine ctermfg=70
-    autocmd InsertLeave * hi StatusLine ctermfg=189
+    autocmd VimEnter * if &readonly | hi StatusLine ctermfg=red | endif
+    autocmd InsertEnter * hi StatusLine ctermfg=darkgreen
+    autocmd InsertLeave * hi StatusLine ctermfg=236
 augroup end
 
 " Backup
