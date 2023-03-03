@@ -79,6 +79,7 @@ gentoo_packages:
     - "dev-libs/libcgroup"
     - "dev-lisp/sbcl"
     - "dev-python/ipython"
+    - "dev-python/ipdb"
     - "dev-python/pip"
     - "dev-util/android-tools"
     - "dev-util/ctags"

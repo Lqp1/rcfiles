@@ -24,6 +24,7 @@ python_eggs:
       - flake8
       - autoflake
       - ipython
+      - ipdb
       - autopep8
       - pylint
 
