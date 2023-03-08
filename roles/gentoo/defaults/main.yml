@@ -37,6 +37,7 @@ gentoo_accepted_unstable:
     - "sys-apps/bat"
     - "sys-apps/gentoo-changelog-tracker"
     - "x11-misc/autotiling"
+    - "x11-misc/rofimoji"
     - "x11-misc/miraclecast"
 
 gentoo_accepted_all:
@@ -45,6 +46,7 @@ gentoo_accepted_all:
 gentoo_unmasked:
     - "dev-python/i3ipc::guru"
     - "x11-misc/autotiling::guru"
+    - "x11-misc/rofimoji::lqp1"
 
 gentoo_accepted_licenses:
     - "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE"
@@ -169,6 +171,7 @@ gentoo_packages_X11:
     - "x11-misc/polybar"
     - "x11-misc/redshift"
     - "x11-misc/rofi"
+    - "x11-misc/rofimoji"
     - "x11-misc/sddm"
     - "x11-misc/xclip"
     - "x11-misc/xdotool"
