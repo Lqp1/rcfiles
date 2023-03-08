@@ -32,7 +32,6 @@
           user_install: no # https://github.com/ansible/ansible/issues/50434
           norc: no
       with_items: "{{ruby_gems}}"
-      when: nixos_file.stat.exists == false
     - name: "Install go dependencies"
       shell: "go install -v {{item}}"
       with_items: "{{go_bundles}}"
