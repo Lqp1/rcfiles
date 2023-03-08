@@ -19,7 +19,3 @@ gtk_config:
       value: "Arc"
     - key: "gtk-font-name"
       value: "Noto Sans 12"
-python_dependencies:
-    - "autotiling" # for i3
-    - "pyyml" # for kitty-hintsconfig
-    - "rofimoji"

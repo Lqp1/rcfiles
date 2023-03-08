@@ -16,18 +16,6 @@ ruby_gems:
       - rspec
       - solargraph
 
-python_eggs:
-      - python-language-server
-      - pyls-isort
-      - pyls-mypy
-      - pyls-black
-      - flake8
-      - autoflake
-      - ipython
-      - ipdb
-      - autopep8
-      - pylint
-
 go_bundles:
       - "golang.org/x/tools/gopls@latest"
       - "github.com/rogpeppe/godef@latest"

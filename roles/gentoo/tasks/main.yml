@@ -121,6 +121,11 @@
       dest: "/etc/portage/package.accept_keywords/02personal"
       content: "{{gentoo_accepted_all | join(' **\n')}} **\n"
       mode: 0644
+- name: "Setup unmasked packages"
+  copy:
+      dest: "/etc/portage/package.unmask/01personal"
+      content: "{{gentoo_unmasked | join(' \n')}}\n"
+      mode: 0644
 - name: "Setup accepted licenses"
   copy:
       dest: "/etc/portage/package.license/01personal"

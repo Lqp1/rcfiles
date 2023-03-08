@@ -32,12 +32,6 @@
       template:
         src: "i3-session.target.j2"
         dest: "{{home}}/.config/systemd/user/i3-session.target"
-    - name: "Install python dependencies"
-      pip:
-          name: "{{python_dependencies}}"
-          state: latest
-          extra_args: "--user"
-      when: nixos_file.stat.exists == false
     - name: "Copy defaults"
       copy:
        src:  "{{item.src}}"
