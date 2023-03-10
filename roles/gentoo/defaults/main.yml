@@ -35,13 +35,13 @@ gentoo_accepted_unstable:
     - "media-gfx/sane-airscan"
     - "net-wireless/blueman"
     - "sys-apps/bat"
-    - "sys-apps/gentoo-changelog-tracker"
     - "x11-misc/autotiling"
     - "x11-misc/rofimoji"
     - "x11-misc/miraclecast"
 
 gentoo_accepted_all:
     - "sys-apps/smount"
+    - "sys-apps/gentoo-changelog-tracker"
 
 gentoo_unmasked:
     - "dev-python/i3ipc::guru"
