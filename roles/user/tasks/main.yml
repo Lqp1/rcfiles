@@ -37,10 +37,10 @@
       with_items: "{{go_bundles}}"
     - name: "Create target directories for smount"
       file:
-        path: "{{(item.values()|list|first)['target']}}"
+        path: "{{item.value.target}}"
         state: "directory"
         mode: 0755
-      with_items: "{{smount_config.mounts}}"
+      with_items: "{{smount_config.mounts|dict2items}}"
     - name: "Put smount config"
       copy:
           dest: "~/.smount/01personal"
