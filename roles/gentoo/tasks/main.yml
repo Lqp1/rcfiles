@@ -75,6 +75,7 @@
 - name: "Register CPU flags"
   command: "cpuid2cpuflags"
   register: flags
+  changed_when: false
 - name: "Setup CPU flags as use flags"
   template:
       src: "00cpu-flags.j2"

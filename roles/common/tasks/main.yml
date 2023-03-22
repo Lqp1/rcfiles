@@ -6,6 +6,7 @@
      - ip
      - less
      - curl
+  changed_when: false
 - name: "Clone FZF"
   git:
       repo: "https://github.com/junegunn/fzf.git"
