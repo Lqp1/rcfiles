@@ -77,6 +77,8 @@ gentoo_packages:
     - "app-portage/smart-live-rebuild"
     - "app-shells/autojump"
     - "app-shells/zsh"
+    - "app-shells/zsh-completions"
+    - "app-shells/gentoo-zsh-completions"
     - "app-text/evince"
     - "app-text/tree"
     - "app-text/vgrep"
