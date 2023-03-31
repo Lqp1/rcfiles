@@ -69,6 +69,7 @@ gentoo_packages:
     - "app-crypt/veracrypt"
     - "app-editors/emacs"
     - "app-editors/vim"
+    - "app-eselect/eselect-python"
     - "app-forensics/chkrootkit"
     - "app-misc/screen"
     - "app-portage/genlop"
