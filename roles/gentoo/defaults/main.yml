@@ -31,6 +31,7 @@ gentoo_accepted_unstable:
     - "app-crypt/veracrypt"
     - "app-text/vgrep" # to replace ag
     - "dev-python/i3ipc"
+    - "dev-vcs/lazygit"
     - "media-fonts/quivira"
     - "media-gfx/sane-airscan"
     - "net-wireless/blueman"
@@ -45,8 +46,8 @@ gentoo_accepted_all:
 
 gentoo_unmasked:
     - "dev-python/i3ipc::guru"
+    - "dev-vcs/lazygit::guru"
     - "x11-misc/autotiling::guru"
-    - "x11-misc/rofimoji::lqp1"
 
 gentoo_accepted_licenses:
     - "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE"
@@ -99,6 +100,7 @@ gentoo_packages:
     - "dev-util/ctags"
     - "dev-util/git-delta"
     - "dev-vcs/tig"
+    - "dev-vcs/lazygit"
     - "media-gfx/sane-airscan"
     - "media-gfx/sane-backends"
     - "media-plugins/alsa-plugins"
@@ -143,6 +145,7 @@ gentoo_packages:
     - "sys-process/htop"
     - "sys-process/iotop"
     - "sys-process/lsof"
+    - "sys-process/btop"
 
 gentoo_packages_X11:
     - "app-arch/file-roller"
