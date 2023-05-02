@@ -28,6 +28,7 @@ gentoo_systemd_services:
     - "rtkit-daemon"
 
 gentoo_accepted_unstable:
+    - "=app-text/tree-2.1.0"
     - "app-crypt/veracrypt"
     - "app-text/vgrep" # to replace ag
     - "dev-python/i3ipc"
