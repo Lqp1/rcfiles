@@ -36,6 +36,7 @@ bindsym $mod+colon exec i3-input
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+semicolon exec rofimoji -s neutral
 bindsym $mod+i exec timeout 5 polybar -c ~/.config/polybar/config.ini info
+bindsym $mod+Print exec xfce4-screenshooter -rc
 
 # Disable mouse scrolls
 bindsym button4 nop
