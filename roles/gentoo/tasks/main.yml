@@ -6,7 +6,7 @@
   with_items:
      - "app-portage/eix"
      - "app-portage/gentoolkit"
-     - "app-portage/layman"
+     - "app-eselect/eselect-repository"
      - "dev-util/pkgdev"
      - "app-portage/cpuid2cpuflags"
 - name: "Create common directories"
@@ -181,7 +181,7 @@
   with_items: "{{gentoo_systemd_services}}"
   ignore_errors: yes
 - name: "Add additional layers"
-  layman:
+  erepository:
     name: "{{item}}"
   with_items: "{{gentoo_layers}}"
   when: gentoo_layers is iterable

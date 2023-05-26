@@ -62,9 +62,6 @@ def run_module():
 
     # seed the result dict in the object
     # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
     result = dict(
         changed=False,
         original_state='',
