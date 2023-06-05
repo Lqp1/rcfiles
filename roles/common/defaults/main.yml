@@ -108,5 +108,6 @@ aliases:
     - "alias gitw='git whatchanged'"
     - "alias gitl='git tree'"
     - "alias gite='git ls-files -o -m --exclude-standard|fzf -m|xargs -r -o vim'"
+    - "alias gitt='git diff $(git rev-list -n1 --before=\"1 day ago\" master)'"
     - "alias serve='python3 -m http.server'"
     - "alias bc='bc -l'"
