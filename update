@@ -4,7 +4,7 @@ set -e
 function update_repo {
     BRANCH=${1:-master}
     git fetch
-    git log $BRANCH..origin/$BRANCH --oneline|tee
+    git log $BRANCH..origin/$BRANCH --oneline --color|tee
     git rebase origin/$BRANCH
     git submodule update --init
 }
