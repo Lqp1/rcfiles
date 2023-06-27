@@ -34,19 +34,22 @@ gitaliases:
     - {name: "core.editor", value: "vim"}
     - {name: "core.excludesfile", value: "{{ home }}/.gitignore"}
     - {name: "core.hooksPath", value: "{{ home }}/.githooks"}
-    - {name: "core.page", value: "less {{ lessopts }}"}
+    - {name: "core.pager", value: "less {{ lessopts }}"}
     - {name: "help.autocorrect", value: 20}
     - {name: "merge.tool", value: "vimdiff"}
     - {name: "diff.tool", value: "vimdiff"}
+    - {name: "diff.colorMoved", value: "default"}
     - {name: "difftool.prompt", value: "false"}
     - {name: "user.email", value: "{{git_mail}}"}
     - {name: "user.name", value: "{{git_user}}"}
     - {name: "core.attributesfile", value: "{{ home }}/.gitattributes"}
     - {name: "alias.root", value: "rev-parse --show-toplevel"}
     - {name: "pager.diff", value: "delta"}
+    - {name: "merge.conflictstyle", value: "diff3"}
     - {name: "pager.log", value: "delta"}
     - {name: "pager.reflog", value: "delta"}
     - {name: "pager.show", value: "delta"}
+    - {name: "pager.blame", value: "delta"}
     - {name: "interactive.diffFilter", value: "delta --color-only"}
     - {name: "delta.plus-style", value: "syntax #5D755C"}
     - {name: "delta.minus-style", value: "syntax #644A4A"}
@@ -54,6 +57,7 @@ gitaliases:
     - {name: "delta.line-numbers", value: "true"}
     - {name: "delta.hunk-header-decoration-style", value: "none"}
     - {name: "delta.syntax-theme", value: "Solarized (dark)"}
+    - {name: "delta.hyperlinks", value: "true"}
     - {name: "rerere.enabled", value: "true"}
 
 # https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
