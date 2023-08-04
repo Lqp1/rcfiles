@@ -11,6 +11,11 @@ gentoo_features:
   - "parallel-install"
   - "cgroup"
   - "ipc-sandbox"
+  - "compress-build-logs"
+  - "binpkg-logs"
+  - "clean-logs"
+  - "split-log"
+  - "split-elog"
 
 gentoo_systemd_services:
     - "acpid"
@@ -37,6 +42,7 @@ gentoo_accepted_unstable:
     - "media-gfx/sane-airscan"
     - "net-wireless/blueman"
     - "sys-apps/bat"
+    - "x11-apps/igt-gpu-tools"
     - "x11-misc/autotiling"
     - "x11-misc/rofimoji"
     - "x11-misc/miraclecast"
@@ -169,6 +175,7 @@ gentoo_packages_X11:
     - "sys-block/gparted"
     - "sys-power/acpilight"
     - "www-client/firefox-bin"
+    - "x11-apps/igt-gpu-tools"
     - "x11-base/xorg-server"
     - "x11-misc/arandr"
     - "x11-misc/autotiling"

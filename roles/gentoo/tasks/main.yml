@@ -15,10 +15,12 @@
       state: directory
   with_items:
       - "/etc/eixrc/"
+      - "/etc/dracut.conf.d/"
       - "/etc/portage/repo.postsync.d/"
       - "/etc/portage/repos.conf/"
       - "/etc/portage/profile/"
       - "/etc/portage/sets/"
+      - "/etc/portage/env/"
       - "/etc/portage/package.use"
       - "/etc/portage/package.mask"
       - "/etc/portage/package.unmask"
@@ -86,6 +88,21 @@
       path: "/etc/portage/make.conf"
       regexp: 'FEATURES=.*'
       line: 'FEATURES="{{gentoo_features | join(" ")}}{% if gentoo_bin_uri != "" %} getbinpkg{% endif %}"'
+- name: "Setup portage elog records"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'PORTAGE_ELOG_CLASSES=.*'
+      line: 'PORTAGE_ELOG_CLASSES="log warn error"'
+- name: "Setup portage elog records on disk"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'PORTAGE_ELOG_SYSTEM=.*'
+      line: 'PORTAGE_ELOG_SYSTEM="echo save"'
+- name: "Setup portage log dir"
+  lineinfile:
+      path: "/etc/portage/make.conf"
+      regexp: 'PORTAGE_LOGDIR=.*'
+      line: 'PORTAGE_LOGDIR="/var/log/portage"'
 - name: "Ensure sane defaults for portage"
   lineinfile:
       path: "/etc/portage/make.conf"
@@ -191,3 +208,13 @@
     content: "*/*::{{gentoo_layers | join('\n*/*::')}}\n"
     mode: 0644
   when: gentoo_layers is iterable
+- name: "Setup dracut config"
+  copy:
+      src: "dracut.conf"
+      dest: "/etc/dracut.conf.d/ansible.conf"
+      mode: 0644
+- name: "Create debug config for development"
+  copy:
+    src: "devenv"
+    dest: "/etc/portage/env/devenv"
+    mode: 0644
