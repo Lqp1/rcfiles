@@ -189,16 +189,16 @@
      line: "{{item}}"
      state: "present"
   with_items: "{{gitattributes}}"
-- name: "Pull exa zip"
+- name: "Pull eza zip"
   get_url:
-      url: "https://github.com/ogham/exa/releases/download/v{{exa_version}}/exa-linux-x86_64-v{{exa_version}}.zip"
-      dest: "/tmp/exa-{{user}}-{{exa_version}}.zip"
+      url: "https://github.com/eza-community/eza/releases/download/v{{eza_version}}/eza_x86_64-unknown-linux-gnu.tar.gz"
+      dest: "/tmp/eza-{{user}}-{{eza_version}}.tar.gz"
   when: not minimal|bool
-- name: "Extract exa into path"
+- name: "Extract eza into path"
   unarchive:
-      dest: "{{home}}/"
-      include: "bin/exa"
-      src: "/tmp/exa-{{user}}-{{exa_version}}.zip"
+      dest: "{{home}}/bin/"
+      include: "./eza"
+      src: "/tmp/eza-{{user}}-{{eza_version}}.tar.gz"
   when: (not minimal|bool) and (nixos_file.stat.exists == false)
     #- name: "Create link for exa binary"
     #  file:

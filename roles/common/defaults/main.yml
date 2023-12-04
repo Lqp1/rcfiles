@@ -1,6 +1,6 @@
 ---
-exa_version: "0.10.1"
-ls_cmd: "exa --git --icons"
+eza_version: "0.16.2"
+ls_cmd: "eza --git --icons --hyperlink"
 
 # -S Chop long lines
 # -R Print Raw control chars
