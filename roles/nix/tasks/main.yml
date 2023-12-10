@@ -16,6 +16,10 @@
   - name: Install Nix
     shell: /bin/bash /tmp/nix-install
     when: not nix_info.stat.exists
+  - name: "Create some directories"
+    file:
+       path: "~/.profile.d/"
+       state: "directory"
   - name: Setup nix and hm variables in profiles
     template:
         src: "env"
