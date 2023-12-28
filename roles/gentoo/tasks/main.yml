@@ -26,6 +26,7 @@
       - "/etc/portage/package.unmask"
       - "/etc/portage/package.license"
       - "/etc/portage/package.accept_keywords"
+      - "/etc/sddm.conf.d"
 - name: "Copy eix config"
   copy:
       src: "00-eixrc"
@@ -218,3 +219,8 @@
     src: "devenv"
     dest: "/etc/portage/env/devenv"
     mode: 0644
+- name: "Setup SSDM config"
+  copy:
+      dest: "/etc/sddm.conf.d/02ansible.conf"
+      src: "sddm.conf"
+      mode: 0444
