@@ -6,6 +6,7 @@ gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{gentoo_remote_host}}
 
 gentoo_features:
   - "buildpkg"
+  - "binpkg-request-signature"
   - "strict"
   - "protect-owned"
   - "parallel-install"

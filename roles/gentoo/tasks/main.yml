@@ -18,6 +18,7 @@
       - "/etc/dracut.conf.d/"
       - "/etc/portage/repo.postsync.d/"
       - "/etc/portage/repos.conf/"
+      - "/etc/portage/binrepos.conf/"
       - "/etc/portage/profile/"
       - "/etc/portage/sets/"
       - "/etc/portage/env/"
@@ -40,9 +41,14 @@
 - name: "Copy binrepos config"
   template:
       src: "binrepos.conf"
-      dest: "/etc/portage/binrepos.conf"
+      dest: "/etc/portage/binrepos.conf/localbinhost.conf"
       mode: 0644
-  when: gentoo_bin_uri is defined
+  when: gentoo_bin_uri | length > 5
+- name: "Remove bin repo config"
+  file:
+      path: "/etc/portage/binrepos.conf/localbinhost.conf"
+      state: absent
+  when: gentoo_bin_uri | length <= 5
 - name: "Copy localrepo config"
   template:
       src: "localrepo.conf"
@@ -108,7 +114,7 @@
   lineinfile:
       path: "/etc/portage/make.conf"
       regexp: 'EMERGE_DEFAULT_OPTS=.*'
-      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4 --load-average=4"'
+      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4 --load-average=4 --getbinpkg"'
 - name: "Ensure portage niceness"
   lineinfile:
       path: "/etc/portage/make.conf"
