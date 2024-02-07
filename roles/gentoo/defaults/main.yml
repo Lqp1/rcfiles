@@ -123,7 +123,7 @@ gentoo_packages:
     - "net-misc/httpie"
     - "net-misc/rclone"
     - "net-p2p/transmission"
-    - "net-print/cups"
+    - "net-print/cups-meta"
     - "net-print/hplip"
     - "net-wireless/blueman"
     - "sys-apps/bat"
