@@ -64,6 +64,7 @@ set cc=80
 augroup tabs
     autocmd!
     autocmd FileType make,go setlocal noexpandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup end
 
 " Ripgrep search setup
