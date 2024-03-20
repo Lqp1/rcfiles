@@ -101,7 +101,7 @@ aliases:
     - "export ALTERNATE_EDITOR=''"
     - "export CDPATH=\"$CDPATH:$HOME\""
     - "export FZF_DEFAULT_COMMAND='rg --files --glob \"!.git/*\"'"
-    - "alias ls='{{ls_cmd}} --color=auto -F'"
+    - "alias ls='{{ls_cmd}} --color=auto -F auto'"
     - "alias cp='cp -iv'"
     - "alias mv='mv -iv'"
     - "alias ip='ip --color=auto'"
