@@ -1,6 +1,6 @@
 ---
 eza_version: "0.16.2"
-ls_cmd: "eza --git --icons --hyperlink"
+ls_cmd: "eza --git --icons --hyperlink -F"
 
 # -S Chop long lines
 # -R Print Raw control chars
@@ -99,7 +99,7 @@ aliases:
     - "export ALTERNATE_EDITOR=''"
     - "export CDPATH=\"$CDPATH:$HOME\""
     - "export FZF_DEFAULT_COMMAND='rg --files --glob \"!.git/*\"'"
-    - "alias ls='{{ls_cmd}} --color=auto -F auto'"
+    - "alias ls='{{ls_cmd}} --color=auto'"
     - "alias cp='cp -iv'"
     - "alias mv='mv -iv'"
     - "alias ip='ip --color=auto'"
