@@ -51,8 +51,6 @@ gitaliases:
     - {name: "pager.show", value: "delta"}
     - {name: "pager.blame", value: "delta"}
     - {name: "interactive.diffFilter", value: "delta --color-only"}
-    - {name: "delta.plus-style", value: "syntax #5D755C"}
-    - {name: "delta.minus-style", value: "syntax #644A4A"}
     - {name: "delta.navigate", value: "true"}
     - {name: "delta.line-numbers", value: "true"}
     - {name: "delta.hunk-header-decoration-style", value: "none"}

@@ -167,6 +167,23 @@
     scope: "global"
   with_items:
     - "{{gitaliases}}"
+- name: "List all git configs"
+  git_config:
+    list_all: "yes"
+    scope: "global"
+  register: git_current_values
+- name: "Register expected git aliases keys"
+  set_fact:
+    gitaliases_keys: "{{ gitaliases | map(attribute='name') | map('lower') | list }}"
+- name: "Register existing git aliases keys"
+  set_fact:
+    current_aliases: "{{ git_current_values.config_values | dict2items | map(attribute='key') | map('lower') | list }}"
+- name: "Remove unwanted git configs"
+  git_config:
+    scope: "global"
+    state: "absent"
+    name: "{{item}}"
+  loop: "{{ current_aliases | difference(gitaliases_keys) }}"
 - name: "Add curlrc config"
   lineinfile:
      create: yes
