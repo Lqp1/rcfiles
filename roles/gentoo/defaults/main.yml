@@ -83,6 +83,7 @@ gentoo_packages:
     - "app-eselect/eselect-python"
     - "app-forensics/chkrootkit"
     - "app-misc/screen"
+    - "app-portage/elogv"
     - "app-portage/genlop"
     - "app-portage/portage-utils"
     - "app-portage/portpeek"
