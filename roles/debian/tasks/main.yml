@@ -1,0 +1,6 @@
+---
+- name: "Install packages"
+  apt:
+    package: "{{item}}"
+    state: present
+  with_items: "{{debian_packages}}"

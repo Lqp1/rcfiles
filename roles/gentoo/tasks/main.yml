@@ -156,29 +156,6 @@
       dest: "/etc/portage/package.license/01personal"
       content: "{{gentoo_accepted_licenses | join(' \n')}}\n"
       mode: 0644
-- name: "Blacklist some modules"
-  copy:
-      dest: "/etc/modprobe.d/{{item}}.conf"
-      content: "blacklist {{item}}\n"
-      mode: 0644
-  with_items:
-      - 'pcspkr'
-      - 'snd_pcsp'
-- name: "Setup sudoers rules"
-  copy:
-      dest: "/etc/sudoers.d/ansible"
-      src: "sudoers"
-      mode: 0440
-- name: "Setup X11 compose key"
-  copy:
-      dest: "/etc/X11/xorg.conf.d/00-keyboard-compose.conf"
-      src: "00-keyboard-compose.conf"
-      mode: 0444
-- name: "Setup X11 touchpad tapping"
-  copy:
-      dest: "/etc/X11/xorg.conf.d/00-libinput.conf"
-      src: "00-libinput.conf"
-      mode: 0444
 - name: "Ensure set directory exists"
   file:
       path: "/etc/portage/sets/"
@@ -225,8 +202,3 @@
     src: "devenv"
     dest: "/etc/portage/env/devenv"
     mode: 0644
-- name: "Setup SSDM config"
-  copy:
-      dest: "/etc/sddm.conf.d/02ansible.conf"
-      src: "sddm.conf"
-      mode: 0444

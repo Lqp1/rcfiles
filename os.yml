@@ -1,0 +1,26 @@
+---
+ - hosts: localhost
+   connection: local
+   vars_files: "host_vars/vault.yml"
+   tasks:
+     - name: install os agnostic stuff
+       include_role:
+        name: os
+     - include_role:
+        name: gentoo
+       when: ansible_distribution == 'Gentoo'
+     - name: install debian config
+       include_role:
+        name: debian
+       when: ansible_distribution == 'Debian'
+   become: yes
+   become_user: root
+   become_method: sudo
+ - hosts: localhost
+   connection: local
+   vars_files: "host_vars/vault.yml"
+   tasks:
+     - name: install gentoo userland setup
+       include_role:
+        name: gentoo-user
+       when: ansible_distribution == 'Gentoo'
