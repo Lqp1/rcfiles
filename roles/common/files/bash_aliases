@@ -1,6 +1,11 @@
 #!/usr/bin/sh
 #vim: set ftype=sh
 
+if [ -f /var/run/reboot-required ]
+then
+    echo "[*** Hello $USER, you must reboot your machine ***]"
+fi
+
 if [ -f ~/.aliases ]; then
     source ~/.aliases
     return
