@@ -29,7 +29,7 @@ ipc-socket ~/.i3-ipc.sock
 # Some sane configuration
 focus_follows_mouse no
 focus_wrapping force
-focus_on_window_activation focus
+focus_on_window_activation urgent
 workspace_layout tabbed
 force_display_urgency_hint 500 ms
 bindsym $mod+colon exec i3-input
