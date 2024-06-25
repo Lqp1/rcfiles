@@ -78,7 +78,6 @@ gentoo_packages:
     - "app-arch/unzip"
     - "app-crypt/ccid"
     - "app-crypt/veracrypt"
-    - "app-editors/emacs"
     - "app-editors/vim"
     - "app-eselect/eselect-python"
     - "app-forensics/chkrootkit"

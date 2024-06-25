@@ -5,7 +5,6 @@ debian_packages:
     - "7zip"
     - "unzip"
       #- "veracrypt"
-    - "emacs"
     - "vim"
     - "screen"
     - "zsh"
