@@ -96,8 +96,8 @@
       with_items:
         - src: "https://github.com/googlefonts/noto-emoji/raw/{{fonts_versions.emoji}}/fonts/NotoColorEmoji.ttf"
           name: "NotoColorEmoji"
-        - src: "https://github.com/ryanoasis/nerd-fonts/raw/{{fonts_versions.nerdfonts}}/patched-fonts/Iosevka/Regular/complete/Iosevka%20Nerd%20Font%20Complete.ttf"
-          name: "Iosevka Nerd Font Complete"
+        - src: "https://github.com/ryanoasis/nerd-fonts/raw/{{fonts_versions.nerdfonts}}/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf"
+          name: "Fira Code Nerd Font"
     - name: "Add kitty TERMINAL variable in profile"
       copy:
           dest: "{{home}}/.profile.d/10kitty"
