@@ -18,9 +18,9 @@ gitignore:
 
 gitaliases:
     - {name: "alias.tree", value: "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"}
-    - {name: "alias.clean", value: "clean -dxe {{cleanignore}}"}
+    - {name: "alias.cleanup", value: "clean -ndx {{['-e'] | product(cleanignore) | map('join', ' ') | join(' ')}}"}
     - {name: "alias.vgrep", value: "!__git_vgrep () { git grep --color=always \"$@\" | vgrep; }; __git_vgrep"}
-    - {name: "alias.today", value: "whatchanged --since='6am' -p"}
+    - {name: "alias.today", value: "log --since='6am' -p"}
     - {name: "advice.skippedCherryPicks", value: "false"}
     - {name: "pull.rebase", value: "true"}
     - {name: "rebase.stat", value: "true"}
@@ -89,7 +89,10 @@ gitattributes:
     - "*.ts    diff=javascript"
     - "*.xhtml diff=html"
 
-cleanignore: ".dir-locals.el"
+cleanignore:
+  - ".dir-locals.el"
+  - ".autoenv.zsh"
+  - ".autoenv_leave.zsh"
 
 aliases:
     - "export EDITOR='vim'"
@@ -107,7 +110,7 @@ aliases:
     - "alias gitd='git diff'"
     - "alias gitg='git pull'"
     - "alias gitp='git push'"
-    - "alias gitw='git whatchanged'"
+    - "alias gitw='git log --no-merges --raw'"
     - "alias gitl='git tree'"
     - "alias gite='git ls-files -o -m --exclude-standard|fzf -m|xargs -r -o vim'"
     - "alias gitt='git diff $(git rev-list -n1 --before=\"1 day ago\" master)'"
