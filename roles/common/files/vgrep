@@ -15,4 +15,8 @@ open() {
     vgrep --show ${@:-0}
 }
 
+iter() {
+    vgrep --interactive
+}
+
 alias ag='search'
