@@ -1,10 +1,11 @@
 ---
- - hosts: localhost
-   connection: local
-   vars_files: "host_vars/vault.yml"
-   roles:
-       - facts
-       - nix
-       - common
-       - common-ui
-       - user
+- name: Local custom config
+  hosts: localhost
+  connection: local
+  vars_files: host_vars/vault.yml
+  roles:
+    - facts
+    - nix
+    - common
+    - common_ui
+    - user

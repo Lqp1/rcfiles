@@ -1,26 +1,29 @@
 ---
- - hosts: localhost
-   connection: local
-   vars_files: "host_vars/vault.yml"
-   tasks:
-     - name: install os agnostic stuff
-       include_role:
+- name: OS specific deployment - root phase
+  hosts: localhost
+  connection: local
+  vars_files: host_vars/vault.yml
+  tasks:
+    - name: Install os agnostic stuff
+      ansible.builtin.include_role:
         name: os
-     - include_role:
+    - name: Install Gentoo related stuff
+      ansible.builtin.include_role:
         name: gentoo
-       when: ansible_distribution == 'Gentoo'
-     - name: install debian config
-       include_role:
+      when: ansible_distribution == 'Gentoo'
+    - name: Install debian related stuff
+      ansible.builtin.include_role:
         name: debian
-       when: ansible_distribution == 'Debian'
-   become: yes
-   become_user: root
-   become_method: sudo
- - hosts: localhost
-   connection: local
-   vars_files: "host_vars/vault.yml"
-   tasks:
-     - name: install gentoo userland setup
-       include_role:
-        name: gentoo-user
-       when: ansible_distribution == 'Gentoo'
+      when: ansible_distribution == 'Debian'
+  become: true
+  become_user: root
+  become_method: ansible.builtin.sudo
+- name: OS specific deployment - user
+  hosts: localhost
+  connection: local
+  vars_files: host_vars/vault.yml
+  tasks:
+    - name: Install gentoo user stuff
+      ansible.builtin.include_role:
+        name: gentoo_user
+      when: ansible_distribution == 'Gentoo'

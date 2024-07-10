@@ -1,0 +1,13 @@
+---
+- name: Enable services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    scope: user
+    state: started
+  with_items: "{{ gentoo_user_systemd_services }}"
+- name: Create Gentoo tooling
+  ansible.builtin.template:
+    src: gentools
+    dest: ~/bin/
+    mode: "0755"

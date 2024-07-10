@@ -1,0 +1,21 @@
+---
+common_ui_fonts_versions:
+  emoji: v2.042 # Unicode 15.0
+  nerdfonts: v3.2.1 # Old version only works with polybar for now?
+  fira: "6.2"
+  noto: v2.014
+common_ui_autostart:
+  - nm-applet
+  - blueman-applet
+  - dunst
+  - xfce4-clipman
+  - picom
+common_ui_gtk_config:
+  - key: gtk-key-theme-name
+    value: Emacs
+  - key: gtk-icon-theme-name
+    value: Arc
+  - key: gtk-theme-name
+    value: Arc
+  - key: gtk-font-name
+    value: Noto Sans 12

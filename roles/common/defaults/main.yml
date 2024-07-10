@@ -1,6 +1,6 @@
 ---
-eza_version: "0.16.2"
-ls_cmd: "eza --git --icons --hyperlink -F"
+common_eza_version: 0.16.2
+common_ls_cmd: eza --git --icons --hyperlink -F
 
 # -S Chop long lines
 # -R Print Raw control chars
@@ -8,111 +8,111 @@ ls_cmd: "eza --git --icons --hyperlink -F"
 # -X Drop init
 # -I Do case insensitive searches
 # -W Highlight unread lines on scroll
-lessopts: "-FSRXIW"
+common_lessopts: -FSRXIW
 
-gitignore:
-     - "TAGS"
-     - ".DS_Store"
-     - "Thumbs.db"
-     - "*~"
+common_gitignore:
+  - TAGS
+  - .DS_Store
+  - Thumbs.db
+  - "*~"
 
-gitaliases:
-    - {name: "alias.tree", value: "log --graph --pretty=\"format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s\" --date=short"}
-    - {name: "alias.cleanup", value: "clean -ndx {{['-e'] | product(cleanignore) | map('join', ' ') | join(' ')}}"}
-    - {name: "alias.vgrep", value: "!__git_vgrep () { git grep --color=always \"$@\" | vgrep; }; __git_vgrep"}
-    - {name: "alias.today", value: "log --since='6am' -p"}
-    - {name: "advice.skippedCherryPicks", value: "false"}
-    - {name: "pull.rebase", value: "true"}
-    - {name: "rebase.stat", value: "true"}
-    - {name: "remote.origin.tagOpt", value: "--tags"}
-    - {name: "rebase.autoStash", value: "true"}
-    - {name: "commit.verbose", value: "true"}
-    - {name: "status.short", value: "true"}
-    - {name: "status.branch", value: "true"}
-    - {name: "core.autocrlf", value: "input"}
-    - {name: "core.safecrlf", value: "warn"}
-    - {name: "core.editor", value: "vim"}
-    - {name: "core.excludesfile", value: "{{ home }}/.gitignore"}
-    - {name: "core.hooksPath", value: "{{ home }}/.githooks"}
-    - {name: "core.pager", value: "less {{ lessopts }}"}
-    - {name: "help.autocorrect", value: 20}
-    - {name: "merge.tool", value: "vimdiff"}
-    - {name: "diff.tool", value: "vimdiff"}
-    - {name: "diff.colorMoved", value: "default"}
-    - {name: "difftool.prompt", value: "false"}
-    - {name: "user.email", value: "{{git_mail}}"}
-    - {name: "user.name", value: "{{git_user}}"}
-    - {name: "core.attributesfile", value: "{{ home }}/.gitattributes"}
-    - {name: "alias.root", value: "rev-parse --show-toplevel"}
-    - {name: "pager.diff", value: "delta"}
-    - {name: "merge.conflictstyle", value: "diff3"}
-    - {name: "pager.log", value: "delta"}
-    - {name: "pager.reflog", value: "delta"}
-    - {name: "pager.show", value: "delta"}
-    - {name: "pager.blame", value: "delta"}
-    - {name: "interactive.diffFilter", value: "delta --color-only"}
-    - {name: "delta.navigate", value: "true"}
-    - {name: "delta.line-numbers", value: "true"}
-    - {name: "delta.hunk-header-decoration-style", value: "none"}
-    - {name: "delta.syntax-theme", value: "Solarized (dark)"}
-    - {name: "delta.hyperlinks", value: "true"}
-    - {name: "rerere.enabled", value: "true"}
+common_git_aliases:
+  - { name: alias.tree, value: 'log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short' }
+  - { name: alias.cleanup, value: "clean -ndx {{ ['-e'] | product(common_cleanignore) | map('join', ' ') | join(' ') }}" }
+  - { name: alias.vgrep, value: '!__git_vgrep () { git grep --color=always "$@" | vgrep; }; __git_vgrep' }
+  - { name: alias.today, value: log --since='6am' -p }
+  - { name: advice.skippedCherryPicks, value: "false" }
+  - { name: pull.rebase, value: "true" }
+  - { name: rebase.stat, value: "true" }
+  - { name: remote.origin.tagOpt, value: --tags }
+  - { name: rebase.autoStash, value: "true" }
+  - { name: commit.verbose, value: "true" }
+  - { name: status.short, value: "true" }
+  - { name: status.branch, value: "true" }
+  - { name: core.autocrlf, value: input }
+  - { name: core.safecrlf, value: warn }
+  - { name: core.editor, value: vim }
+  - { name: core.excludesfile, value: "{{ home }}/.gitignore" }
+  - { name: core.hooksPath, value: "{{ home }}/.githooks" }
+  - { name: core.pager, value: "less {{ common_lessopts }}" }
+  - { name: help.autocorrect, value: 20 }
+  - { name: merge.tool, value: vimdiff }
+  - { name: diff.tool, value: vimdiff }
+  - { name: diff.colorMoved, value: default }
+  - { name: difftool.prompt, value: "false" }
+  - { name: user.email, value: "{{ git_mail }}" }
+  - { name: user.name, value: "{{ git_user }}" }
+  - { name: core.attributesfile, value: "{{ home }}/.gitattributes" }
+  - { name: alias.root, value: rev-parse --show-toplevel }
+  - { name: pager.diff, value: delta }
+  - { name: merge.conflictstyle, value: diff3 }
+  - { name: pager.log, value: delta }
+  - { name: pager.reflog, value: delta }
+  - { name: pager.show, value: delta }
+  - { name: pager.blame, value: delta }
+  - { name: interactive.diffFilter, value: delta --color-only }
+  - { name: delta.navigate, value: "true" }
+  - { name: delta.line-numbers, value: "true" }
+  - { name: delta.hunk-header-decoration-style, value: none }
+  - { name: delta.syntax-theme, value: Solarized (dark) }
+  - { name: delta.hyperlinks, value: "true" }
+  - { name: rerere.enabled, value: "true" }
 
 # https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
-gitattributes:
-    - "*.c     diff=cpp"
-    - "*.c++   diff=cpp"
-    - "*.cc    diff=cpp"
-    - "*.cpp   diff=cpp"
-    - "*.cs    diff=csharp"
-    - "*.css   diff=css"
-    - "*.el    diff=lisp"
-    - "*.ex    diff=elixir"
-    - "*.exs   diff=elixir"
-    - "*.go    diff=golang"
-    - "*.h     diff=cpp"
-    - "*.h++   diff=cpp"
-    - "*.hh    diff=cpp"
-    - "*.hpp   diff=cpp"
-    - "*.html  diff=html"
-    - "*.js    diff=javascript"
-    - "*.lisp  diff=lisp"
-    - "*.m     diff=objc"
-    - "*.md    diff=markdown"
-    - "*.mm    diff=objc"
-    - "*.php   diff=php"
-    - "*.pl    diff=perl"
-    - "*.py    diff=python"
-    - "*.rake  diff=ruby"
-    - "*.rb    diff=ruby"
-    - "*.rs    diff=rust"
-    - "*.ts    diff=javascript"
-    - "*.xhtml diff=html"
+common_gitattributes:
+  - "*.c     diff=cpp"
+  - "*.c++   diff=cpp"
+  - "*.cc    diff=cpp"
+  - "*.cpp   diff=cpp"
+  - "*.cs    diff=csharp"
+  - "*.css   diff=css"
+  - "*.el    diff=lisp"
+  - "*.ex    diff=elixir"
+  - "*.exs   diff=elixir"
+  - "*.go    diff=golang"
+  - "*.h     diff=cpp"
+  - "*.h++   diff=cpp"
+  - "*.hh    diff=cpp"
+  - "*.hpp   diff=cpp"
+  - "*.html  diff=html"
+  - "*.js    diff=javascript"
+  - "*.lisp  diff=lisp"
+  - "*.m     diff=objc"
+  - "*.md    diff=markdown"
+  - "*.mm    diff=objc"
+  - "*.php   diff=php"
+  - "*.pl    diff=perl"
+  - "*.py    diff=python"
+  - "*.rake  diff=ruby"
+  - "*.rb    diff=ruby"
+  - "*.rs    diff=rust"
+  - "*.ts    diff=javascript"
+  - "*.xhtml diff=html"
 
-cleanignore:
-  - ".dir-locals.el"
-  - ".autoenv.zsh"
-  - ".autoenv_leave.zsh"
+common_cleanignore:
+  - .dir-locals.el
+  - .autoenv.zsh
+  - .autoenv_leave.zsh
 
-aliases:
-    - "export EDITOR='vim'"
-    - "export PAGER='less'"
-    - "export RIPGREP_CONFIG_PATH='{{home}}/.ripgreprc'"
-    - "export LESS='{{ lessopts }}'"
-    - "export ALTERNATE_EDITOR=''"
-    - "export CDPATH=\"$CDPATH:$HOME\""
-    - "export FZF_DEFAULT_COMMAND='rg --files --glob \"!.git/*\"'"
-    - "alias ls='{{ls_cmd}} --color=auto'"
-    - "alias cp='cp -iv'"
-    - "alias mv='mv -iv'"
-    - "alias ip='ip --color=auto'"
-    - "alias gits='git status'"
-    - "alias gitd='git diff'"
-    - "alias gitg='git pull'"
-    - "alias gitp='git push'"
-    - "alias gitw='git log --no-merges --raw'"
-    - "alias gitl='git tree'"
-    - "alias gite='git ls-files -o -m --exclude-standard|fzf -m|xargs -r -o vim'"
-    - "alias gitt='git diff $(git rev-list -n1 --before=\"1 day ago\" master)'"
-    - "alias serve='python3 -m http.server'"
-    - "alias bc='bc -l'"
+common_aliases:
+  - export EDITOR='vim'
+  - export PAGER='less'
+  - export RIPGREP_CONFIG_PATH='{{ home }}/.ripgreprc'
+  - export LESS='{{ common_lessopts }}'
+  - export ALTERNATE_EDITOR=''
+  - export CDPATH="$CDPATH:$HOME"
+  - export FZF_DEFAULT_COMMAND='rg --files --glob "!.git/*"'
+  - alias ls='{{ common_ls_cmd }} --color=auto'
+  - alias cp='cp -iv'
+  - alias mv='mv -iv'
+  - alias ip='ip --color=auto'
+  - alias gits='git status'
+  - alias gitd='git diff'
+  - alias gitg='git pull'
+  - alias gitp='git push'
+  - alias gitw='git log --no-merges --raw'
+  - alias gitl='git tree'
+  - alias gite='git ls-files -o -m --exclude-standard|fzf -m|xargs -r -o vim'
+  - alias gitt='git diff $(git rev-list -n1 --before="1 day ago" master)'
+  - alias serve='python3 -m http.server'
+  - alias bc='bc -l'

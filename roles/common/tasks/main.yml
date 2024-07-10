@@ -1,231 +1,243 @@
 ---
-- name: "Check dependencies"
-  command: "which {{ item }}"
+- name: Check dependencies
+  ansible.builtin.command: which {{ item }}
   with_items:
-     - git
-     - ip
-     - less
-     - curl
-     - unzip
+    - git
+    - ip
+    - less
+    - curl
+    - unzip
   changed_when: false
-- name: "Clone FZF"
-  git:
-      repo: "https://github.com/junegunn/fzf.git"
-      dest: "{{home}}/.fzf"
+- name: Clone FZF
+  ansible.builtin.git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ home }}/.fzf"
   when: not minimal|bool
-- name: "Install FZF"
-  shell: "{{home}}/.fzf/install --bin"
+- name: Install FZF
+  ansible.builtin.command: "{{ home }}/.fzf/install --bin"
   when: not minimal|bool
-- name: "Clone Spacemacs from github"
-  git:
-     repo: "https://github.com/syl20bnr/spacemacs"
-     dest: "{{home}}/.emacs.d"
-     version: "master"
+- name: Clone Spacemacs from github
+  ansible.builtin.git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: "{{ home }}/.emacs.d"
+    version: master
   when: not minimal|bool
-- name: "Clone Oh My ZSH from github"
-  git:
-     repo: "https://github.com/robbyrussell/oh-my-zsh"
-     dest: "{{home}}/.oh-my-zsh"
+- name: Clone Oh My ZSH from github
+  ansible.builtin.git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: "{{ home }}/.oh-my-zsh"
   when: not minimal|bool
-- name: "Clone Autosuggestions from github"
-  git:
-     repo: "https://github.com/zsh-users/zsh-autosuggestions"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+- name: Clone Autosuggestions from github
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
   when: not minimal|bool
-- name: "Clone Syntax from github"
-  git:
-     repo: "https://github.com/zsh-users/zsh-syntax-highlighting"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+- name: Clone Syntax from github
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
   when: not minimal|bool
-- name: "Clone FZF interactive CD plugin from github"
-  git:
-     repo: "https://github.com/changyuheng/zsh-interactive-cd"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
+- name: Clone FZF interactive CD plugin from github
+  ansible.builtin.git:
+    repo: https://github.com/changyuheng/zsh-interactive-cd
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
   when: not minimal|bool
-- name: "Clone zsh-autoenv plugin from github"
-  git:
-     repo: "https://github.com/Tarrasch/zsh-autoenv"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/autoenv"
+- name: Clone zsh-autoenv plugin from github
+  ansible.builtin.git:
+    repo: https://github.com/Tarrasch/zsh-autoenv
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/autoenv"
   when: not minimal|bool
-- name: "Add FZF-man plugin"
-  copy:
-     src: "res/fzf-man"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/"
+- name: Add FZF-man plugin
+  ansible.builtin.copy:
+    src: res/fzf-man
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/"
+    mode: "0644"
   when: not minimal|bool
-- name: "Add FZF-j plugin"
-  copy:
-     src: "res/fzf-j"
-     dest: "{{home}}/.oh-my-zsh/custom/plugins/"
+- name: Add FZF-j plugin
+  ansible.builtin.copy:
+    src: res/fzf-j
+    dest: "{{ home }}/.oh-my-zsh/custom/plugins/"
+    mode: "0644"
   when: not minimal|bool
-- name: "Create some directories"
-  file:
-     path: "{{home}}/{{item}}"
-     state: "directory"
+- name: Create some directories
+  ansible.builtin.file:
+    path: "{{ home }}/{{ item }}"
+    state: directory
+    mode: "0755"
   with_items:
-     - ".cache"
-     - ".aliases"
-     - ".cache/zsh"
-     - ".vim"
-     - ".vim/colors"
-     - ".vim/autoload"
-     - ".config/nvim/"
-     - ".githooks"
-     - ".profile.d"
-     - "bin"
-- name: "Copy additionnal configuration files"
-  copy:
-   src:  "{{item.src}}"
-   dest : "{{home}}/{{item.dst}}"
+    - .cache
+    - .aliases
+    - .cache/zsh
+    - .vim
+    - .vim/colors
+    - .vim/autoload
+    - .config/nvim/
+    - .githooks
+    - .profile.d
+    - bin
+- name: Copy additionnal configuration files
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ home }}/{{ item.dst }}"
+    mode: "0644"
   with_items:
-     - { src : "screenrc", dst : ".screenrc"}
-     - { src : "vimrc", dst : ".vimrc"}
-     - { src : "res/vim-solarized8/colors/solarized8_flat.vim", dst : ".vim/colors/solarized.vim"}
-     - { src : "res/vim-plug/plug.vim", dst : ".vim/autoload/plug.vim"}
-     - { src : "res/fzf-git.sh/fzf-git.sh", dst : ".aliases/fzf-git.sh"}
-     - { src : "nvimrc", dst : ".config/nvim/init.vim"}
-     - { src : "bashrc", dst : ".bashrc"}
-     - { src : "ripgreprc", dst : ".ripgreprc"}
-     - { src : "profile", dst : ".profile"}
-     - { src : "zshenv", dst : ".zshenv"}
-     - { src : "spacemacs", dst : ".spacemacs"}
-     - { src : "bash_aliases", dst : ".bash_aliases"}
-     - { src : "vgrep", dst : ".aliases/10vgrep"}
-     - { src : "bat", dst : ".aliases/11bat"}
-     - { src : "secrets", dst : ".aliases/05secrets"}
-- name: "Link zprofile to zshenv"
-  file:
-      src: "{{home}}/.zshenv"
-      dest: "{{home}}/.zprofile"
-      state: link
-- name: "Copy user oh my ZSH config"
-  copy:
-      src: "omzsh"
-      dest: "{{home}}/.oh-my-zsh/custom/omzsh.zsh"
+    - { src: screenrc, dst: .screenrc }
+    - { src: vimrc, dst: .vimrc }
+    - { src: res/vim-solarized8/colors/solarized8_flat.vim, dst: .vim/colors/solarized.vim }
+    - { src: res/vim-plug/plug.vim, dst: .vim/autoload/plug.vim }
+    - { src: res/fzf-git.sh/fzf-git.sh, dst: .aliases/fzf-git.sh }
+    - { src: nvimrc, dst: .config/nvim/init.vim }
+    - { src: bashrc, dst: .bashrc }
+    - { src: ripgreprc, dst: .ripgreprc }
+    - { src: profile, dst: .profile }
+    - { src: zshenv, dst: .zshenv }
+    - { src: spacemacs, dst: .spacemacs }
+    - { src: bash_aliases, dst: .bash_aliases }
+    - { src: vgrep, dst: .aliases/10vgrep }
+    - { src: bat, dst: .aliases/11bat }
+    - { src: secrets, dst: .aliases/05secrets }
+- name: Link zprofile to zshenv
+  ansible.builtin.file:
+    src: "{{ home }}/.zshenv"
+    dest: "{{ home }}/.zprofile"
+    state: link
+- name: Copy user oh my ZSH config
+  ansible.builtin.copy:
+    src: omzsh
+    dest: "{{ home }}/.oh-my-zsh/custom/omzsh.zsh"
+    mode: "0644"
   when: not minimal|bool
-- name: "Copy minimal ZSH"
-  copy:
-      src: "zshrc"
-      dest: "{{home}}/.zshrc"
+- name: Copy minimal ZSH
+  ansible.builtin.copy:
+    src: zshrc
+    dest: "{{ home }}/.zshrc"
+    mode: "0644"
   when: minimal|bool
-- name: "Link ZSH RC"
-  copy:
-     src: "{{home}}/.oh-my-zsh/templates/zshrc.zsh-template"
-     dest: "{{home}}/.zshrc"
-     remote_src: true
+- name: Link ZSH RC
+  ansible.builtin.copy:
+    src: "{{ home }}/.oh-my-zsh/templates/zshrc.zsh-template"
+    dest: "{{ home }}/.zshrc"
+    remote_src: true
+    mode: "0644"
   when: not minimal|bool
-- name: "Configure Oh My ZSH home dir"
-  replace:
-     dest: "{{home}}/.zshrc"
-     regexp: 'export ZSH=.*'
-     replace: 'export ZSH="{{home}}/.oh-my-zsh"'
+- name: Configure Oh My ZSH home dir
+  ansible.builtin.replace:
+    dest: "{{ home }}/.zshrc"
+    regexp: export ZSH=.*
+    replace: export ZSH="{{ home }}/.oh-my-zsh"
   when: not minimal|bool
-- name: "Add a fork of cypher prompt, with time"
-  copy:
-    dest: "{{home}}/.oh-my-zsh/themes/timed-cypher.zsh-theme"
-    src: "prompt.zsh-theme"
+- name: Add a fork of cypher prompt, with time
+  ansible.builtin.copy:
+    dest: "{{ home }}/.oh-my-zsh/themes/timed-cypher.zsh-theme"
+    src: prompt.zsh-theme
+    mode: "0644"
   when: not minimal|bool
-- name: "Configure Oh My ZSH prompt"
-  replace:
-     dest: "{{home}}/.zshrc"
-     regexp: 'ZSH_THEME=.*'
-     replace: 'ZSH_THEME="timed-cypher"'
+- name: Configure Oh My ZSH prompt
+  ansible.builtin.replace:
+    dest: "{{ home }}/.zshrc"
+    regexp: ZSH_THEME=.*
+    replace: ZSH_THEME="timed-cypher"
   when: not minimal|bool
-- name: "Configure Oh My ZSH plugins"
-  replace:
-     dest: "{{home}}/.zshrc"
-     regexp: 'plugins=.*'
-     replace: 'plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j zsh-interactive-cd autoenv)'
+- name: Configure Oh My ZSH plugins
+  ansible.builtin.replace:
+    dest: "{{ home }}/.zshrc"
+    regexp: plugins=.*
+    replace: plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j zsh-interactive-cd autoenv)
   when: not minimal|bool
-- name: "Add waiting dots"
-  replace:
-     dest: "{{home}}/.zshrc"
-     regexp: '# COMPLETION_WAITING_DOTS="true"'
-     replace: 'COMPLETION_WAITING_DOTS="true"'
+- name: Add waiting dots
+  ansible.builtin.replace:
+    dest: "{{ home }}/.zshrc"
+    regexp: '# COMPLETION_WAITING_DOTS="true"'
+    replace: COMPLETION_WAITING_DOTS="true"
   when: not minimal|bool
-- name: "Disable auto updates"
-  replace:
-     dest: "{{home}}/.zshrc"
-     regexp: "# zstyle ':omz:update' mode disabled.*"
-     replace: "zstyle ':omz:update' mode disabled"
+- name: Disable auto updates
+  ansible.builtin.replace:
+    dest: "{{ home }}/.zshrc"
+    regexp: "# zstyle ':omz:update' mode disabled.*"
+    replace: zstyle ':omz:update' mode disabled
   when: not minimal|bool
-- name: "Fix fg color for zsh autosuggestions"
-  lineinfile:
-     dest: "{{home}}/.zshrc"
-     regexp: 'ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=.*'
-     line: "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'"
-     state: present
+- name: Fix fg color for zsh autosuggestions
+  ansible.builtin.lineinfile:
+    dest: "{{ home }}/.zshrc"
+    regexp: ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=.*
+    line: ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+    state: present
   when: not minimal|bool
-- name: "Add custom aliases and xports"
-  copy:
-     dest: "{{home}}/.aliases/00common"
-     content: "{{aliases | join('\n')}}\n"
-     mode: 0600
-- name: "Add git alias and sane behaviors"
+- name: Add custom aliases and xports
+  ansible.builtin.copy:
+    dest: "{{ home }}/.aliases/00common"
+    content: "{{ common_aliases | join('\n') }}\n"
+    mode: "0644"
+- name: Add git alias and sane behaviors
   git_config:
-    name: "{{item.name}}"
-    value: "{{item.value}}"
-    scope: "global"
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global
   with_items:
-    - "{{gitaliases}}"
-- name: "List all git configs"
+    - "{{ common_git_aliases }}"
+- name: List all git configs
   git_config:
     list_all: "yes"
-    scope: "global"
+    scope: global
   register: git_current_values
-- name: "Register expected git aliases keys"
-  set_fact:
-    gitaliases_keys: "{{ gitaliases | map(attribute='name') | map('lower') | list }}"
-- name: "Register existing git aliases keys"
-  set_fact:
+- name: Register expected git aliases keys
+  ansible.builtin.set_fact:
+    common_git_aliases_keys: "{{ common_git_aliases | map(attribute='name') | map('lower') | list }}"
+- name: Register existing git aliases keys
+  ansible.builtin.set_fact:
     current_aliases: "{{ git_current_values.config_values | dict2items | map(attribute='key') | map('lower') | list }}"
-- name: "Remove unwanted git configs"
+- name: Remove unwanted git configs
   git_config:
-    scope: "global"
-    state: "absent"
-    name: "{{item}}"
-  loop: "{{ current_aliases | difference(gitaliases_keys) }}"
-- name: "Add curlrc config"
-  lineinfile:
-     create: yes
-     dest: "{{home}}/.curlrc"
-     line: "{{item}}"
-     state: "present"
+    scope: global
+    state: absent
+    name: "{{ item }}"
+  loop: "{{ current_aliases | difference(common_git_aliases_keys) }}"
+- name: Add curlrc config
+  ansible.builtin.lineinfile:
+    create: true
+    dest: "{{ home }}/.curlrc"
+    line: "{{ item }}"
+    state: present
+    mode: "0644"
   with_items:
-     - "--location"
-     - "--compressed"
-- name: "Add global gitignore"
-  lineinfile:
-     create: yes
-     dest: "{{home}}/.gitignore"
-     line: "{{item}}"
-     state: "present"
-  with_items: "{{gitignore}}"
-- name: "Add global gitattributes"
-  lineinfile:
-     create: yes
-     dest: "{{home}}/.gitattributes"
-     line: "{{item}}"
-     state: "present"
-  with_items: "{{gitattributes}}"
-- name: "Pull eza zip"
-  get_url:
-      url: "https://github.com/eza-community/eza/releases/download/v{{eza_version}}/eza_x86_64-unknown-linux-gnu.tar.gz"
-      dest: "/tmp/eza-{{user}}-{{eza_version}}.tar.gz"
+    - --location
+    - --compressed
+- name: Add global gitignore
+  ansible.builtin.lineinfile:
+    create: true
+    dest: "{{ home }}/.gitignore"
+    line: "{{ item }}"
+    state: present
+    mode: "0644"
+  with_items: "{{ common_gitignore }}"
+- name: Add global common_gitattributes
+  ansible.builtin.lineinfile:
+    create: true
+    dest: "{{ home }}/.gitattributes"
+    line: "{{ item }}"
+    state: present
+    mode: "0644"
+  with_items: "{{ common_gitattributes }}"
+- name: Pull eza zip
+  ansible.builtin.get_url:
+    url: https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_x86_64-unknown-linux-gnu.tar.gz
+    dest: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
+    mode: "0644"
   when: not minimal|bool
-- name: "Extract eza into path"
-  unarchive:
-      dest: "{{home}}/bin/"
-      include: "./eza"
-      src: "/tmp/eza-{{user}}-{{eza_version}}.tar.gz"
+- name: Extract eza into path
+  ansible.builtin.unarchive:
+    dest: "{{ home }}/bin/"
+    include: ./eza
+    src: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
   when: (not minimal|bool) and (nixos_file.stat.exists == false)
-    #- name: "Create link for exa binary"
-    #  file:
-    #      src: "{{home}}/bin/exa-linux-x86_64"
-    #      dest: "{{home}}/bin/exa"
-    #      state: "link"
-    #  when: (not minimal|bool) and (nixos_file.stat.exists == false)
+# - name: "Create link for exa binary"
+#   file:
+#       src: "{{home}}/bin/exa-linux-x86_64"
+#       dest: "{{home}}/bin/exa"
+#       state: "link"
+#   when: (not minimal|bool) and (nixos_file.stat.exists == false)
 - name: Create a symbolic link for bash_profile
-  file:
-    src: "{{home}}/.profile"
-    dest: "{{home}}/.bash_profile"
+  ansible.builtin.file:
+    src: "{{ home }}/.profile"
+    dest: "{{ home }}/.bash_profile"
     state: link

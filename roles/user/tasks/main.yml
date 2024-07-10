@@ -1,51 +1,51 @@
 ---
-- name: "User config"
-  block:
-    - name: "Create directories"
-      file:
-        path: "{{shares_dir}}"
-        state: "directory"
-        mode: 0755
-    - name: "Add TV Shortcut"
-      template:
-        src: tv.j2
-        dest: "{{shares_dir}}/tv.desktop" # Shares dir is ok I guess
-        mode: 0755
-    - name: "Install share on desktop"
-      template:
-          src: "share.desktop"
-          dest: "{{shares_dir}}/{{item.name}}.desktop"
-          mode: 0755
-      with_items: "{{shares}}"
-    - name: "Ensure Thunar is default file browser"
-      xdg-mime:
-        application: "thunar.desktop"
-        mimetype: "inode/directory"
-    - name: "Clone additionnal repositories"
-      git:
-          repo: "{{item.repo}}"
-          dest: "{{repos_dir}}/{{item.name}}"
-      with_items: "{{repos}}"
-      ignore_errors: yes
-    - name: "Install gem dependencies"
-      gem:
-          name: "{{item}}"
-          state: latest
-          user_install: no # https://github.com/ansible/ansible/issues/50434
-          norc: no
-      with_items: "{{ruby_gems}}"
-    - name: "Install go dependencies"
-      shell: "go install -v {{item}}"
-      with_items: "{{go_bundles}}"
-    - name: "Create target directories for smount"
-      file:
-        path: "{{item.value.target}}"
-        state: "directory"
-        mode: 0755
-      with_items: "{{smount_config.mounts|dict2items}}"
-    - name: "Put smount config"
-      copy:
-          dest: "~/.smount/01personal"
-          content: "{{smount_config|to_nice_yaml}}"
-          mode: 0644
+- name: User config
   when: not minimal|bool
+  block:
+    - name: Create directories
+      ansible.builtin.file:
+        path: "{{ shares_dir }}"
+        state: directory
+        mode: "0755"
+    - name: Add TV Shortcut
+      ansible.builtin.template:
+        src: tv.j2
+        dest: "{{ shares_dir }}/tv.desktop" # Shares dir is ok I guess
+        mode: "0755"
+    - name: Install share on desktop
+      ansible.builtin.template:
+        src: share.desktop
+        dest: "{{ shares_dir }}/{{ item.name }}.desktop"
+        mode: "0755"
+      with_items: "{{ user_shares }}"
+    - name: Ensure Thunar is default file browser
+      xdg-mime:
+        application: thunar.desktop
+        mimetype: inode/directory
+    - name: Clone additionnal user_repositories
+      ansible.builtin.git:
+        repo: "{{ item.repo }}"
+        dest: "{{ repos_dir }}/{{ item.name }}"
+      with_items: "{{ user_repos }}"
+      ignore_errors: true
+    - name: Install gem dependencies
+      gem:
+        name: "{{ item }}"
+        state: latest
+        user_install: false # https://github.com/ansible/ansible/issues/50434
+        norc: false
+      with_items: "{{ user_ruby_gems }}"
+    - name: Install go dependencies
+      ansible.builtin.command: go install -v {{ item }}
+      with_items: "{{ user_go_bundles }}"
+    - name: Create target directories for smount
+      ansible.builtin.file:
+        path: "{{ item.value.target }}"
+        state: directory
+        mode: "0755"
+      with_items: "{{ user_smount_config.mounts | dict2items }}"
+    - name: Put smount config
+      ansible.builtin.copy:
+        dest: ~/.smount/01personal
+        content: "{{ user_smount_config | to_nice_yaml }}"
+        mode: "0644"

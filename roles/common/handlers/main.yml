@@ -1,4 +1,4 @@
 ---
-- name: nix-gc
-  shell: nix-collect-garbage -d
+- name: Nix-gc
+  ansible.builtin.command: nix-collect-garbage -d
   when: nix_info.stat.exists

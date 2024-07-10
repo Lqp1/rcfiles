@@ -1,204 +1,210 @@
 ---
-- name: "Check dependencies"
+- name: Check dependencies
   portage:
-      package: "{{item}}"
-      state: "present"
+    package: "{{ item }}"
+    state: present
   with_items:
-     - "app-portage/eix"
-     - "app-portage/gentoolkit"
-     - "app-eselect/eselect-repository"
-     - "dev-util/pkgdev"
-     - "app-portage/cpuid2cpuflags"
-- name: "Create common directories"
-  file:
-      path: "{{item}}"
-      state: directory
+    - app-portage/eix
+    - app-portage/gentoolkit
+    - app-eselect/eselect-repository
+    - dev-util/pkgdev
+    - app-portage/cpuid2cpuflags
+- name: Create common directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
   with_items:
-      - "/etc/eixrc/"
-      - "/etc/dracut.conf.d/"
-      - "/etc/portage/repo.postsync.d/"
-      - "/etc/portage/repos.conf/"
-      - "/etc/portage/binrepos.conf/"
-      - "/etc/portage/profile/"
-      - "/etc/portage/sets/"
-      - "/etc/portage/env/"
-      - "/etc/portage/package.use"
-      - "/etc/portage/package.mask"
-      - "/etc/portage/package.unmask"
-      - "/etc/portage/package.license"
-      - "/etc/portage/package.accept_keywords"
-      - "/etc/sddm.conf.d"
-- name: "Copy eix config"
-  copy:
-      src: "00-eixrc"
-      dest: "/etc/eixrc/"
-      mode: 0644
-- name: "Copy eix exec in portage"
-  copy:
-      src: "eix"
-      dest: "/etc/portage/repo.postsync.d/"
-      mode: 0755
-- name: "Copy binrepos config"
-  template:
-      src: "binrepos.conf"
-      dest: "/etc/portage/binrepos.conf/localbinhost.conf"
-      mode: 0644
+    - /etc/eixrc/
+    - /etc/dracut.conf.d/
+    - /etc/portage/repo.postsync.d/
+    - /etc/portage/repos.conf/
+    - /etc/portage/binrepos.conf/
+    - /etc/portage/profile/
+    - /etc/portage/sets/
+    - /etc/portage/env/
+    - /etc/portage/package.use
+    - /etc/portage/package.mask
+    - /etc/portage/package.unmask
+    - /etc/portage/package.license
+    - /etc/portage/package.accept_keywords
+    - /etc/sddm.conf.d
+- name: Copy eix config
+  ansible.builtin.copy:
+    src: 00-eixrc
+    dest: /etc/eixrc/
+    mode: "0644"
+- name: Copy eix exec in portage
+  ansible.builtin.copy:
+    src: eix
+    dest: /etc/portage/repo.postsync.d/
+    mode: "0755"
+- name: Copy binrepos config
+  ansible.builtin.template:
+    src: binrepos.conf
+    dest: /etc/portage/binrepos.conf/localbinhost.conf
+    mode: "0644"
   when: gentoo_bin_uri | length > 5
-- name: "Remove bin repo config"
-  file:
-      path: "/etc/portage/binrepos.conf/localbinhost.conf"
-      state: absent
+- name: Remove bin repo config
+  ansible.builtin.file:
+    path: /etc/portage/binrepos.conf/localbinhost.conf
+    state: absent
   when: gentoo_bin_uri | length <= 5
-- name: "Copy localrepo config"
-  template:
-      src: "localrepo.conf"
-      dest: "/etc/portage/repos.conf/"
-      mode: 0644
-- name: "Copy personal overlay config"
-  template:
-      src: "overlay.conf"
-      dest: "/etc/portage/repos.conf/lqp1.conf"
-      mode: 0644
-- name: "Create localrepo dir"
-  file:
-      path: "{{item}}"
-      state: directory
+- name: Copy localrepo config
+  ansible.builtin.template:
+    src: localrepo.conf
+    dest: /etc/portage/repos.conf/
+    mode: "0644"
+- name: Copy personal overlay config
+  ansible.builtin.template:
+    src: overlay.conf
+    dest: /etc/portage/repos.conf/lqp1.conf
+    mode: "0644"
+- name: Create localrepo dir
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
   with_items:
-      - "{{localrepo}}"
-      - "{{localrepo}}/metadata"
-      - "{{localrepo}}/profiles"
-- name: "Create metadata for localrepo"
-  copy:
-      dest: "{{localrepo}}/metadata/"
-      src: "layout.conf"
-      mode: 0644
-- name: "Create repo_name for localrepo"
-  copy:
-      dest: "{{localrepo}}/profiles/repo_name"
-      content: "localrepo\n"
-      mode: 0644
-- name: "Add memo in root folder"
-  get_url:
-      url: "https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/gentoo-notes.md"
-      dest: "/root/memo.md"
-- name: "Register CPU flags"
-  command: "cpuid2cpuflags"
+    - "{{ gentoo_localrepo }}"
+    - "{{ gentoo_localrepo }}/metadata"
+    - "{{ gentoo_localrepo }}/profiles"
+- name: Create metadata for localrepo
+  ansible.builtin.copy:
+    dest: "{{ gentoo_localrepo }}/metadata/"
+    src: layout.conf
+    mode: "0644"
+- name: Create name localrepo
+  ansible.builtin.copy:
+    dest: "{{ gentoo_localrepo }}/profiles/repo_name"
+    content: "localrepo\n"
+    mode: "0644"
+- name: Add memo in root folder
+  ansible.builtin.get_url:
+    url: https://gist.githubusercontent.com/Lqp1/bf109ab5a6aa7e987603d00b0011e1ea/raw/gentoo-notes.md
+    dest: /root/memo.md
+    mode: "0644"
+- name: Register CPU flags
+  ansible.builtin.command: cpuid2cpuflags
   register: flags
   changed_when: false
-- name: "Setup CPU flags as use flags"
-  template:
-      src: "00cpu-flags.j2"
-      dest: "/etc/portage/package.use/00cpu-flags"
-      mode: 0644
-- name: "Setup portage feature flags properly"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'FEATURES=.*'
-      line: 'FEATURES="{{gentoo_features | join(" ")}}{% if gentoo_bin_uri != "" %} getbinpkg{% endif %}"'
-- name: "Setup portage elog records"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'PORTAGE_ELOG_CLASSES=.*'
-      line: 'PORTAGE_ELOG_CLASSES="log warn error"'
-- name: "Setup portage elog records on disk"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'PORTAGE_ELOG_SYSTEM=.*'
-      line: 'PORTAGE_ELOG_SYSTEM="echo save"'
-- name: "Setup portage log dir"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'PORTAGE_LOGDIR=.*'
-      line: 'PORTAGE_LOGDIR="/var/log/portage"'
-- name: "Ensure sane defaults for portage"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'EMERGE_DEFAULT_OPTS=.*'
-      line: 'EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4 --load-average=4 --getbinpkg"'
-- name: "Ensure portage niceness"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'PORTAGE_NICENESS=.*'
-      line: 'PORTAGE_NICENESS=19'
-- name: "Ensure portage niceness"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'PORTAGE_IONICE_COMMAND=.*'
-      line: 'PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"'
+- name: Setup CPU flags as use flags
+  ansible.builtin.template:
+    src: 00cpu-flags.j2
+    dest: /etc/portage/package.use/00cpu-flags
+    mode: "0644"
+- name: Setup portage feature flags properly
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: FEATURES=.*
+    line: FEATURES="{{ gentoo_features | join(" ") }}{% if gentoo_bin_uri != "" %} getbinpkg{% endif %}"
+- name: Setup portage elog records
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: PORTAGE_ELOG_CLASSES=.*
+    line: PORTAGE_ELOG_CLASSES="log warn error"
+- name: Setup portage elog records on disk
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: PORTAGE_ELOG_SYSTEM=.*
+    line: PORTAGE_ELOG_SYSTEM="echo save"
+- name: Setup portage log dir
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: PORTAGE_LOGDIR=.*
+    line: PORTAGE_LOGDIR="/var/log/portage"
+- name: Ensure sane defaults for portage
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: EMERGE_DEFAULT_OPTS=.*
+    line: EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y
+      --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4
+      --load-average=4 --getbinpkg"
+- name: Ensure portage niceness
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: PORTAGE_NICENESS=.*
+    line: PORTAGE_NICENESS=19
+- name: Ensure portage niceness
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: PORTAGE_IONICE_COMMAND=.*
+    line: PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
 # not used with hplip (it provides hpaio backend), but I keep it for older printers
-- name: "Set SANE backends"
-  lineinfile:
-      path: "/etc/portage/make.conf"
-      regexp: 'SANE_BACKENDS=.*'
-      line: 'SANE_BACKENDS="hp hp3500 hp3900 hp4200 hp5400 hp5590"'
-- name: "Setup personal use flags (hardware agnostic)"
-  copy:
-      src: "01personal"
-      dest: "/etc/portage/package.use/01personal"
-      mode: 0644
-- name: "Setup accepted keywords"
-  copy:
-      dest: "/etc/portage/package.accept_keywords/01personal"
-      content: "{{gentoo_accepted_unstable | join(' ~amd64\n')}} ~amd64\n"
-      mode: 0644
-- name: "Setup accepted keywords"
-  copy:
-      dest: "/etc/portage/package.accept_keywords/02personal"
-      content: "{{gentoo_accepted_all | join(' **\n')}} **\n"
-      mode: 0644
-- name: "Setup unmasked packages"
-  copy:
-      dest: "/etc/portage/package.unmask/01personal"
-      content: "{{gentoo_unmasked | join(' \n')}}\n"
-      mode: 0644
-- name: "Setup accepted licenses"
-  copy:
-      dest: "/etc/portage/package.license/01personal"
-      content: "{{gentoo_accepted_licenses | join(' \n')}}\n"
-      mode: 0644
-- name: "Ensure set directory exists"
-  file:
-      path: "/etc/portage/sets/"
-      state: directory
-- name: "Setup sets/personal package set"
-  copy:
-      dest: "/etc/portage/sets/personal"
-      content: "{{gentoo_packages | join(' \n')}}\n"
-      mode: 0644
-- name: "Setup sets/personalX11 package set"
-  copy:
-      dest: "/etc/portage/sets/personalX11"
-      content: "{{gentoo_packages_X11 | join(' \n')}}\n"
-      mode: 0644
-- name: "Setup sets/personalLaptop package set"
-  copy:
-      dest: "/etc/portage/sets/personalLaptop"
-      content: "{{gentoo_packages_laptop | join(' \n')}}\n"
-      mode: 0644
-- name: "Enable services (and fail is they don't exist)"
-  systemd:
-    name: "{{item}}.service"
+- name: Set SANE backends
+  ansible.builtin.lineinfile:
+    path: /etc/portage/make.conf
+    regexp: SANE_BACKENDS=.*
+    line: SANE_BACKENDS="hp hp3500 hp3900 hp4200 hp5400 hp5590"
+- name: Setup personal use flags (hardware agnostic)
+  ansible.builtin.copy:
+    src: 01personal
+    dest: /etc/portage/package.use/01personal
+    mode: "0644"
+- name: Setup accepted keywords
+  ansible.builtin.copy:
+    dest: /etc/portage/package.accept_keywords/01personal
+    content: "{{ gentoo_accepted_unstable | join(' ~amd64\n') }} ~amd64\n"
+    mode: "0644"
+- name: Setup accepted keywords
+  ansible.builtin.copy:
+    dest: /etc/portage/package.accept_keywords/02personal
+    content: "{{ gentoo_accepted_all | join(' **\n') }} **\n"
+    mode: "0644"
+- name: Setup unmasked packages
+  ansible.builtin.copy:
+    dest: /etc/portage/package.unmask/01personal
+    content: "{{ gentoo_unmasked | join(' \n') }}\n"
+    mode: "0644"
+- name: Setup accepted licenses
+  ansible.builtin.copy:
+    dest: /etc/portage/package.license/01personal
+    content: "{{ gentoo_accepted_licenses | join(' \n') }}\n"
+    mode: "0644"
+- name: Ensure set directory exists
+  ansible.builtin.file:
+    path: /etc/portage/sets/
+    state: directory
+    mode: "0755"
+- name: Setup sets/personal package set
+  ansible.builtin.copy:
+    dest: /etc/portage/sets/personal
+    content: "{{ gentoo_packages | join(' \n') }}\n"
+    mode: "0644"
+- name: Setup sets/personalX11 package set
+  ansible.builtin.copy:
+    dest: /etc/portage/sets/personalX11
+    content: "{{ gentoo_packages_x11 | join(' \n') }}\n"
+    mode: "0644"
+- name: Setup sets/personalLaptop package set
+  ansible.builtin.copy:
+    dest: /etc/portage/sets/personalLaptop
+    content: "{{ gentoo_packages_laptop | join(' \n') }}\n"
+    mode: "0644"
+- name: Enable services (and fail is they don't exist)
+  ansible.builtin.systemd:
+    name: "{{ item }}.service"
     enabled: true
-  with_items: "{{gentoo_systemd_services}}"
-  ignore_errors: yes
-- name: "Add additional layers"
+  with_items: "{{ gentoo_systemd_services }}"
+  ignore_errors: true
+- name: Add additional layers
   erepository:
-    name: "{{item}}"
-  with_items: "{{gentoo_layers}}"
+    name: "{{ item }}"
+  with_items: "{{ gentoo_layers }}"
   when: gentoo_layers is iterable
-- name: "Mask additional layers masked by default"
-  copy:
-    dest: "/etc/portage/package.mask/00layers"
-    content: "*/*::{{gentoo_layers | join('\n*/*::')}}\n"
-    mode: 0644
+- name: Mask additional layers masked by default
+  ansible.builtin.copy:
+    dest: /etc/portage/package.mask/00layers
+    content: "*/*::{{ gentoo_layers | join('\n*/*::') }}\n"
+    mode: "0644"
   when: gentoo_layers is iterable
-- name: "Setup dracut config"
-  copy:
-      src: "dracut.conf"
-      dest: "/etc/dracut.conf.d/ansible.conf"
-      mode: 0644
-- name: "Create debug config for development"
-  copy:
-    src: "devenv"
-    dest: "/etc/portage/env/devenv"
-    mode: 0644
+- name: Setup dracut config
+  ansible.builtin.copy:
+    src: dracut.conf
+    dest: /etc/dracut.conf.d/ansible.conf
+    mode: "0644"
+- name: Create debug config for development
+  ansible.builtin.copy:
+    src: devenv
+    dest: /etc/portage/env/devenv
+    mode: "0644"

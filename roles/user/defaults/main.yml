@@ -1,39 +1,38 @@
 ---
-tv_playlist: "https://iptv-org.github.io/iptv/languages/fra.m3u"
+user_tv_playlist: https://iptv-org.github.io/iptv/languages/fra.m3u
 
-repos:
-    - repo: https://github.com/speed47/spectre-meltdown-checker
-      name: spectre-meltdown-checker
-    - repo: https://github.com/stove-panini/fontconfig-emoji
-      name: fontconfig-emoji
-    - repo: https://github.com/a13xp0p0v/kconfig-hardened-check
-      name: kconfig-hardened-check
+user_repos:
+  - repo: https://github.com/speed47/spectre-meltdown-checker
+    name: spectre-meltdown-checker
+  - repo: https://github.com/stove-panini/fontconfig-emoji
+    name: fontconfig-emoji
+  - repo: https://github.com/a13xp0p0v/kconfig-hardened-check
+    name: kconfig-hardened-check
 
-ruby_gems:
-      - bundler
-      - pry
-      - rubocop
-      - rspec
-      - solargraph
+user_ruby_gems:
+  - bundler
+  - pry
+  - rubocop
+  - rspec
+  - solargraph
 
-go_bundles:
-      - "golang.org/x/tools/gopls@latest"
-      - "github.com/rogpeppe/godef@latest"
+user_go_bundles:
+  - golang.org/x/tools/gopls@latest
+  - github.com/rogpeppe/godef@latest
 
-shares:
-    - name: "Fake"
-      ip: "127.0.0.1"
-      user: "usr"
+user_shares:
+  - name: Fake
+    ip: 127.0.0.1
+    user: usr
 
-bastion:
-    local: "127.0.0.1"
-    remote: "x.x.x.x"
-    user: "{{user}}"
+user_bastion:
+  local: 127.0.0.1
+  remote: x.x.x.x
+  user: "{{ user }}"
 
-smount_config:
+user_smount_config:
   mounts:
     example:
-      src: "xx"
-      target: "yy"
-      type: "unknown"
-
+      src: xx
+      target: yy
+      type: unknown

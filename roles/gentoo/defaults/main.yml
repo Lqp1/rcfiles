@@ -1,212 +1,212 @@
 ---
-localrepo: "/var/db/repos/localrepo"
-personaloverlay: "/var/db/repos/lqp1/"
+gentoo_localrepo: /var/db/repos/localrepo
+gentoo_personaloverlay: /var/db/repos/lqp1/
 gentoo_remote_host: ""
-gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{gentoo_remote_host}}/gentoo/binpkgs/{% endif %}"
+gentoo_bin_uri: "{% if gentoo_remote_host != '' %}rsync://{{ gentoo_remote_host }}/gentoo/binpkgs/{% endif %}"
 
 gentoo_features:
-  - "buildpkg"
-  - "binpkg-request-signature"
-  - "strict"
-  - "protect-owned"
-  - "parallel-install"
-  - "candy"
-  - "sandbox"
-  - "usersandbox"
-  - "userpriv"
-  - "compress-build-logs"
-  - "binpkg-logs"
-  - "clean-logs"
-  - "split-log"
-  - "split-elog"
+  - buildpkg
+  - binpkg-request-signature
+  - strict
+  - protect-owned
+  - parallel-install
+  - candy
+  - sandbox
+  - usersandbox
+  - userpriv
+  - compress-build-logs
+  - binpkg-logs
+  - clean-logs
+  - split-log
+  - split-elog
 
 gentoo_systemd_services:
-    - "acpid"
-    - "bluetooth"
-    - "clamav-daemon"
-    - "clamav-freshclam"
-    - "cronie"
-    - "cups"
-    - "iptables-restore"
-    - "ip6tables-restore"
-    - "laptop-mode"
-    - "pcscd"
-    - "sddm"
-    - "thermald"
-    - "rtkit-daemon"
+  - acpid
+  - bluetooth
+  - clamav-daemon
+  - clamav-freshclam
+  - cronie
+  - cups
+  - iptables-restore
+  - ip6tables-restore
+  - laptop-mode
+  - pcscd
+  - sddm
+  - thermald
+  - rtkit-daemon
 
 gentoo_accepted_unstable:
-    - "app-crypt/veracrypt"
-    - "app-text/vgrep" # to replace ag
-    - "dev-python/i3ipc"
-    - "dev-python/pipx"
-    - "dev-vcs/lazygit"
-    - "media-fonts/quivira"
-    - "media-gfx/sane-airscan"
-    - "net-wireless/blueman"
-    - "sys-apps/bat"
-    - "x11-apps/igt-gpu-tools"
-    - "x11-misc/autotiling"
-    - "x11-misc/rofimoji"
-    - "x11-misc/miraclecast"
+  - app-crypt/veracrypt
+  - app-text/vgrep # to replace ag
+  - dev-python/i3ipc
+  - dev-python/pipx
+  - dev-vcs/lazygit
+  - media-fonts/quivira
+  - media-gfx/sane-airscan
+  - net-wireless/blueman
+  - sys-apps/bat
+  - x11-apps/igt-gpu-tools
+  - x11-misc/autotiling
+  - x11-misc/rofimoji
+  - x11-misc/miraclecast
 
 gentoo_accepted_all:
-    - "sys-apps/smount"
-    - "sys-apps/gentoo-changelog-tracker"
+  - sys-apps/smount
+  - sys-apps/gentoo-changelog-tracker
 
 gentoo_unmasked:
-    - "dev-python/i3ipc::guru"
-    - "dev-vcs/lazygit::guru"
-    - "x11-misc/autotiling::guru"
+  - dev-python/i3ipc::guru
+  - dev-vcs/lazygit::guru
+  - x11-misc/autotiling::guru
 
 gentoo_accepted_licenses:
-    - "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE"
-    - "sys-firmware/intel-microcode intel-ucode"
-    - "app-crypt/veracrypt truecrypt-3.0"
-    - ">=media-fonts/corefonts-1-r7 MSttfEULA"
-    - "media-libs/libva-intel-media-driver no-source-code"
-    - ">=sys-firmware/alsa-firmware-1.2.4-r1 freedist all-rights-reserved"
+  - sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
+  - sys-firmware/intel-microcode intel-ucode
+  - app-crypt/veracrypt truecrypt-3.0
+  - ">=media-fonts/corefonts-1-r7 MSttfEULA"
+  - media-libs/libva-intel-media-driver no-source-code
+  - ">=sys-firmware/alsa-firmware-1.2.4-r1 freedist all-rights-reserved"
 
 gentoo_packages:
-    - "app-admin/ccze"
-    - "app-admin/eclean-kernel"
-    - "app-admin/keepassxc"
-    - "app-admin/sudo"
-    - "app-antivirus/clamav"
-    - "app-antivirus/clamtk"
-    - "app-arch/p7zip"
-    - "app-arch/unzip"
-    - "app-crypt/ccid"
-    - "app-crypt/veracrypt"
-    - "app-editors/vim"
-    - "app-eselect/eselect-python"
-    - "app-forensics/chkrootkit"
-    - "app-misc/screen"
-    - "app-portage/elogv"
-    - "app-portage/genlop"
-    - "app-portage/portage-utils"
-    - "app-portage/portpeek"
-    - "app-portage/smart-live-rebuild"
-    - "app-shells/autojump"
-    - "app-shells/zsh"
-    - "app-shells/zsh-completions"
-    - "app-shells/gentoo-zsh-completions"
-    - "app-text/evince"
-    - "app-text/tree"
-    - "app-text/vgrep"
-    - "dev-java/openjdk-bin"
-    - "dev-lang/go"
-    - "dev-lang/ruby"
-    - "dev-libs/libcgroup"
-    - "dev-lisp/sbcl"
-    - "dev-python/autopep8"
-    - "dev-python/flake8"
-    - "dev-python/ipdb"
-    - "dev-python/ipython"
-    - "dev-python/pip"
-    - "dev-python/pipx"
-    - "dev-python/pylint"
-    - "dev-python/python-lsp-server"
-    - "dev-util/android-tools"
-    - "dev-util/ctags"
-    - "dev-util/git-delta"
-    - "dev-vcs/tig"
-    - "dev-vcs/lazygit"
-    - "media-gfx/sane-airscan"
-    - "media-gfx/sane-backends"
-    - "media-plugins/alsa-plugins"
-    - "media-sound/alsa-utils"
-    - "media-sound/pavucontrol"
-    - "media-video/vlc"
-    - "net-analyzer/iftop"
-    - "net-analyzer/iptraf-ng"
-    - "net-fs/samba"
-    - "net-fs/sshfs"
-    - "net-misc/httpie"
-    - "net-misc/rclone"
-    - "net-p2p/transmission"
-    - "net-print/cups-meta"
-    - "net-print/hplip"
-    - "net-wireless/blueman"
-    - "sys-apps/bat"
-    - "sys-apps/firejail"
-    - "sys-apps/fwupd"
-    - "sys-apps/gentoo-changelog-tracker"
-    - "sys-apps/gsmartcontrol"
-    - "sys-apps/hdparm"
-    - "sys-apps/lm-sensors"
-    - "sys-apps/lshw"
-    - "sys-apps/moreutils"
-    - "sys-apps/pciutils"
-    - "sys-apps/pcsc-tools"
-    - "sys-apps/ripgrep"
-    - "sys-apps/smount"
-    - "sys-apps/usbutils"
-    - "sys-auth/rtkit"
-    - "sys-fs/dfc"
-    - "sys-fs/dosfstools"
-    - "sys-fs/e2fsprogs"
-    - "sys-fs/exfat-utils"
-    - "sys-fs/fuse-exfat"
-    - "sys-fs/mtpfs"
-    - "sys-fs/ntfs3g"
-    - "sys-power/powertop"
-    - "sys-power/thermald"
-    - "sys-process/cronie"
-    - "sys-process/htop"
-    - "sys-process/iotop"
-    - "sys-process/lsof"
-    - "sys-process/btop"
+  - app-admin/ccze
+  - app-admin/eclean-kernel
+  - app-admin/keepassxc
+  - app-admin/sudo
+  - app-antivirus/clamav
+  - app-antivirus/clamtk
+  - app-arch/p7zip
+  - app-arch/unzip
+  - app-crypt/ccid
+  - app-crypt/veracrypt
+  - app-editors/vim
+  - app-eselect/eselect-python
+  - app-forensics/chkrootkit
+  - app-misc/screen
+  - app-portage/elogv
+  - app-portage/genlop
+  - app-portage/portage-utils
+  - app-portage/portpeek
+  - app-portage/smart-live-rebuild
+  - app-shells/autojump
+  - app-shells/zsh
+  - app-shells/zsh-completions
+  - app-shells/gentoo-zsh-completions
+  - app-text/evince
+  - app-text/tree
+  - app-text/vgrep
+  - dev-java/openjdk-bin
+  - dev-lang/go
+  - dev-lang/ruby
+  - dev-libs/libcgroup
+  - dev-lisp/sbcl
+  - dev-python/autopep8
+  - dev-python/flake8
+  - dev-python/ipdb
+  - dev-python/ipython
+  - dev-python/pip
+  - dev-python/pipx
+  - dev-python/pylint
+  - dev-python/python-lsp-server
+  - dev-util/android-tools
+  - dev-util/ctags
+  - dev-util/git-delta
+  - dev-vcs/tig
+  - dev-vcs/lazygit
+  - media-gfx/sane-airscan
+  - media-gfx/sane-backends
+  - media-plugins/alsa-plugins
+  - media-sound/alsa-utils
+  - media-sound/pavucontrol
+  - media-video/vlc
+  - net-analyzer/iftop
+  - net-analyzer/iptraf-ng
+  - net-fs/samba
+  - net-fs/sshfs
+  - net-misc/httpie
+  - net-misc/rclone
+  - net-p2p/transmission
+  - net-print/cups-meta
+  - net-print/hplip
+  - net-wireless/blueman
+  - sys-apps/bat
+  - sys-apps/firejail
+  - sys-apps/fwupd
+  - sys-apps/gentoo-changelog-tracker
+  - sys-apps/gsmartcontrol
+  - sys-apps/hdparm
+  - sys-apps/lm-sensors
+  - sys-apps/lshw
+  - sys-apps/moreutils
+  - sys-apps/pciutils
+  - sys-apps/pcsc-tools
+  - sys-apps/ripgrep
+  - sys-apps/smount
+  - sys-apps/usbutils
+  - sys-auth/rtkit
+  - sys-fs/dfc
+  - sys-fs/dosfstools
+  - sys-fs/e2fsprogs
+  - sys-fs/exfat-utils
+  - sys-fs/fuse-exfat
+  - sys-fs/mtpfs
+  - sys-fs/ntfs3g
+  - sys-power/powertop
+  - sys-power/thermald
+  - sys-process/cronie
+  - sys-process/htop
+  - sys-process/iotop
+  - sys-process/lsof
+  - sys-process/btop
 
-gentoo_packages_X11:
-    - "app-arch/file-roller"
-    - "app-office/libreoffice-bin"
-    - "app-office/libreoffice-l10n"
-    - "dev-python/pyyaml"
-    - "gnome-extra/nm-applet"
-    - "media-fonts/corefonts"
-    - "media-fonts/dejavu"
-    - "media-fonts/droid"
-    - "media-fonts/fira-code"
-    - "media-fonts/noto"
-    - "media-fonts/noto-emoji"
-    - "media-fonts/quivira"
-    - "media-gfx/feh"
-    - "media-gfx/gimp"
-    - "media-gfx/ristretto"
-    - "media-sound/audacity"
-    - "media-video/pipewire"
-    - "sys-block/gparted"
-    - "sys-power/acpilight"
-    - "www-client/firefox-bin"
-    - "x11-apps/igt-gpu-tools"
-    - "x11-base/xorg-server"
-    - "x11-misc/arandr"
-    - "x11-misc/autotiling"
-    - "x11-misc/dunst"
-    - "x11-misc/i3lock"
-    - "x11-misc/picom"
-    - "x11-misc/polybar"
-    - "x11-misc/redshift"
-    - "x11-misc/rofi"
-    - "x11-misc/rofimoji"
-    - "x11-misc/sddm"
-    - "x11-misc/xclip"
-    - "x11-misc/xdotool"
-    - "x11-misc/xss-lock"
-    - "x11-terms/kitty"
-    - "x11-themes/arc-icon-theme"
-    - "x11-themes/arc-theme"
-    - "x11-wm/i3"
-    - "xfce-base/thunar-volman"
-    - "xfce-base/tumbler"
-    - "xfce-extra/thunar-archive-plugin"
-    - "xfce-extra/thunar-shares-plugin"
-    - "xfce-extra/xfce4-clipman-plugin"
-    - "xfce-extra/xfce4-screenshooter"
+gentoo_packages_x11:
+  - app-arch/file-roller
+  - app-office/libreoffice-bin
+  - app-office/libreoffice-l10n
+  - dev-python/pyyaml
+  - gnome-extra/nm-applet
+  - media-fonts/corefonts
+  - media-fonts/dejavu
+  - media-fonts/droid
+  - media-fonts/fira-code
+  - media-fonts/noto
+  - media-fonts/noto-emoji
+  - media-fonts/quivira
+  - media-gfx/feh
+  - media-gfx/gimp
+  - media-gfx/ristretto
+  - media-sound/audacity
+  - media-video/pipewire
+  - sys-block/gparted
+  - sys-power/acpilight
+  - www-client/firefox-bin
+  - x11-apps/igt-gpu-tools
+  - x11-base/xorg-server
+  - x11-misc/arandr
+  - x11-misc/autotiling
+  - x11-misc/dunst
+  - x11-misc/i3lock
+  - x11-misc/picom
+  - x11-misc/polybar
+  - x11-misc/redshift
+  - x11-misc/rofi
+  - x11-misc/rofimoji
+  - x11-misc/sddm
+  - x11-misc/xclip
+  - x11-misc/xdotool
+  - x11-misc/xss-lock
+  - x11-terms/kitty
+  - x11-themes/arc-icon-theme
+  - x11-themes/arc-theme
+  - x11-wm/i3
+  - xfce-base/thunar-volman
+  - xfce-base/tumbler
+  - xfce-extra/thunar-archive-plugin
+  - xfce-extra/thunar-shares-plugin
+  - xfce-extra/xfce4-clipman-plugin
+  - xfce-extra/xfce4-screenshooter
 
 gentoo_packages_laptop:
-    - "app-laptop/laptop-mode-tools"
+  - app-laptop/laptop-mode-tools
 
 gentoo_layers:
-  - "guru"
+  - guru

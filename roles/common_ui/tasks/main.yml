@@ -1,0 +1,131 @@
+---
+- name: Common ui config
+  when: not minimal|bool
+  block:
+    - name: Create some directories
+      ansible.builtin.file:
+        path: "{{ home }}/{{ item }}"
+        state: directory
+        mode: "0755"
+      with_items:
+        - .config/i3/
+        - .config/polybar/
+        - .config/kitty/
+        - .config/rofi/
+        - .config/dunst/
+        - .config/gtk-3.0/
+        - .config/systemd/user/
+        - .smount/
+        - .sshaliases/
+        - .local/share/fonts/fira-code
+        - .local/share/fonts/NotoSansMono
+    - name: Remove legacy configs
+      ansible.builtin.file:
+        path: "{{ home }}/{{ item }}"
+        state: absent
+      with_items:
+        - .compton.conf
+        - bin/exa-linux-x86_64
+        - .splatmoji
+        - .rofimoji
+        - .config/polybar/custom.sh
+        - .local/share/fonts/NotoSansMono-Regular.ttf
+    - name: Setup a simple target for i3 to load graphical-session.target
+      ansible.builtin.template:
+        src: i3-session.target.j2
+        dest: "{{ home }}/.config/systemd/user/i3-session.target"
+        mode: "0644"
+    - name: Copy defaults
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ home }}/{{ item.dst }}"
+        force: false
+        mode: "0644"
+      with_items:
+        - { src: kitty_default_theme.conf, dst: .config/kitty/current-theme.conf }
+    - name: Copy additionnal configuration files
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ home }}/{{ item.dst }}"
+        mode: "0644"
+      with_items:
+        - { src: i3, dst: .config/i3/config }
+        - { src: dunstrc, dst: .config/dunst/dunstrc }
+        - { src: compton.conf, dst: .config/picom.conf }
+        - { src: kitty-ssh-bashrc, dst: .sshbashrc }
+        - { src: kitty.conf, dst: .config/kitty/kitty.conf }
+        - { src: kitty-ssh.conf, dst: .config/kitty/ssh.conf }
+        - { src: rofi.rasi, dst: .config/rofi/config.rasi }
+        - { src: polybar.ini, dst: .config/polybar/config.ini }
+        - { src: redshift.conf, dst: .config/redshift.conf }
+        - { src: xresources, dst: .Xresources }
+        - { src: kittyaliases, dst: .aliases/10kitty }
+      notify: activate xres
+    - name: Clone kitty-hintsconfig from github
+      ansible.builtin.git:
+        repo: https://github.com/Lqp1/kitty-hintsconfig
+        dest: "{{ home }}/.config/kitty/kitty-hintsconfig"
+    - name: Configure GTK-2.0 apps
+      ansible.builtin.lineinfile:
+        create: true
+        line: "{{ item.key }} = {{ item.value }}"
+        path: "{{ home }}/.gtkrc-2.0"
+        mode: "0644"
+      with_items: "{{ common_ui_gtk_config }}"
+    - name: Configure GTK-3.0 apps
+      ini_file:
+        create: true
+        section: Settings
+        option: "{{ item.key }}"
+        value: "{{ item.value }}"
+        path: "{{ home }}/.config/gtk-3.0/settings.ini"
+        mode: "0644"
+      with_items: "{{ common_ui_gtk_config }}"
+    - name: Fetch jira-code & notoSansMono font families
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: "{{ item.src }}"
+        dest: "{{ home }}/.local/share/fonts/{{ item.name }}"
+        include: "{{ item.for }}"
+      notify: update fc-cache
+      with_items:
+        - src: https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-{{ common_ui_fonts_versions.noto }}/NotoSansMono-{{ common_ui_fonts_versions.noto }}.zip
+          name: NotoSansMono
+          for: NotoSansMono/googlefonts/ttf/NotoSansMono-Regular.ttf
+        - src: https://github.com/tonsky/FiraCode/releases/download/{{ common_ui_fonts_versions.fira }}/Fira_Code_v{{ common_ui_fonts_versions.fira }}.zip
+          name: fira-code
+          for: ttf/
+    - name: Fetch other various fonts from internet
+      ansible.builtin.get_url:
+        url: "{{ item.src }}"
+        dest: "{{ home }}/.local/share/fonts/{{ item.name }}.ttf"
+        mode: "0644"
+      notify: update fc-cache
+      with_items:
+        - src: https://github.com/googlefonts/noto-emoji/raw/{{ common_ui_fonts_versions.emoji }}/fonts/NotoColorEmoji.ttf
+          name: NotoColorEmoji
+        - src: https://github.com/ryanoasis/nerd-fonts/raw/{{ common_ui_fonts_versions.nerdfonts }}/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf
+          name: Fira Code Nerd Font
+    - name: Add kitty TERMINAL variable in profile
+      ansible.builtin.copy:
+        dest: "{{ home }}/.profile.d/10kitty"
+        content: "export TERMINAL=\"kitty\"\n"
+        mode: "0644"
+    - name: Add custom polybar script
+      ansible.builtin.copy:
+        src: polybar-custom
+        dest: "{{ home }}/.config/polybar/custom"
+        mode: "0755"
+    - name: Create autostart script
+      ansible.builtin.lineinfile:
+        create: "yes"
+        insertbefore: BOF
+        line: "#!/usr/bin/env bash"
+        path: "{{ home }}/.config/i3/autostart.sh"
+        mode: "0755"
+    - name: Add autostart programs
+      ansible.builtin.lineinfile:
+        line: "{{ item }} &"
+        path: "{{ home }}/.config/i3/autostart.sh"
+        mode: "0755"
+      with_items: "{{ common_ui_autostart }}"

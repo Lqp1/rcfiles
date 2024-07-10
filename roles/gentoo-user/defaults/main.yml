@@ -1,8 +1,0 @@
-systemd_services:
-    - "redshift-gtk.service"
-    - "pipewire.socket"
-    - "pipewire-pulse.socket"
-    - "wireplumber.service"
-    - "gnome-keyring-daemon.service"
-    - "gnome-keyring-daemon.socket"
-
