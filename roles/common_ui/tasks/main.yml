@@ -60,7 +60,7 @@
         - { src: redshift.conf, dst: .config/redshift.conf }
         - { src: xresources, dst: .Xresources }
         - { src: kittyaliases, dst: .aliases/10kitty }
-      notify: activate xres
+      notify: Activate xres
     - name: Clone kitty-hintsconfig from github
       ansible.builtin.git:
         repo: https://github.com/Lqp1/kitty-hintsconfig
@@ -87,7 +87,7 @@
         src: "{{ item.src }}"
         dest: "{{ home }}/.local/share/fonts/{{ item.name }}"
         include: "{{ item.for }}"
-      notify: update fc-cache
+      notify: Update fc-cache
       with_items:
         - src: https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-{{ common_ui_fonts_versions.noto }}/NotoSansMono-{{ common_ui_fonts_versions.noto }}.zip
           name: NotoSansMono
@@ -100,7 +100,7 @@
         url: "{{ item.src }}"
         dest: "{{ home }}/.local/share/fonts/{{ item.name }}.ttf"
         mode: "0644"
-      notify: update fc-cache
+      notify: Update fc-cache
       with_items:
         - src: https://github.com/googlefonts/noto-emoji/raw/{{ common_ui_fonts_versions.emoji }}/fonts/NotoColorEmoji.ttf
           name: NotoColorEmoji
