@@ -18,7 +18,7 @@ common_gitignore:
 
 common_git_aliases:
   - { name: alias.tree, value: 'log --graph --pretty="format:%ad %C(yellow)%h%Creset - %C(red)%an%Creset : %C(bold blue)%d%Creset %s" --date=short' }
-  - { name: alias.cleanup, value: "clean -ndx {{ ['-e'] | product(common_cleanignore) | map('join', ' ') | join(' ') }}" }
+  - { name: alias.cleanup, value: "clean -dx {{ ['-e'] | product(common_cleanignore) | map('join', ' ') | join(' ') }}" }
   - { name: alias.vgrep, value: '!__git_vgrep () { git grep --color=always "$@" | vgrep; }; __git_vgrep' }
   - { name: alias.today, value: log --since='6am' -p }
   - { name: advice.skippedCherryPicks, value: "false" }
