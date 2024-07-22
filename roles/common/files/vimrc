@@ -177,6 +177,7 @@ endif
 
 " Theming
 set background=dark
+set termguicolors
 set t_ut=
 silent! colorscheme solarized
 highlight Comment cterm=italic
