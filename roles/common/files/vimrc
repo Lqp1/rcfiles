@@ -121,6 +121,7 @@ set listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 augroup textfiles
     autocmd!
     autocmd BufEnter *.txt,README,*.md,*.org set spell textwidth=80
+    autocmd FileType gitcommit set spell textwidth=80 spelllang=en_us
     autocmd BufEnter *.txt,README,*.md,*.org syntax match arrow "->" conceal cchar=→
 augroup end
 
