@@ -4,3 +4,7 @@
     package: "{{ item }}"
     state: present
   with_items: "{{ debian_packages }}"
+- name: "Install delta from github"
+  ansible.builtin.apt:
+    deb: "https://github.com/dandavison/delta/releases/download/0.18.0/git-delta_0.18.0_amd64.deb"
+    state: present

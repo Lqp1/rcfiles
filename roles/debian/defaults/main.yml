@@ -1,51 +1,58 @@
 ---
 debian_packages:
-  - ccze
-  - keepassxc
-  - sudo
-  - 7zip
-  - unzip
-  # - "veracrypt"
-  - vim
-  - screen
-  - zsh
-  - autojump
-  - tree
-  # - "vgrep"
-  - ripgrep
-  - sbcl
-  # - "git-delta"
-  # - "lazygit"
-  - tig
-  - feh
-  - xdotool
-  - xclip
-  - btop
   # - "cronie"
-  - htop
-  - iotop
-  - lsof
-  - iftop
-  - iptraf-ng
-  - rclone
-  - sshfs
+  # - "lazygit"
+  # - "veracrypt"
+  - 7zip
+  - autojump
   - bat
-  - moreutils
+  - btop
+  - ccze
   - dfc
-  - powertop
-  - thermald
-  - usbutils
-  - rtkit
-  - golang
-  - ruby
-  - httpie
+  - feh
   - fwupd
+  - golang
   - gsmartcontrol
   - hdparm
+  - hplip
+  - htop
+  - httpie
+  - iftop
+  - iotop
+  - iptraf-ng
+  - keepassxc
+  - kitty
   - lm-sensors
   - lshw
+  - lsof
+  - moreutils
   - pciutils
   - pcsc-tools
+  - pipx
+  - powertop
+  - pylint
+  - python3-autopep8
+  - python3-flake8
+  - python3-ipdb
+  - python3-ipython
+  - python3-pip
+  - rclone
+  - ripgrep
+  - rtkit
+  - ruby
+  - sbcl
+  - screen
+  - sshfs
+  - sudo
+  - thermald
+  - tig
+  - tree
+  - unzip
+  - usbutils
+  - vim
+  - xclip
+  - xdotool
+  - zsh
 
       # - "app-antivirus/clamav"
       # - "app-antivirus/clamtk"
@@ -59,13 +66,6 @@ debian_packages:
       # - "app-text/evince"
       # - "dev-java/openjdk-bin"
       # - "dev-libs/libcgroup"
-      # - "dev-python/autopep8"
-      # - "dev-python/flake8"
-      # - "dev-python/ipdb"
-      # - "dev-python/ipython"
-      # - "dev-python/pip"
-      # - "dev-python/pipx"
-      # - "dev-python/pylint"
       # - "dev-python/python-lsp-server"
       # - "dev-python/pyyaml"
       # - "dev-util/android-tools"

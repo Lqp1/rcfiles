@@ -1,4 +1,8 @@
 ---
+- name: "Create X11 config dir"
+  file:
+    path: "/etc/X11/xorg.conf.d"
+    state: directory
 - name: Blacklist some modules
   ansible.builtin.copy:
     dest: /etc/modprobe.d/{{ item }}.conf
