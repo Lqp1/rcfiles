@@ -28,6 +28,7 @@
     - /etc/portage/package.unmask
     - /etc/portage/package.license
     - /etc/portage/package.accept_keywords
+    - /etc/portage/package.env
     - /etc/sddm.conf.d
 - name: Copy eix config
   ansible.builtin.copy:
