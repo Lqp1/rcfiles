@@ -49,3 +49,7 @@
       ansible.builtin.command: nix-env -iA nixgl.nixGLIntel
       when: not nixos_info.stat.exists
       notify: Nix-gc
+    - name: Upgrade nix on non NixOS system
+      ansible.builtin.command: nix-env --install --attr nixpkgs.nix nixpkgs.cacert
+      when: not nixos_info.stat.exists
+      notify: Nix-gc
