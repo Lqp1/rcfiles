@@ -53,3 +53,17 @@
       ansible.builtin.command: nix-env --install --attr nixpkgs.nix nixpkgs.cacert
       when: not nixos_info.stat.exists
       notify: Nix-gc
+    - name: Copy nix release script in binary directory
+      ansible.builtin.copy:
+        src: haz-nix-release
+        dest: "~/bin/haz-nix-release"
+        mode: "0755"
+    - name: Test if a new Nix channel release is found
+      ansible.builtin.shell: ~/bin/haz-nix-release
+      register: nix_releases
+    - name: Check hostname matches entry in ansible/hosts
+      fail:
+        msg: "Warning: New release of Nix channel detected: {{nix_releases.stdout}}"
+      when: nix_releases.stdout != ""
+      ignore_errors: True
+
