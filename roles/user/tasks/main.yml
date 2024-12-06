@@ -22,6 +22,7 @@
       xdg-mime:
         application: thunar.desktop
         mimetype: inode/directory
+      when: ansible_system == "Linux"
     - name: Clone additionnal user_repositories
       ansible.builtin.git:
         repo: "{{ item.repo }}"

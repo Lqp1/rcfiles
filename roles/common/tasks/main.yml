@@ -239,8 +239,10 @@
     path: "{{home}}/.config/VeraCrypt/Configuration.xml"
     xpath: "/VeraCrypt/configuration/config[@key='MountVolumesReadOnly']"
     value: "1"
+  ignore_errors: true
 - name: Force Veracrypt to mount volumes using utf8
   community.general.xml:
     path: "{{home}}/.config/VeraCrypt/Configuration.xml"
     xpath: "/VeraCrypt/configuration/config[@key='FilesystemOptions']"
     value: "iocharset=utf8"
+  ignore_errors: true
