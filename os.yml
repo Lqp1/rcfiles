@@ -4,9 +4,10 @@
   connection: local
   vars_files: host_vars/vault.yml
   tasks:
-    - name: Install os agnostic stuff
+    - name: Install Linux stuff (Windows & MacOS are handled differently)
       ansible.builtin.include_role:
         name: os
+      when: ansible_system == 'Linux'
     - name: Install Gentoo related stuff
       ansible.builtin.include_role:
         name: gentoo

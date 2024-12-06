@@ -3,7 +3,6 @@
   ansible.builtin.command: which {{ item }}
   with_items:
     - git
-    - ip
     - less
     - curl
     - unzip
@@ -220,22 +219,16 @@
   with_items: "{{ common_gitattributes }}"
 - name: Pull eza zip
   ansible.builtin.get_url:
-    url: https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_x86_64-unknown-linux-gnu.tar.gz
+    url: "https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_{{ ansible_architecture }}-unknown-linux-gnu.tar.gz"
     dest: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
     mode: "0644"
-  when: not minimal|bool
+  when: not minimal|bool and ansible_system == "Linux"
 - name: Extract eza into path
   ansible.builtin.unarchive:
     dest: "{{ home }}/bin/"
     include: ./eza
     src: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
-  when: (not minimal|bool) and (nixos_file.stat.exists == false)
-# - name: "Create link for exa binary"
-#   file:
-#       src: "{{home}}/bin/exa-linux-x86_64"
-#       dest: "{{home}}/bin/exa"
-#       state: "link"
-#   when: (not minimal|bool) and (nixos_file.stat.exists == false)
+  when: (not minimal|bool) and (nixos_file.stat.exists == false) and (ansible_system == "Linux")
 - name: Create a symbolic link for bash_profile
   ansible.builtin.file:
     src: "{{ home }}/.profile"

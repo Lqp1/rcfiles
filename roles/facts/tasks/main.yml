@@ -1,7 +1,6 @@
 ---
 - name: Change defaults for root user
   ansible.builtin.set_fact:
-    home: /root
     minimal: true
     common_ls_cmd: ls
   when: ansible_user_id == 'root'
