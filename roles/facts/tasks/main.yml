@@ -13,3 +13,11 @@
   ansible.builtin.stat:
     path: /etc/NIXOS
   register: nixos_file
+
+- name: Set system name to fetch binaries
+  ansible.builtin.set_fact:
+    facts_sys: "{{ 'unknown-linux-gnu' if ansible_system == 'Linux' else 'apple-darwin' }}"
+
+- name: Set arch name to fetch binaries
+  ansible.builtin.set_fact:
+    facts_arch: "{{ 'aarch64' if ansible_architecture == 'arm64' else ansible_architecture }}"

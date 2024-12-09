@@ -219,7 +219,7 @@
   with_items: "{{ common_gitattributes }}"
 - name: Pull eza zip
   ansible.builtin.get_url:
-    url: "https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_{{ ansible_architecture }}-unknown-linux-gnu.tar.gz"
+    url: "https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_{{ facts_arch }}-{{ facts_sys }}.tar.gz"
     dest: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
     mode: "0644"
   when: not minimal|bool and ansible_system == "Linux"
