@@ -38,6 +38,8 @@ common_git_aliases:
   - { name: help.autocorrect, value: 20 }
   - { name: merge.tool, value: vimdiff }
   - { name: diff.tool, value: vimdiff }
+  - { name: diff.srcPrefix, value: "" }
+  - { name: diff.dstPrefix, value: "" }
   - { name: diff.colorMoved, value: default }
   - { name: difftool.prompt, value: "false" }
   - { name: user.email, value: "{{ git_mail }}" }
