@@ -19,6 +19,12 @@
         - .sshaliases/
         - .local/share/fonts/fira-code
         - .local/share/fonts/NotoSansMono
+    - name: Configure directory for Darwin
+      ansible.builtin.file:
+        path: "{{home}}/Library/KeyBindings"
+        state: directory
+        mode: "0755"
+      when: ansible_system == "Darwin"
     - name: Remove legacy configs
       ansible.builtin.file:
         path: "{{ home }}/{{ item }}"
@@ -81,6 +87,12 @@
         path: "{{ home }}/.config/gtk-3.0/settings.ini"
         mode: "0644"
       with_items: "{{ common_ui_gtk_config }}"
+    - name: Configure Cocoa Apps keybindings
+      get_url:
+        url: https://raw.githubusercontent.com/fkchang/emacs-keybindings-in-osx/refs/heads/master/DefaultKeybinding.dict
+        dest: "{{home}}/Library/KeyBindings/DefaultKeyBinding.dict"
+        mode: "0644"
+      when: ansible_system == "Darwin"
     - name: Fetch jira-code & notoSansMono font families
       ansible.builtin.unarchive:
         remote_src: true
