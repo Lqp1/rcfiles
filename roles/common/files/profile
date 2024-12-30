@@ -1,17 +1,6 @@
 if [[ $(id -u) -ne 0 ]]
 then
-    if which go >/dev/null; then
-        export GOPATH="$(go env GOPATH)"
-        export GOBIN="$GOPATH/bin"
-    fi
-    if which ruby >/dev/null && which gem >/dev/null; then
-        export GEM_HOME="$(ruby -r rubygems -e 'puts Gem.user_dir')"
-        export GEMBIN="$GEM_HOME/bin"
-    fi
-    if which python >/dev/null; then
-        export PYTHONBIN="$(python -c 'import site; print(site.USER_BASE)')/bin"
-    fi
-    export PATH="~/bin:${GOBIN}:${GEMBIN}:${PYTHONBIN}:${PATH}"
+    export PATH="~/bin:${PATH}"
 
     if [ -d ~/.profile.d ]; then
         for f in ~/.profile.d/*; do source $f; done
