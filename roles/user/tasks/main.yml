@@ -29,16 +29,9 @@
         dest: "{{ repos_dir }}/{{ item.name }}"
       with_items: "{{ user_repos }}"
       ignore_errors: true
-    - name: Install gem dependencies
-      gem:
-        name: "{{ item }}"
-        state: latest
-        user_install: false # https://github.com/ansible/ansible/issues/50434
-        norc: false
-      with_items: "{{ user_ruby_gems }}"
-    - name: Install go dependencies
-      ansible.builtin.command: go install -v {{ item }}
-      with_items: "{{ user_go_bundles }}"
+    - name: User tooling not installed anymore
+      ansible.builtin.debug:
+        msg: Go (gopls) and Ruby (solargraph, rspec, pry, rubocop)
     - name: Create target directories for smount
       ansible.builtin.file:
         path: "{{ item.value.target }}"

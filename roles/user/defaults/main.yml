@@ -9,17 +9,6 @@ user_repos:
   - repo: https://github.com/a13xp0p0v/kconfig-hardened-check
     name: kconfig-hardened-check
 
-user_ruby_gems:
-  - bundler
-  - pry
-  - rubocop
-  - rspec
-  - solargraph
-
-user_go_bundles:
-  - golang.org/x/tools/gopls@latest
-  - github.com/rogpeppe/godef@latest
-
 user_shares:
   - name: Fake
     ip: 127.0.0.1

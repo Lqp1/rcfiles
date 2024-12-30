@@ -1,5 +1,7 @@
 ---
 - name: Activate xres
   ansible.builtin.command: xrdb -load {{ home }}/.Xresources
+  when: ansible_system == "Linux"
 - name: Update fc-cache
   ansible.builtin.command: fc-cache -r {{ home }}/.local/share/fonts
+  when: ansible_system == "Linux"
