@@ -6,10 +6,6 @@
       ansible.builtin.stat:
         path: /nix
       register: nix_info
-    - name: Check if running NixOS
-      ansible.builtin.stat:
-        path: /etc/nixos
-      register: nixos_info
     - name: Download installer
       ansible.builtin.get_url:
         url: https://nixos.org/nix/install
@@ -31,7 +27,7 @@
         mode: "0644"
     - name: Add nixgl channel if not running inside NixOS
       ansible.builtin.command: nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl
-      when: not nixos_info.stat.exists and ansible_system == "Linux"
+      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
     - name: Update channels
       ansible.builtin.command: nix-channel --update
     - name: Create local app directory
@@ -44,14 +40,14 @@
         src: google-chrome-gl.desktop
         dest: ~/.local/share/applications/google-chrome-gl.desktop
         mode: "0644"
-      when: not nixos_info.stat.exists and ansible_system == "Linux"
+      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
     - name: Install nixglIntel on non other Linux distrib than NixOS
       ansible.builtin.command: nix-env -iA nixgl.nixGLIntel
-      when: not nixos_info.stat.exists and ansible_system == "Linux"
+      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
       notify: Nix-gc
     - name: Upgrade nix on non NixOS system
       ansible.builtin.command: nix-env --install --attr nixpkgs.nix nixpkgs.cacert
-      when: not nixos_info.stat.exists and ansible_system == "Linux"
+      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
       notify: Nix-gc
     - name: Create /bin dir to store test script
       ansible.builtin.file:
@@ -69,6 +65,6 @@
     - name: Warn if a newer Nix channel is found
       fail:
         msg: "Warning: New release of Nix channel detected: {{nix_releases.stdout}}"
-      when: nix_releases.stdout != "" and not nixos_info.stat.exists
+      when: nix_releases.stdout != "" and ansible_os_family != "NixOS"
       ignore_errors: True
 

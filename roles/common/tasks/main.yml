@@ -227,7 +227,7 @@
     dest: "{{ home }}/bin/"
     include: ./eza
     src: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
-  when: (not minimal|bool) and (nixos_file.stat.exists == false) and (ansible_system == "Linux")
+  when: (not minimal|bool) and (ansible_os_family != "NixOS") and (ansible_system == "Linux")
 - name: Create a symbolic link for bash_profile
   ansible.builtin.file:
     src: "{{ home }}/.profile"

@@ -9,11 +9,6 @@
   ansible.builtin.debug:
     var: minimal
 
-- name: Check is host is NixOS
-  ansible.builtin.stat:
-    path: /etc/NIXOS
-  register: nixos_file
-
 - name: Set system name to fetch binaries
   ansible.builtin.set_fact:
     facts_sys: "{{ 'unknown-linux-gnu' if ansible_system == 'Linux' else 'apple-darwin' }}"
