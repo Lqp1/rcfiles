@@ -66,9 +66,9 @@
     - name: Test if a new Nix channel release is found
       ansible.builtin.shell: ~/bin/haz-nix-release
       register: nix_releases
-    - name: Check hostname matches entry in ansible/hosts
+    - name: Warn if a newer Nix channel is found
       fail:
         msg: "Warning: New release of Nix channel detected: {{nix_releases.stdout}}"
-      when: nix_releases.stdout != ""
+      when: nix_releases.stdout != "" and not nixos_info.stat.exists
       ignore_errors: True
 
