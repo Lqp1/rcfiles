@@ -175,8 +175,7 @@
   with_items:
     - "{{ common_git_aliases }}"
 - name: List all git configs
-  git_config:
-    list_all: "yes"
+  community.general.git_config_info:
     scope: global
   register: git_current_values
 - name: Register expected git aliases keys
