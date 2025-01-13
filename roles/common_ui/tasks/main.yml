@@ -93,6 +93,16 @@
         dest: "{{home}}/Library/KeyBindings/DefaultKeyBinding.dict"
         mode: "0644"
       when: ansible_system == "Darwin"
+    - name: Patch Cocoa app keybinding for Windows like home & end keys
+      replace:
+        path: "{{home}}/Library/KeyBindings/DefaultKeyBinding.dict"
+        regexp: "{{item.from}}"
+        replace: "{{item.to}}"
+      with_items:
+        - from: moveToBeginningOfDocument
+          to: moveToBeginningOfLine
+        - from: moveToEndOfDocument
+          to: moveToEndOfLine
     - name: Fetch jira-code & notoSansMono font families
       ansible.builtin.unarchive:
         remote_src: true
