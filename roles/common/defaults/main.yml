@@ -21,12 +21,15 @@ common_git_aliases:
   - { name: alias.cleanup, value: "clean -dx {{ ['-e'] | product(common_cleanignore) | map('join', ' ') | join(' ') }}" }
   - { name: alias.vgrep, value: '!__git_vgrep () { git grep --color=always "$@" | vgrep; }; __git_vgrep' }
   - { name: alias.today, value: log --since='6am' -p }
+  - { name: alias.root, value: rev-parse --show-toplevel }
   - { name: advice.skippedCherryPicks, value: "false" }
   - { name: pull.rebase, value: "true" }
   - { name: rebase.stat, value: "true" }
-  - { name: remote.origin.tagOpt, value: --tags }
   - { name: rebase.autoStash, value: "true" }
+  - { name: rebase.autoSquash, value: "true" }
+  - { name: rebase.updateRefs, value: "true" }
   - { name: commit.verbose, value: "true" }
+  - { name: column.ui, value: "auto" }
   - { name: status.short, value: "true" }
   - { name: status.branch, value: "true" }
   - { name: core.autocrlf, value: input }
@@ -35,23 +38,23 @@ common_git_aliases:
   - { name: core.excludesfile, value: "{{ home }}/.gitignore" }
   - { name: core.hooksPath, value: "{{ home }}/.githooks" }
   - { name: core.pager, value: "less {{ common_lessopts }}" }
+  - { name: core.attributesfile, value: "{{ home }}/.gitattributes" }
   - { name: help.autocorrect, value: 20 }
-  - { name: merge.tool, value: vimdiff }
   - { name: diff.tool, value: vimdiff }
-  - { name: diff.srcPrefix, value: "" }
-  - { name: diff.dstPrefix, value: "" }
+  - { name: diff.mnemonicPrefix, value: "true" }
+  - { name: diff.algorithm, value: "histogram" }
+  - { name: diff.renames, value: "true" }
   - { name: diff.colorMoved, value: default }
   - { name: difftool.prompt, value: "false" }
   - { name: user.email, value: "{{ git_mail }}" }
   - { name: user.name, value: "{{ git_user }}" }
-  - { name: core.attributesfile, value: "{{ home }}/.gitattributes" }
-  - { name: alias.root, value: rev-parse --show-toplevel }
-  - { name: pager.diff, value: delta }
   - { name: merge.conflictstyle, value: diff3 }
+  - { name: merge.tool, value: vimdiff }
   - { name: pager.log, value: delta }
   - { name: pager.reflog, value: delta }
   - { name: pager.show, value: delta }
   - { name: pager.blame, value: delta }
+  - { name: pager.diff, value: delta }
   - { name: interactive.diffFilter, value: delta --color-only }
   - { name: delta.navigate, value: "true" }
   - { name: delta.line-numbers, value: "true" }
@@ -59,6 +62,13 @@ common_git_aliases:
   - { name: delta.syntax-theme, value: Solarized (dark) }
   - { name: delta.hyperlinks, value: "true" }
   - { name: rerere.enabled, value: "true" }
+  - { name: rerere.autoupdate, value: "true" }
+  - { name: push.autoSetupRemote, value: "true" }
+  - { name: push.followTags, value: "true" }
+  - { name: push.default, value: "simple" }
+  - { name: fetch.prune, value: "true" }
+  - { name: fetch.pruneTags, value: "true" }
+  - { name: fetch.all, value: "true" }
 
 # https://tekin.co.uk/2020/10/better-git-diff-output-for-ruby-python-elixir-and-more
 common_gitattributes:
