@@ -103,6 +103,7 @@
           to: moveToBeginningOfLine
         - from: moveToEndOfDocument
           to: moveToEndOfLine
+      when: ansible_system == "Darwin"
     - name: Fetch jira-code & notoSansMono font families
       ansible.builtin.unarchive:
         remote_src: true
