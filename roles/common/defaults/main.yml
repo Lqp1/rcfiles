@@ -1,5 +1,5 @@
 ---
-common_eza_version: 0.20.12
+common_eza_version: 0.21.3
 common_ls_cmd: eza --git --icons --hyperlink -F
 
 # -S Chop long lines
