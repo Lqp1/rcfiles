@@ -107,7 +107,7 @@ common_cleanignore:
 
 common_aliases:
   - export EDITOR='vim'
-  - export VISUAL='${EDITOR}'
+  - export VISUAL="${EDITOR}"
   - export PAGER='less'
   - export RIPGREP_CONFIG_PATH='{{ home }}/.ripgreprc'
   - export LESS='{{ common_lessopts }}'
