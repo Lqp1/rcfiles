@@ -16,3 +16,8 @@
 - name: Set arch name to fetch binaries
   ansible.builtin.set_fact:
     facts_arch: "{{ 'aarch64' if ansible_architecture == 'arm64' else ansible_architecture }}"
+
+- name: Force usage of system Python on NixOS & Nix-Darwin
+  ansible.builtin.set_fact:
+    ansible_python_interpreter: /run/current-system/sw/bin/python
+  when: ansible_system == "Darwin" or ansible_os_family == "NixOS"
