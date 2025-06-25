@@ -34,7 +34,6 @@ common_git_aliases:
   - { name: status.branch, value: "true" }
   - { name: core.autocrlf, value: input }
   - { name: core.safecrlf, value: warn }
-  - { name: core.editor, value: vim }
   - { name: core.excludesfile, value: "{{ home }}/.gitignore" }
   - { name: core.hooksPath, value: "{{ home }}/.githooks" }
   - { name: core.pager, value: "less {{ common_lessopts }}" }
@@ -108,10 +107,10 @@ common_cleanignore:
 
 common_aliases:
   - export EDITOR='vim'
+  - export VISUAL='${EDITOR}'
   - export PAGER='less'
   - export RIPGREP_CONFIG_PATH='{{ home }}/.ripgreprc'
   - export LESS='{{ common_lessopts }}'
-  - export ALTERNATE_EDITOR=''
   - export CDPATH="$CDPATH:$HOME"
   - export FZF_DEFAULT_COMMAND='rg --files --glob "!.git/*"'
   - alias ls='{{ common_ls_cmd }} --color=auto'
