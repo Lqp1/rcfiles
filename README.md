@@ -31,6 +31,8 @@ Actual rcfiles are in `roles/common/files/` and in `roles/common-ui/files/`.
 
 ```bash
 git clone --recursive https://github.com/lqp1/rcfiles
+# or clone then fetch all modules
+git submodule update --init --recursive
 vim host_vars/localhost.yml
 echo '---' > host_vars/vault.yml # contains only my overrides
 
