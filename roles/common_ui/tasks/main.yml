@@ -132,7 +132,7 @@
     - name: Add kitty TERMINAL variable in profile
       ansible.builtin.copy:
         dest: "{{ home }}/.profile.d/10kitty"
-        content: "export TERMINAL=\"kitty\"\n"
+        content: "\n"
         mode: "0644"
     - name: Add custom polybar script
       ansible.builtin.copy:
