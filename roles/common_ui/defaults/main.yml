@@ -20,4 +20,4 @@ common_ui_gtk_config:
   - key: gtk-font-name
     value: Noto Sans 12
   - key: gtk-cursor-theme-name
-    value: material_dark_cursors
+    value: material_light_cursors
