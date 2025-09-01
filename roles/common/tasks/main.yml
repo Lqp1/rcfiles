@@ -71,6 +71,7 @@
     - .vim/colors
     - .vim/autoload
     - .config/nvim/
+    - .config/eza/
     - .githooks
     - .profile.d
     - bin
@@ -228,6 +229,12 @@
     include: ./eza
     src: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
   when: (not minimal|bool) and (ansible_os_family != "NixOS") and (ansible_system == "Linux")
+- name: Add eza theme in its config dir
+  ansible.builtin.get_url:
+    url: "{{ common_eza_theme }}"
+    dest: "{{ home }}/.config/eza/theme.yml"
+    mode: "0644"
+  when: (not minimal|bool)
 - name: Create a symbolic link for bash_profile
   ansible.builtin.file:
     src: "{{ home }}/.profile"

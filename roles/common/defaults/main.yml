@@ -1,5 +1,6 @@
 ---
 common_eza_version: 0.21.3
+common_eza_theme: https://raw.githubusercontent.com/eza-community/eza-themes/refs/heads/main/themes/gruvbox-dark.yml
 common_ls_cmd: eza --git --icons --hyperlink -F
 
 # -S Chop long lines
@@ -113,6 +114,7 @@ common_aliases:
   - export LESS='{{ common_lessopts }}'
   - export CDPATH="$CDPATH:$HOME"
   - export FZF_DEFAULT_COMMAND='rg --files --glob "!.git/*"'
+  - export EZA_CONFIG_DIR="{{ home }}/.config/eza"
   - alias ls='{{ common_ls_cmd }} --color=auto'
   - alias cp='cp -iv'
   - alias mv='mv -iv'
