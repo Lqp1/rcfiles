@@ -30,8 +30,13 @@
       when: ansible_system == "Linux"
     - name: Ensure Loupe is default image viewer
       xdg-mime:
-        application: org.gnome.Loupe.desktop
+        application: org.xfce.ristretto.desktop
         mimetype: image/jpeg
+      when: ansible_system == "Linux"
+    - name: Ensure Loupe is default image viewer
+      xdg-mime:
+        application: org.xfce.ristretto.desktop
+        mimetype: image/png
       when: ansible_system == "Linux"
     - name: Clone additionnal user_repositories
       ansible.builtin.git:
