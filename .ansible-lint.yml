@@ -1,0 +1,8 @@
+---
+skip_list:
+  - latest[git] # We voluntarily pull latest git tags
+  - yaml[line-length]
+  - ignore-errors # To be improved over time, as changed_when
+
+exclude_paths:
+  - roles/facts # Hacky helpers

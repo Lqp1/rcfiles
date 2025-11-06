@@ -1,6 +1,6 @@
 ---
 - name: Check dependencies
-  portage:
+  community.general.portage:
     package: "{{ item }}"
     state: present
   with_items:
@@ -87,7 +87,7 @@
     mode: "0644"
 - name: Register CPU flags
   ansible.builtin.command: cpuid2cpuflags
-  register: flags
+  register: gentoo_flags
   changed_when: false
 - name: Setup CPU flags as use flags
   ansible.builtin.template:
@@ -118,8 +118,7 @@
   ansible.builtin.lineinfile:
     path: /etc/portage/make.conf
     regexp: EMERGE_DEFAULT_OPTS=.*
-    line: EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y
-      --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4
+    line: EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4
       --load-average=4 --getbinpkg"
 - name: Ensure portage niceness
   ansible.builtin.lineinfile:

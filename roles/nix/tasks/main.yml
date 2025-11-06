@@ -15,6 +15,7 @@
     - name: Install Nix
       ansible.builtin.command: /bin/bash /tmp/nix-install
       when: not nix_info.stat.exists
+      changed_when: true
     - name: Create some directories
       ansible.builtin.file:
         path: ~/.profile.d/
@@ -28,8 +29,10 @@
     - name: Add nixgl channel if not running inside NixOS
       ansible.builtin.command: nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl
       when: ansible_os_family != "NixOS" and ansible_system == "Linux"
+      changed_when: true
     - name: Update channels
       ansible.builtin.command: nix-channel --update
+      changed_when: true
     - name: Create local app directory
       ansible.builtin.file:
         path: ~/.local/share/applications/
@@ -45,10 +48,12 @@
       ansible.builtin.command: nix-env -iA nixgl.nixGLIntel
       when: ansible_os_family != "NixOS" and ansible_system == "Linux"
       notify: Nix-gc
+      changed_when: true
     - name: Upgrade nix on non NixOS system
       ansible.builtin.command: nix-env --install --attr nixpkgs.nix nixpkgs.cacert
       when: ansible_os_family != "NixOS" and ansible_system == "Linux"
       notify: Nix-gc
+      changed_when: true
     - name: Create /bin dir to store test script
       ansible.builtin.file:
         path: ~/bin
@@ -60,11 +65,12 @@
         dest: "~/bin/haz-nix-release"
         mode: "0755"
     - name: Test if a new Nix channel release is found
-      ansible.builtin.shell: ~/bin/haz-nix-release
+      ansible.builtin.command: ~/bin/haz-nix-release
       register: nix_releases
+      changed_when: false
     - name: Warn if a newer Nix channel is found
-      fail:
-        msg: "Warning: New release of Nix channel detected: {{nix_releases.stdout}}"
+      ansible.builtin.fail:
+        msg: "Warning: New release of Nix channel detected: {{ nix_releases.stdout }}"
       when: nix_releases.stdout != "" and ansible_os_family != "NixOS"
-      ignore_errors: True
-
+      ignore_errors: true
+      changed_when: false

@@ -1,4 +1,0 @@
----
-skip_list:
-  - idempotency
-  - yaml[line-length]

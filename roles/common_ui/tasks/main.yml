@@ -21,7 +21,7 @@
         - .local/share/fonts/NotoSansMono
     - name: Configure directory for Darwin
       ansible.builtin.file:
-        path: "{{home}}/Library/KeyBindings"
+        path: "{{ home }}/Library/KeyBindings"
         state: directory
         mode: "0755"
       when: ansible_system == "Darwin"
@@ -79,7 +79,7 @@
         mode: "0644"
       with_items: "{{ common_ui_gtk_config }}"
     - name: Configure GTK-3.0 apps
-      ini_file:
+      community.general.ini_file:
         create: true
         section: Settings
         option: "{{ item.key }}"
@@ -88,16 +88,16 @@
         mode: "0644"
       with_items: "{{ common_ui_gtk_config }}"
     - name: Configure Cocoa Apps keybindings
-      get_url:
+      ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/fkchang/emacs-keybindings-in-osx/refs/heads/master/DefaultKeybinding.dict
-        dest: "{{home}}/Library/KeyBindings/DefaultKeyBinding.dict"
+        dest: "{{ home }}/Library/KeyBindings/DefaultKeyBinding.dict"
         mode: "0644"
       when: ansible_system == "Darwin"
     - name: Patch Cocoa app keybinding for Windows like home & end keys
-      replace:
-        path: "{{home}}/Library/KeyBindings/DefaultKeyBinding.dict"
+      ansible.builtin.replace:
+        path: "{{ home }}/Library/KeyBindings/DefaultKeyBinding.dict"
         regexp: "{{item.from}}"
-        replace: "{{item.to}}"
+        replace: "{{ item.to }}"
       with_items:
         - from: moveToBeginningOfDocument
           to: moveToBeginningOfLine
@@ -112,7 +112,8 @@
         include: "{{ item.for }}"
       notify: Update fc-cache
       with_items:
-        - src: https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-{{ common_ui_fonts_versions.noto }}/NotoSansMono-{{ common_ui_fonts_versions.noto }}.zip
+        - src: https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-{{ common_ui_fonts_versions.noto }}/NotoSansMono-{{ common_ui_fonts_versions.noto
+            }}.zip
           name: NotoSansMono
           for: NotoSansMono/googlefonts/ttf/NotoSansMono-Regular.ttf
         - src: https://github.com/tonsky/FiraCode/releases/download/{{ common_ui_fonts_versions.fira }}/Fira_Code_v{{ common_ui_fonts_versions.fira }}.zip

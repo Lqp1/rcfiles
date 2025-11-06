@@ -15,6 +15,7 @@
 - name: Install FZF
   ansible.builtin.command: "{{ home }}/.fzf/install --bin"
   when: not minimal|bool
+  changed_when: true
 - name: Clone Spacemacs from github
   ansible.builtin.git:
     repo: https://github.com/syl20bnr/spacemacs
@@ -169,7 +170,7 @@
     content: "{{ common_aliases | join('\n') }}\n"
     mode: "0644"
 - name: Add git alias and sane behaviors
-  git_config:
+  community.general.git_config:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     scope: global
@@ -178,19 +179,19 @@
 - name: List all git configs
   community.general.git_config_info:
     scope: global
-  register: git_current_values
+  register: common_git_current_values
 - name: Register expected git aliases keys
   ansible.builtin.set_fact:
     common_git_aliases_keys: "{{ common_git_aliases | map(attribute='name') | map('lower') | list }}"
 - name: Register existing git aliases keys
   ansible.builtin.set_fact:
-    current_aliases: "{{ git_current_values.config_values | dict2items | map(attribute='key') | map('lower') | list }}"
+    common_current_aliases: "{{ common_git_current_values.config_values | dict2items | map(attribute='key') | map('lower') | list }}"
 - name: Remove unwanted git configs
-  git_config:
+  community.general.git_config:
     scope: global
     state: absent
     name: "{{ item }}"
-  loop: "{{ current_aliases | difference(common_git_aliases_keys) }}"
+  loop: "{{ common_current_aliases | difference(common_git_aliases_keys) }}"
 - name: Add curlrc config
   ansible.builtin.lineinfile:
     create: true
@@ -242,22 +243,22 @@
     state: link
 - name: Force Veracrypt to mount RO by default
   community.general.xml:
-    path: "{{home}}/.config/VeraCrypt/Configuration.xml"
+    path: "{{ home }}/.config/VeraCrypt/Configuration.xml"
     xpath: "/VeraCrypt/configuration/config[@key='MountVolumesReadOnly']"
     value: "1"
   ignore_errors: true
   when: not minimal|bool
 - name: Force Veracrypt to mount volumes using utf8
   community.general.xml:
-    path: "{{home}}/.config/VeraCrypt/Configuration.xml"
+    path: "{{ home }}/.config/VeraCrypt/Configuration.xml"
     xpath: "/VeraCrypt/configuration/config[@key='FilesystemOptions']"
     value: "iocharset=utf8"
   ignore_errors: true
   when: not minimal|bool
-- name: install cliclick
+- name: Install cliclick
   ansible.builtin.get_url:
     url: "https://github.com/BlueM/cliclick/releases/download/5.1/cliclick.zip"
-    dest: "/tmp/cliclick-{{user}}.zip"
+    dest: "/tmp/cliclick-{{ user }}.zip"
     mode: "0644"
   when: (not minimal|bool) and ansible_system == "Darwin"
 - name: Unarchive cliclick
@@ -271,6 +272,6 @@
     content: |
       #!/bin/sh
       # See https://github.com/BlueM/cliclick/issues/130 and alike
-      exec arch -x86_64 {{home}}/.local/cliclick/cliclick $@
+      exec arch -x86_64 {{ home }}/.local/cliclick/cliclick $@
     mode: "0755"
   when: (not minimal|bool) and ansible_system == "Darwin"
