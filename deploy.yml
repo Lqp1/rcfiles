@@ -2,7 +2,6 @@
 - name: Local custom config
   hosts: localhost
   connection: local
-  vars_files: host_vars/vault.yml
   roles:
     - facts
     - nix

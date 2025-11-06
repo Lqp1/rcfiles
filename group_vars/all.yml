@@ -1,0 +1,8 @@
+---
+shares_dir: "{{ home }}/Bureau/"
+repos_dir: "{{ home }}/Documents/Repo/"
+git_mail: thomas.lange.oss@gmail.com
+git_user: Thomas Langé
+home: "{{ ansible_user_dir }}"
+minimal: false
+user: "{{ ansible_user_id }}"

@@ -2,7 +2,6 @@
 - name: OS specific deployment - root phase
   hosts: localhost
   connection: local
-  vars_files: host_vars/vault.yml
   tasks:
     - name: Install Linux stuff (Windows & MacOS are handled differently)
       ansible.builtin.include_role:

@@ -33,14 +33,14 @@ Actual rcfiles are in `roles/common/files/` and in `roles/common-ui/files/`.
 git clone --recursive https://github.com/lqp1/rcfiles
 # or clone then fetch all modules
 git submodule update --init --recursive
-vim host_vars/localhost.yml
-echo '---' > host_vars/vault.yml # contains only my overrides
+vim group_vars/all.yml
+rm host_vars/localhost.yml # contains only my overrides
 
 # To set everything for the user:
 ansible-playbook deploy.yml --ask-vault-pass
 
 # To setup gentoo config:
-ansible-playbook gentoo.yml -K --ask-vault-pass
+ansible-playbook os.yml --ask-vault-pass
 
 # Adapt to the sets you're interested in:
 echo -e "@personal\n@personalLaptop\n@personalX11\n" | sudo tee -a /var/lib/portage/world_sets
