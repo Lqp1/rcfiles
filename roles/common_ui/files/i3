@@ -252,6 +252,9 @@ assign [class="(?i)spotify"]        $ws4
 # Due to bug in how spotify assigns its class; workaround:
 for_window [class="Spotify"] move to workspace $ws4
 
+# Other
+assign [class="(?i)steam"]          $ws5
+
 # Set autostart
 exec_always --no-startup-id exec systemctl --user start --no-block i3-session.target
 exec --no-startup-id bash -c "[[ -x ~/.config/i3/autostart.sh ]] && ~/.config/i3/autostart.sh"
