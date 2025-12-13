@@ -15,6 +15,8 @@ if [ -f ~/.aliases ]; then
 fi
 
 if [ -d ~/.aliases ]; then
-    for f in ~/.aliases/*; do source $f; done
-    return
+    if [ -n "$(ls -A ~/.aliases)" ]; then
+        for f in ~/.aliases/*; do source $f; done
+        return
+    fi
 fi
