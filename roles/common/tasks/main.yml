@@ -7,6 +7,12 @@
     - curl
     - unzip
   changed_when: false
+- name: Clone Neovim (Lazyvim) config
+  ansible.builtin.git:
+    repo: ssh://git@github.com/Lqp1/lazyvim-config.git
+    dest: "{{ home }}/.config/nvim"
+    version: main
+  when: not minimal|bool
 - name: Clone FZF
   ansible.builtin.git:
     repo: https://github.com/junegunn/fzf.git
@@ -71,7 +77,6 @@
     - .vim
     - .vim/colors
     - .vim/autoload
-    - .config/nvim/
     - .config/eza/
     - .githooks
     - .profile.d
@@ -87,7 +92,6 @@
     - { src: res/vim-solarized8/colors/solarized8_flat.vim, dst: .vim/colors/solarized.vim }
     - { src: res/vim-plug/plug.vim, dst: .vim/autoload/plug.vim }
     - { src: res/fzf-git.sh/fzf-git.sh, dst: .aliases/fzf-git.sh }
-    - { src: nvimrc, dst: .config/nvim/init.vim }
     - { src: bashrc, dst: .bashrc }
     - { src: ripgreprc, dst: .ripgreprc }
     - { src: profile, dst: .profile }
