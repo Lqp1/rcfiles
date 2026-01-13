@@ -137,13 +137,22 @@ endif
 
 " Highlight trailing Tabs, Spaces and special chars
 augroup specialchars
-    autocmd!
-    autocmd Colorscheme * highlight Tab ctermbg=darkgray guibg=darkgray
-    autocmd Colorscheme * highlight Space ctermbg=darkblue guibg=darkblue
-    autocmd Colorscheme * highlight nonAscii ctermfg=blue guifg=blue
-    autocmd BufWinEnter * let w:m2=matchadd('Tab', '\t', -1)
-    autocmd BufWinEnter * let w:m3=matchadd('Space', '\s\+$\| \+\ze\t', -1)
-    autocmd BufWinEnter *.txt,README,*.md let w:m4=matchadd('nonAscii', '[^\d0-\d127]', -1)
+  autocmd!
+
+  " Define now (so BufWinEnter can't beat it)
+  highlight Tab   ctermbg=darkgray guibg=darkgray
+  highlight Space ctermbg=darkblue guibg=darkblue
+  highlight nonAscii ctermfg=blue guifg=blue
+
+  " Re-apply after :colorscheme (colorschemes often reset highlights)
+  autocmd ColorScheme * highlight Tab   ctermbg=darkgray guibg=darkgray
+  autocmd ColorScheme * highlight Space ctermbg=darkblue guibg=darkblue
+  autocmd ColorScheme * highlight nonAscii ctermfg=blue guifg=blue
+
+  " Add matches
+  autocmd BufWinEnter * let w:m2 = matchadd('Tab', '\t', -1)
+  autocmd BufWinEnter * let w:m3 = matchadd('Space', '\s\+$\| \+\ze\t', -1)
+  autocmd BufWinEnter *.txt,README,*.md let w:m4 = matchadd('nonAscii', '[^\x00-\x7F]', -1)
 augroup end
 
 " Allow mouse and system clipboard smoothly
