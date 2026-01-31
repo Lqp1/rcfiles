@@ -209,7 +209,7 @@ client.placeholder      $color_border $color_black $color_white $color_green   $
 client.background       $color_white
 
 # Activate windows on open
-for_window [class=".*"] focus
+for_window [class="^(?i)(?!discord)(?!steam).*"] focus
 
 # Set floating window for some apps
 for_window [window_role="pop-up"] floating enable
