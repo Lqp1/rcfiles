@@ -15,6 +15,7 @@
         - .config/dunst/
         - .config/gtk-3.0/
         - .config/systemd/user/
+        - .config/xfce4/terminal
         - .smount/
         - .sshaliases/
         - .local/share/fonts/fira-code
@@ -66,6 +67,7 @@
         - { src: redshift.conf, dst: .config/redshift.conf }
         - { src: xresources, dst: .Xresources }
         - { src: kittyaliases, dst: .aliases/10kitty }
+        - { src: xfce4terminal_accels.scm, dst: .config/xfce4/terminal/accels.scm}
       notify: Activate xres
     - name: Clone kitty-hintsconfig from github
       ansible.builtin.git:
