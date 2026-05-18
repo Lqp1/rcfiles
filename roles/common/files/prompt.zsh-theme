@@ -1,4 +1,18 @@
-PROMPT="[%*] %m %{${fg_bold[red]}%}:: %{${fg[green]}%}%3~%(0?. . %{${fg[red]}%}%? )%{${fg[blue]}%}»%{${reset_color}%} "
+setopt PROMPT_SUBST
+
+function nix_prompt_info() {
+  if [[ -n "$IN_NIX_SHELL" ]]; then
+    echo "%{${fg[magenta]}%}[nix:$IN_NIX_SHELL]%{${reset_color}%} "
+  fi
+}
+
+function shlvl_prompt_info() {
+  if [[ "$SHLVL" -gt 1 ]]; then
+    echo "%{${fg[yellow]}%}[shlvl:$SHLVL]%{${reset_color}%} "
+  fi
+}
+
+PROMPT='[%*] %m $(nix_prompt_info)$(shlvl_prompt_info)%{${fg_bold[red]}%}:: %{${fg[green]}%}%3~%(0?. . %{${fg[red]}%}%? )%{${fg[blue]}%}»%{${reset_color}%} '
 
 function preexec() {
   timer=$(($(date +%s%0N)/1000000))
