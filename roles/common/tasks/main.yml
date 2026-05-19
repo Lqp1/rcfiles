@@ -195,7 +195,7 @@
     scope: global
     state: absent
     name: "{{ item }}"
-  loop: "{{ common_current_aliases | difference(common_git_aliases_keys) }}"
+  loop: "{{ common_current_aliases | difference(common_git_aliases_keys + ['user.signingkey']) }}"
 - name: Add curlrc config
   ansible.builtin.lineinfile:
     create: true
