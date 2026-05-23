@@ -21,3 +21,10 @@
   ansible.builtin.set_fact:
     ansible_python_interpreter: /run/current-system/sw/bin/python
   when: ansible_system == "Darwin" or ansible_os_family == "NixOS"
+
+- name: Write git commit hash marker file
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.ansible_git_commit"
+    content: >-
+      {{ lookup('pipe', 'git rev-parse HEAD') ~
+         ('-dirty' if lookup('pipe', 'git status --porcelain') | length > 0 else '') }}
