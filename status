@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MARKER_FILE="${HOME}/.ansible_git_commit"
+
+if [[ ! -f "$MARKER_FILE" ]]; then
+  echo "❌ No marker file found: $MARKER_FILE"
+  exit 1
+fi
+
+MARKER="$(cat "$MARKER_FILE")"
+DIRTY=""
+
+# extract clean commit (strip -dirty if present)
+MARKER_HASH="${MARKER%-dirty}"
+
+CURRENT="$(git rev-parse HEAD)"
+
+# dirty state
+if [[ -n "$(git status --porcelain)" ]]; then
+  DIRTY=" (working tree dirty)"
+fi
+
+echo "Marker : $MARKER"
+echo "Current: $CURRENT$DIRTY"
+echo
+
+# If same commit
+if [[ "$MARKER_HASH" == "$CURRENT" && -z "$DIRTY" && "$MARKER" != *dirty* ]]; then
+  echo "✅ Exact match (same commit, clean working tree)"
+  exit 0
+fi
+
+# If marker commit is not in history anymore (or unrelated repo state)
+if ! git merge-base --is-ancestor "$MARKER_HASH" HEAD 2>/dev/null && \
+   ! git merge-base --is-ancestor HEAD "$MARKER_HASH" 2>/dev/null; then
+  echo "⚠️ Histories diverged (no ancestor relationship)"
+  exit 2
+fi
+
+# Compute divergence
+AHEAD_BEHIND="$(git rev-list --left-right --count "$MARKER_HASH...HEAD")"
+BEHIND="$(echo "$AHEAD_BEHIND" | awk '{print $1}')"
+AHEAD="$(echo "$AHEAD_BEHIND" | awk '{print $2}')"
+
+echo "📊 Divergence from marker:"
+echo "   Ahead (new commits):  $AHEAD"
+echo "   Behind (missing commits): $BEHIND"
+
+if [[ "$AHEAD" -eq 0 && "$BEHIND" -eq 0 ]]; then
+  echo "ℹ️ Same commit history point (but marker formatting differs)"
+elif [[ "$AHEAD" -gt 0 && "$BEHIND" -eq 0 ]]; then
+  echo "➡️ Repo is ahead of marker"
+elif [[ "$BEHIND" -gt 0 && "$AHEAD" -eq 0 ]]; then
+  echo "⬅️ Repo is behind marker"
+else
+  echo "🔀 Histories have diverged (both ahead and behind)"
+fi
+
+if [[ -n "$DIRTY" ]]; then
+  echo "🧹 Working tree is dirty"
+fi
