@@ -30,6 +30,8 @@ Actual rcfiles are in `roles/common/files/` and in `roles/common-ui/files/`.
 # Usage
 
 ```bash
+# ⚠️ Make sure ssh keys are in place first :)
+
 git clone --recursive https://github.com/lqp1/rcfiles
 # or clone then fetch all modules
 git submodule update --init --recursive
