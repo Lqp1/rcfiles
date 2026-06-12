@@ -22,22 +22,22 @@
       xdg-mime:
         application: thunar.desktop
         mimetype: inode/directory
-      when: ansible_system == "Linux"
+      when: ansible_facts['system'] == "Linux"
     - name: Ensure Evince is default pdf viewer
       xdg-mime:
         application: org.gnome.Evince.desktop
         mimetype: application/pdf
-      when: ansible_system == "Linux"
+      when: ansible_facts['system'] == "Linux"
     - name: Ensure Loupe is default image viewer
       xdg-mime:
         application: org.xfce.ristretto.desktop
         mimetype: image/jpeg
-      when: ansible_system == "Linux"
+      when: ansible_facts['system'] == "Linux"
     - name: Ensure Loupe is default image viewer
       xdg-mime:
         application: org.xfce.ristretto.desktop
         mimetype: image/png
-      when: ansible_system == "Linux"
+      when: ansible_facts['system'] == "Linux"
     - name: Clone additionnal user_repositories
       ansible.builtin.git:
         repo: "{{ item.repo }}"

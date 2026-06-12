@@ -25,7 +25,7 @@
         path: "{{ home }}/Library/KeyBindings"
         state: directory
         mode: "0755"
-      when: ansible_system == "Darwin"
+      when: ansible_facts['system'] == "Darwin"
     - name: Remove legacy configs
       ansible.builtin.file:
         path: "{{ home }}/{{ item }}"
@@ -94,7 +94,7 @@
         url: https://raw.githubusercontent.com/fkchang/emacs-keybindings-in-osx/refs/heads/master/DefaultKeybinding.dict
         dest: "{{ home }}/Library/KeyBindings/DefaultKeyBinding.dict"
         mode: "0644"
-      when: ansible_system == "Darwin"
+      when: ansible_facts['system'] == "Darwin"
     - name: Patch Cocoa app keybinding for Windows like home & end keys
       ansible.builtin.replace:
         path: "{{ home }}/Library/KeyBindings/DefaultKeyBinding.dict"
@@ -105,7 +105,7 @@
           to: moveToBeginningOfLine
         - from: moveToEndOfDocument
           to: moveToEndOfLine
-      when: ansible_system == "Darwin"
+      when: ansible_facts['system'] == "Darwin"
     - name: Fetch jira-code & notoSansMono font families
       ansible.builtin.unarchive:
         remote_src: true

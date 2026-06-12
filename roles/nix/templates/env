@@ -1,4 +1,4 @@
-{% if ansible_os_family != "NixOS" %}
+{% if ansible_facts['os_family'] != "NixOS" %}
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
 {% endif %}
 

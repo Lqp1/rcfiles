@@ -6,15 +6,15 @@
     - name: Install Linux stuff (Windows & MacOS are handled differently)
       ansible.builtin.include_role:
         name: os
-      when: ansible_system == 'Linux'
+      when: ansible_facts['system'] == 'Linux'
     - name: Install Gentoo related stuff
       ansible.builtin.include_role:
         name: gentoo
-      when: ansible_distribution == 'Gentoo'
+      when: ansible_facts['distribution'] == 'Gentoo'
     - name: Install debian related stuff
       ansible.builtin.include_role:
         name: debian
-      when: ansible_distribution == 'Debian'
+      when: ansible_facts['distribution'] == 'Debian'
   become: true
   become_user: root
   become_method: ansible.builtin.sudo
@@ -26,8 +26,8 @@
     - name: Install gentoo user stuff
       ansible.builtin.include_role:
         name: gentoo_user
-      when: ansible_distribution == 'Gentoo'
+      when: ansible_facts['distribution'] == 'Gentoo'
     - name: Install debian related stuff
       ansible.builtin.include_role:
         name: debian_user
-      when: ansible_distribution == 'Debian'
+      when: ansible_facts['distribution'] == 'Debian'

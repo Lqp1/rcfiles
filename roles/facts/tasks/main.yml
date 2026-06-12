@@ -3,7 +3,7 @@
   ansible.builtin.set_fact:
     minimal: true
     common_ls_cmd: ls
-  when: ansible_user_id == 'root'
+  when: ansible_facts['user_id'] == 'root'
 
 - name: Minimal
   ansible.builtin.debug:
@@ -11,20 +11,20 @@
 
 - name: Set system name to fetch binaries
   ansible.builtin.set_fact:
-    facts_sys: "{{ 'unknown-linux-gnu' if ansible_system == 'Linux' else 'apple-darwin' }}"
+    facts_sys: "{{ 'unknown-linux-gnu' if ansible_facts['system'] == 'Linux' else 'apple-darwin' }}"
 
 - name: Set arch name to fetch binaries
   ansible.builtin.set_fact:
-    facts_arch: "{{ 'aarch64' if ansible_architecture == 'arm64' else ansible_architecture }}"
+    facts_arch: "{{ 'aarch64' if ansible_facts['architecture'] == 'arm64' else ansible_facts['architecture'] }}"
 
 - name: Force usage of system Python on NixOS & Nix-Darwin
   ansible.builtin.set_fact:
     ansible_python_interpreter: /run/current-system/sw/bin/python
-  when: ansible_system == "Darwin" or ansible_os_family == "NixOS"
+  when: ansible_facts['system'] == "Darwin" or ansible_facts['os_family'] == "NixOS"
 
 - name: Write git commit hash marker file
   ansible.builtin.copy:
-    dest: "{{ ansible_env.HOME }}/.ansible_git_commit"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.ansible_git_commit"
     content: >-
       {{ lookup('pipe', 'git rev-parse HEAD') ~
          ('-dirty' if lookup('pipe', 'git status --porcelain') | length > 0 else '') }}

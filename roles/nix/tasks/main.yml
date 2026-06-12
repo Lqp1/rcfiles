@@ -28,7 +28,7 @@
         mode: "0644"
     - name: Add nixgl channel if not running inside NixOS
       ansible.builtin.command: nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz nixgl
-      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
+      when: ansible_facts['os_family'] != "NixOS" and ansible_facts['system'] == "Linux"
       changed_when: true
     - name: Update channels
       ansible.builtin.command: nix-channel --update
@@ -43,15 +43,15 @@
         src: google-chrome-gl.desktop
         dest: ~/.local/share/applications/google-chrome-gl.desktop
         mode: "0644"
-      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
+      when: ansible_facts['os_family'] != "NixOS" and ansible_facts['system'] == "Linux"
     - name: Install nixglIntel on non other Linux distrib than NixOS
       ansible.builtin.command: nix-env -iA nixgl.nixGLIntel
-      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
+      when: ansible_facts['os_family'] != "NixOS" and ansible_facts['system'] == "Linux"
       notify: Nix-gc
       changed_when: true
     - name: Upgrade nix on non NixOS system
       ansible.builtin.command: nix-env --install --attr nixpkgs.nix nixpkgs.cacert
-      when: ansible_os_family != "NixOS" and ansible_system == "Linux"
+      when: ansible_facts['os_family'] != "NixOS" and ansible_facts['system'] == "Linux"
       notify: Nix-gc
       changed_when: true
     - name: Create /bin dir to store test script
@@ -71,6 +71,6 @@
     - name: Warn if a newer Nix channel is found
       ansible.builtin.fail:
         msg: "Warning: New release of Nix channel detected: {{ nix_releases.stdout }}"
-      when: nix_releases.stdout != "" and ansible_os_family != "NixOS"
+      when: nix_releases.stdout != "" and ansible_facts['os_family'] != "NixOS"
       ignore_errors: true
       changed_when: false
