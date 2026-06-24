@@ -4,14 +4,14 @@
 backend = "xrender";
 vsync = true;
 
-shadow = false;
-shadow-radius = 10;
-shadow-offset-x = -5;
-shadow-offset-y = 0;
-shadow-opacity = 0.8;
-shadow-red = 0.11;
-shadow-green = 0.12;
-shadow-blue = 0.13;
+shadow = true;
+shadow-radius = 12;
+shadow-offset-x = -4;
+shadow-offset-y = 4;
+shadow-opacity = {{ common_ui_color_palette.shadow.opacity }};
+shadow-red = {{ common_ui_color_palette.shadow.red }};
+shadow-green = {{ common_ui_color_palette.shadow.green }};
+shadow-blue = {{ common_ui_color_palette.shadow.blue }};
 shadow-exclude = [
   "name = 'Notification'",
   "_GTK_FRAME_EXTENTS@:c",

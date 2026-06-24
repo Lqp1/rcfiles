@@ -18,45 +18,45 @@ screenchange-reload = true
 
 [color]
 
-bg = #FFFFFF
-fg = #FFFFFF
-fg-alt = #454545
+bg = {{ common_ui_color_palette.blue.background }}
+fg = {{ common_ui_color_palette.neutral.text }}
+fg-alt = {{ common_ui_color_palette.neutral.muted }}
 
-acolor = #FFFFFF
-curgent = #EF5350
-coccupied = #42A5F5
+acolor = {{ common_ui_color_palette.blue.focus }}
+curgent = {{ common_ui_color_palette.status.red_urgent }}
+coccupied = {{ common_ui_color_palette.blue.focus }}
 
-shade1 = #0D47A1
-shade2 = #1565C0
-shade3 = #1976D2
-shade4 = #1E88E5
-shade5 = #2196F3
-shade6 = #42A5F5
-shade7 = #64B5F6
-shade8 = #90CAF9
-txt = #2C2C2C
+shade1 = {{ common_ui_color_palette.blue.background }}
+shade2 = {{ common_ui_color_palette.blue.surface }}
+shade3 = {{ common_ui_color_palette.blue.surface_alt }}
+shade4 = {{ common_ui_color_palette.blue.dark }}
+shade5 = {{ common_ui_color_palette.blue.base }}
+shade6 = {{ common_ui_color_palette.blue.focus }}
+shade7 = {{ common_ui_color_palette.blue.focus_alt }}
+shade8 = {{ common_ui_color_palette.blue.focus_light }}
+txt = {{ common_ui_color_palette.neutral.text }}
 
 ## Material Colors
 
-red = #e53935
-pink = #d81b60
-purple = #8e24aa
-deep-purple = #5e35b1
-indigo = #3949ab
-blue = #1e88e5
-light-blue = #039be5
-cyan = #00acc1
-teal = #00897b
-green = #43a047
-light-green = #7cb342
-lime = #c0ca33
-yellow = #fdd835
-amber = #ffb300
-orange = #fb8c00
-deep-orange = #f4511e
-brown = #6d4c41
-grey = #757575
-blue-gray = #546e7a
+red = {{ common_ui_color_palette.status.red }}
+pink = {{ common_ui_color_palette.accent.pink }}
+purple = {{ common_ui_color_palette.accent.purple }}
+deep-purple = {{ common_ui_color_palette.accent.deep_purple }}
+indigo = {{ common_ui_color_palette.accent.indigo }}
+blue = {{ common_ui_color_palette.blue.base }}
+light-blue = {{ common_ui_color_palette.blue.light }}
+cyan = {{ common_ui_color_palette.accent.cyan }}
+teal = {{ common_ui_color_palette.accent.teal }}
+green = {{ common_ui_color_palette.status.green }}
+light-green = {{ common_ui_color_palette.status.light_green }}
+lime = {{ common_ui_color_palette.status.lime }}
+yellow = {{ common_ui_color_palette.status.yellow }}
+amber = {{ common_ui_color_palette.status.amber }}
+orange = {{ common_ui_color_palette.status.orange }}
+deep-orange = {{ common_ui_color_palette.status.deep_orange }}
+brown = {{ common_ui_color_palette.accent.brown }}
+grey = {{ common_ui_color_palette.neutral.grey }}
+blue-gray = {{ common_ui_color_palette.neutral.blue_gray }}
 
 ;==========================================================
 
@@ -69,7 +69,7 @@ bottom = false
 fixed-center = true
 line-size = 2
 
-background = ${color.shade8}
+background = ${color.bg}
 foreground = ${color.fg}
 
 
@@ -107,7 +107,7 @@ bottom = true
 line-size = 2
 radius = 20
 
-background = ${color.shade8}
+background = ${color.shade2}
 foreground = ${color.fg}
 
 ;==========================================================
@@ -146,7 +146,7 @@ enable-scroll = false
 strip-wsnumbers = true
 pin-workspaces = false
 format = <label-state> <label-mode>
-format-background = ${color.shade6}
+format-background = ${color.shade2}
 fuzzy-match = true
 ws-icon-0 = 1;󰖟
 ws-icon-1 = 2;
@@ -156,7 +156,7 @@ ws-icon-4 = 5;
 ws-icon-default = 
 
 label-mode = %mode%
-label-mode-background = #e60053
+label-mode-background = {{ common_ui_color_palette.accent.mode }}
 label-mode-padding = 2
 
 label-urgent = %name%
@@ -167,14 +167,17 @@ label-urgent-padding = 2
 label-focused-font = 2
 label-focused = %icon%
 label-focused-background = ${color.shade6}
+label-focused-foreground = ${color.bg}
 label-focused-padding = 2
 
 label-unfocused = %icon%
-label-unfocused-background = ${color.shade7}
+label-unfocused-background = ${color.shade2}
+label-unfocused-foreground = ${color.fg-alt}
 label-unfocused-padding = 2
 
 label-visible = %icon%
-label-visible-background = ${color.shade7}
+label-visible-background = ${color.shade3}
+label-visible-foreground = ${color.fg}
 label-visible-padding = 2
 
 [module/custom]
@@ -205,9 +208,9 @@ label-background = ${color.shade4}
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
 format-volume-padding = 2
-format-volume-background = ${color.shade6}
+format-volume-background = ${color.shade3}
 label-volume = %percentage%%
-label-muted-background = ${color.shade6}
+label-muted-background = ${color.shade3}
 label-muted-padding = 2
 
 ramp-volume-font = 2
@@ -236,21 +239,21 @@ format-unmounted = <label-unmounted>
 label-mounted = %mountpoint%
 label-unmounted = 
 ramp-capacity-0 = ▁
-ramp-capacity-0-foreground = ${color.red}
+ramp-capacity-0-foreground = ${color.shade7}
 ramp-capacity-1 = ▂
-ramp-capacity-1-foreground = ${color.red}
+ramp-capacity-1-foreground = ${color.shade7}
 ramp-capacity-2 = ▃
-ramp-capacity-2-foreground = ${color.deep-orange}
+ramp-capacity-2-foreground = ${color.shade6}
 ramp-capacity-3 = ▄
-ramp-capacity-3-foreground = ${color.orange}
+ramp-capacity-3-foreground = ${color.shade6}
 ramp-capacity-4 = ▅
 ramp-capacity-4-foreground = ${color.yellow}
 ramp-capacity-5 = ▆
-ramp-capacity-5-foreground = ${color.green}
+ramp-capacity-5-foreground = ${color.orange}
 ramp-capacity-6 = ▇
-ramp-capacity-6-foreground = ${color.light-green}
+ramp-capacity-6-foreground = ${color.deep-orange}
 ramp-capacity-7 = █
-ramp-capacity-7-foreground = ${color.light-green}
+ramp-capacity-7-foreground = ${color.red}
 
 [module/cpu]
 type = internal/cpu
@@ -261,23 +264,23 @@ format-padding = 2
 label = 
 label-font = 2
 bar-load-width = 15
-bar-load-foreground-0 = ${color.green}
-bar-load-foreground-1 = ${color.yellow}
+bar-load-foreground-0 = ${color.shade7}
+bar-load-foreground-1 = ${color.shade6}
 bar-load-foreground-2 = ${color.orange}
 bar-load-foreground-3 = ${color.red}
 bar-load-indicator = |
 bar-load-indicator-foreground = #ff
 bar-load-fill = ─
 bar-load-empty = ─
-bar-load-empty-foreground = ${color.light-green}
+bar-load-empty-foreground = ${color.shade3}
 ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = ${color.light-green}
+ramp-coreload-0-foreground = ${color.shade7}
 ramp-coreload-1 = ▂
-ramp-coreload-1-foreground = ${color.green}
+ramp-coreload-1-foreground = ${color.shade7}
 ramp-coreload-2 = ▃
-ramp-coreload-2-foreground = ${color.green}
+ramp-coreload-2-foreground = ${color.shade6}
 ramp-coreload-3 = ▄
-ramp-coreload-3-foreground = ${color.yellow}
+ramp-coreload-3-foreground = ${color.shade6}
 ramp-coreload-4 = ▅
 ramp-coreload-4-foreground = ${color.orange}
 ramp-coreload-5 = ▆
@@ -292,7 +295,7 @@ ramp-coreload-7-foreground = ${color.red}
 type = custom/menu
 
 format-padding = 2
-format-background = ${color.shade3}
+format-background = ${color.shade4}
 
 label-open = 󰩈
 label-close = 
@@ -330,15 +333,15 @@ label = 
 label-font = 2
 
 bar-used-width = 15
-bar-used-foreground-0 = ${color.green}
-bar-used-foreground-1 = ${color.yellow}
+bar-used-foreground-0 = ${color.shade7}
+bar-used-foreground-1 = ${color.shade6}
 bar-used-foreground-2 = ${color.orange}
 bar-used-foreground-3 = ${color.red}
 bar-used-indicator = |
 bar-used-indicator-foreground = #ff
 bar-used-fill = ─
 bar-used-empty = ─
-bar-used-empty-foreground = ${color.light-green}
+bar-used-empty-foreground = ${color.shade3}
 
 [module/battery]
 type = internal/battery
@@ -349,11 +352,11 @@ battery = BAT0
 adapter = AC
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-format-charging-background = ${color.shade7}
-format-discharging-background = ${color.shade7}
+format-charging-background = ${color.shade2}
+format-discharging-background = ${color.shade2}
 format-low = <label-low> <animation-low>
 format-low-foreground = ${color.red}
-format-full-background = ${color.shade7}
+format-full-background = ${color.shade2}
 format-charging-padding = 2
 format-discharging-padding = 2
 format-full-padding = 2
@@ -370,9 +373,9 @@ ramp-capacity-0-foreground = ${color.red}
 ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${color.orange}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${color.green}
+ramp-capacity-2-foreground = ${color.shade7}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${color.green}
+ramp-capacity-3-foreground = ${color.shade6}
 ramp-capacity-4 = 
 ramp-capacity-4-foreground = ${color.fg}
 bar-capacity-width = 10
@@ -398,7 +401,7 @@ card = intel_backlight
 enable-scroll = true
 format = <ramp> <label>
 format-padding = 2
-format-background = ${color.shade6}
+format-background = ${color.shade3}
 label = %percentage%%
 ramp-font = 2
 ramp-0 = 󰃞
@@ -429,7 +432,7 @@ interval = 10
 exec = TZ=UTC date +"%H:%M"
 label = 🌍 %output%
 label-padding = 2
-label-background = ${color.shade8}
+label-background = ${color.shade2}
 
 [module/date-jp]
 type = custom/script
@@ -437,7 +440,7 @@ interval = 10
 exec = TZ=Asia/Tokyo date +"%H:%M"
 label = 🇯🇵 %output%
 label-padding = 2
-label-background = ${color.shade8}
+label-background = ${color.shade2}
 
 [module/date-ny]
 type = custom/script
@@ -445,5 +448,5 @@ interval = 10
 exec = TZ=America/New_York date +"%H:%M"
 label = 🇺🇸 %output%
 label-padding = 2
-label-background = ${color.shade8}
+label-background = ${color.shade2}
 ;== EOF ========================================================

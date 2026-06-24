@@ -42,28 +42,28 @@
         src: i3-session.target.j2
         dest: "{{ home }}/.config/systemd/user/i3-session.target"
         mode: "0644"
-    - name: Copy defaults
-      ansible.builtin.copy:
+    - name: Template configuration files
+      ansible.builtin.template:
         src: "{{ item.src }}"
         dest: "{{ home }}/{{ item.dst }}"
-        force: false
         mode: "0644"
       with_items:
-        - { src: kitty_default_theme.conf, dst: .config/kitty/current-theme.conf }
+        - { src: kitty_default_theme.conf.j2, dst: .config/kitty/current-theme.conf }
+        - { src: i3.j2, dst: .config/i3/config }
+        - { src: compton.conf.j2, dst: .config/picom.conf }
+        - { src: kitty.conf.j2, dst: .config/kitty/kitty.conf }
+        - { src: polybar.ini.j2, dst: .config/polybar/config.ini }
+      notify: Activate xres
     - name: Copy additionnal configuration files
       ansible.builtin.copy:
         src: "{{ item.src }}"
         dest: "{{ home }}/{{ item.dst }}"
         mode: "0644"
       with_items:
-        - { src: i3, dst: .config/i3/config }
         - { src: dunstrc, dst: .config/dunst/dunstrc }
-        - { src: compton.conf, dst: .config/picom.conf }
         - { src: kitty-ssh-bashrc, dst: .sshbashrc }
-        - { src: kitty.conf, dst: .config/kitty/kitty.conf }
         - { src: kitty-ssh.conf, dst: .config/kitty/ssh.conf }
         - { src: rofi.rasi, dst: .config/rofi/config.rasi }
-        - { src: polybar.ini, dst: .config/polybar/config.ini }
         - { src: redshift.conf, dst: .config/redshift.conf }
         - { src: xresources, dst: .Xresources }
         - { src: kittyaliases, dst: .aliases/10kitty }

@@ -4,6 +4,66 @@ common_ui_fonts_versions:
   nerdfonts: v3.2.1 # Old version only works with polybar for now?
   fira: "6.2"
   noto: v2.014
+common_ui_color_palette:
+  # Core blue surfaces and focus colors used by i3, polybar, kitty tabs, and the lock screen.
+  blue:
+    background: "#002028"
+    surface: "#073642"
+    surface_alt: "#0A4555"
+    dark: "#1565C0"
+    base: "#1E88E5"
+    focus: "#42A5F5"
+    focus_alt: "#64B5F6"
+    focus_light: "#90CAF9"
+    light: "#039BE5"
+  # Text and quiet neutral colors used for foreground, muted labels, and secondary UI states.
+  neutral:
+    text: "#F6FBFF"
+    muted: "#93A1A1"
+    soft: "#D6EAF8"
+    grey: "#757575"
+    blue_gray: "#546E7A"
+  # Non-status accent colors used for mode indicators, app labels, and optional decorative states.
+  accent:
+    mode: "#E60053"
+    pink: "#D81B60"
+    purple: "#8E24AA"
+    deep_purple: "#5E35B1"
+    indigo: "#3949AB"
+    cyan: "#00ACC1"
+    teal: "#00897B"
+    brown: "#6D4C41"
+  # Semantic state colors used for urgent windows, battery, CPU, memory, and filesystem ramps.
+  status:
+    red: "#E53935"
+    red_urgent: "#EF5350"
+    green: "#43A047"
+    light_green: "#7CB342"
+    lime: "#C0CA33"
+    yellow: "#FDD835"
+    amber: "#FFB300"
+    orange: "#FB8C00"
+    deep_orange: "#F4511E"
+  # ANSI terminal colors for the generated kitty current-theme.conf.
+  terminal:
+    foreground: "#D6EAF8"
+    red: "#DC322F"
+    green: "#859900"
+    yellow: "#B58900"
+    magenta: "#D33682"
+    cyan: "#2AA198"
+    white: "#C6D8E0"
+    orange: "#CB4B16"
+    muted_green: "#586E75"
+    muted_yellow: "#657B83"
+    violet: "#6C71C4"
+    bright_white: "#DDEAF0"
+  # Picom/compton shadow tint and opacity; RGB channels are normalized floats.
+  shadow:
+    opacity: 0.35
+    red: 0.00
+    green: 0.07
+    blue: 0.10
 common_ui_autostart:
   - nm-applet
   - blueman-applet
