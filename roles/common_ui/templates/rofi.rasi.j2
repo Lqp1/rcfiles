@@ -1,0 +1,168 @@
+configuration {
+    show-icons: true;
+    font:       "Noto Sans Medium 12";
+}
+
+* {
+    background:                  {{ common_ui_color_palette.blue.background }};
+    lightbg:                     {{ common_ui_color_palette.blue.surface_alt }};
+    lightfg:                     {{ common_ui_color_palette.blue.surface }};
+    foreground:                  {{ common_ui_color_palette.neutral.muted }};
+    separatorcolor:              {{ common_ui_color_palette.neutral.muted }};
+    blue:                        {{ common_ui_color_palette.blue.focus }};
+    red:                         {{ common_ui_color_palette.status.red }};
+
+    background-color:            var(background);
+    border-color:                var(separatorcolor);
+
+    normal-background:           var(lightfg);
+    normal-foreground:           var(foreground);
+
+    alternate-normal-background: var(lightbg);
+    alternate-normal-foreground: var(foreground);
+
+    selected-normal-background:  var(blue);
+    selected-normal-foreground:  var(background);
+
+    urgent-background:           var(red);
+    urgent-foreground:           var(foreground);
+    selected-urgent-background:  var(red);
+    selected-urgent-foreground:  var(background);
+    alternate-urgent-background: var(red);
+    alternate-urgent-foreground: var(foreground);
+
+    active-background:           var(blue);
+    active-foreground:           var(foreground);
+    selected-active-background:  var(blue);
+    selected-active-foreground:  var(background);
+    alternate-active-background: var(blue);
+    alternate-active-foreground: var(foreground);
+}
+
+window {
+    background-color: var(background);
+    border-radius:    8;
+    border:           0;
+    width:            50%;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+inputbar {
+    background-color: var(background);
+    text-color:       var(foreground);
+    spacing:          2;
+    padding:          12;
+    children:         [ "prompt", "entry", "case-indicator" ];
+}
+
+entry {
+    text-color: var(foreground);
+}
+
+prompt {
+    text-color: var(foreground);
+}
+
+case-indicator {
+    text-color: var(separatorcolor);
+}
+
+listview {
+    background-color: var(background);
+    border:           0;
+    padding:          4;
+    spacing:          2;
+    layout:           vertical;
+    dynamic:          true;
+    cycle:            true;
+}
+
+element {
+    background-color: transparent;
+    text-color:       var(foreground);
+    padding:          6px 12px;
+    border-radius:    4;
+    border:           0;
+}
+
+element normal.normal {
+    background-color: var(normal-background);
+    text-color:       var(normal-foreground);
+}
+
+element selected {
+    background-color: var(blue);
+    text-color:       var(background);
+}
+
+element selected.normal {
+    background-color: var(selected-normal-background);
+    text-color:       var(selected-normal-foreground);
+}
+
+element selected.urgent {
+    background-color: var(selected-urgent-background);
+    text-color:       var(selected-urgent-foreground);
+}
+
+element selected.active {
+    background-color: var(selected-active-background);
+    text-color:       var(selected-active-foreground);
+}
+
+element alternate {
+    background-color: var(lightbg);
+}
+
+element alternate.normal {
+    background-color: var(alternate-normal-background);
+    text-color:       var(alternate-normal-foreground);
+}
+
+element urgent {
+    background-color: var(red);
+    text-color:       var(foreground);
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+}
+
+element-icon {
+    background-color: transparent;
+    text-color:       inherit;
+}
+
+scrollbar {
+    handle-color: var(blue);
+    handle-width: 4;
+}
+
+button {
+    background-color: var(lightbg);
+    text-color:       var(foreground);
+}
+
+button selected {
+    background-color: var(blue);
+    text-color:       var(background);
+}
+
+mode-switcher {
+    background-color: var(lightbg);
+    spacing:          2;
+    padding:          6;
+}
+
+message {
+    background-color: var(lightbg);
+    text-color:       var(foreground);
+    border:           0;
+}

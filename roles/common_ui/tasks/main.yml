@@ -53,6 +53,8 @@
         - { src: compton.conf.j2, dst: .config/picom.conf }
         - { src: kitty.conf.j2, dst: .config/kitty/kitty.conf }
         - { src: polybar.ini.j2, dst: .config/polybar/config.ini }
+        - { src: dunstrc.j2, dst: .config/dunst/dunstrc }
+        - { src: rofi.rasi.j2, dst: .config/rofi/config.rasi }
       notify: Activate xres
     - name: Copy additionnal configuration files
       ansible.builtin.copy:
@@ -60,10 +62,8 @@
         dest: "{{ home }}/{{ item.dst }}"
         mode: "0644"
       with_items:
-        - { src: dunstrc, dst: .config/dunst/dunstrc }
         - { src: kitty-ssh-bashrc, dst: .sshbashrc }
         - { src: kitty-ssh.conf, dst: .config/kitty/ssh.conf }
-        - { src: rofi.rasi, dst: .config/rofi/config.rasi }
         - { src: redshift.conf, dst: .config/redshift.conf }
         - { src: xresources, dst: .Xresources }
         - { src: kittyaliases, dst: .aliases/10kitty }
