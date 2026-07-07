@@ -74,9 +74,9 @@ common_ui_gtk_config:
   - key: gtk-key-theme-name
     value: Emacs
   - key: gtk-icon-theme-name
-    value: Arc
+    value: Papirus-Dark
   - key: gtk-theme-name
-    value: Arc
+    value: Arc-Dark
   - key: gtk-font-name
     value: Noto Sans 12
   - key: gtk-cursor-theme-name
