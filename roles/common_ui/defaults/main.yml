@@ -70,6 +70,7 @@ common_ui_autostart:
   - dunst
   - xfce4-clipman
   - picom
+  - hp-systray
 common_ui_gtk_config:
   - key: gtk-key-theme-name
     value: Emacs
