@@ -176,7 +176,7 @@ mode "power" {
         # reboot
         bindsym b exec systemctl reboot
         # sleep
-        bindsym s exec systemctl suspend
+        bindsym s mode "default"; exec systemctl suspend
         # lock
         bindsym x mode "default"; exec loginctl lock-session
         # reload the configuration file
