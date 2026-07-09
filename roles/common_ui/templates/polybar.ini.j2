@@ -411,7 +411,7 @@ ramp-2 = 󰃠
 [module/netstate]
 type = custom/script
 format-padding = 2
-exec = sh -c 's=$(nmcli networking connectivity check 2>/dev/null | tail -n1); case "$s" in full) echo "%{F#43A047}online%{F-}";; portal) echo "%{F#FDD835}portal%{F-}";; limited) echo "%{F#E53935}limited%{F-}";; none) echo "%{F#757575}offline%{F-}";; *) echo "%{F#8E24AA}unknown%{F-}";; esac'
+exec = sh -c 's=$(nmcli networking connectivity 2>/dev/null | tail -n1); case "$s" in full) echo "%{F#43A047}online%{F-}";; portal) echo "%{F#FDD835}portal%{F-}";; limited) echo "%{F#E53935}limited%{F-}";; none) echo "%{F#757575}offline%{F-}";; *) echo "%{F#8E24AA}unknown%{F-}";; esac'
 interval = 5
 label = 󰌘 %output%
 
