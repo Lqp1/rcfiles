@@ -149,6 +149,12 @@
         line: "#!/usr/bin/env bash"
         path: "{{ home }}/.config/i3/autostart.sh"
         mode: "0755"
+    - name: Add snixembed
+      ansible.builtin.lineinfile:
+        line: "snixembed --fork"
+        path: "{{ home }}/.config/i3/autostart.sh"
+        mode: "0755"
+        insertafter: "#!.*"
     - name: Add autostart programs
       ansible.builtin.lineinfile:
         line: "{{ item }} &"
