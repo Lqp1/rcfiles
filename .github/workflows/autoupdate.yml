@@ -36,7 +36,7 @@ jobs:
           git checkout -b auto-update-versions
 
           # 3. Run script to check and modify versions
-          python3 detect_bumps.py --write
+          python3 scripts/detect_bumps.py --write
 
           # 4. Check if files were modified
           if [ -n "$(git status --porcelain)" ]; then
