@@ -9,7 +9,6 @@ This repository contains 4 Ansible roles:
 * gentoo: will install some useful gentoo tools and setup local repository
 * common: will install/configure command line tools
   - FZF
-  - Spacemacs
   - Oh-My-ZSH and plugins
   - Screen, VIM, Bash, ZSH
   - Some aliases
@@ -49,7 +48,7 @@ echo -e "@personal\n@personalLaptop\n@personalX11\n" | sudo tee -a /var/lib/port
 ```
 
 __NOTE__ : When running with `minimal:true` the script installs a minimal and lighter version,
-without oh my zsh, fzf, splamoji, and spacemacs and no UI config
+without oh my zsh, fzf, splamoji, and no UI config
 
 # Screenshots
 

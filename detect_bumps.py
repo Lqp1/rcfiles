@@ -16,6 +16,16 @@ COLOR_RESET = "\033[0m"
 
 DEFINITIONS = [
     {
+        "name": "zsh-autoenv",
+        "file": "roles/common/defaults/main.yml",
+        "repo": "Tarrasch/zsh-autoenv",
+        "fetch_type": "commit",
+        "branch": "master",
+        "extract": r"common_zsh_autoenv_version:\s*([a-f0-9]{40})",
+        "replace": lambda line, old, new: line.replace(f"common_zsh_autoenv_version: {old}", f"common_zsh_autoenv_version: {new}"),
+        "format_tag": lambda t, cur: t
+    },
+    {
         "name": "eza",
         "file": "roles/common/defaults/main.yml",
         "repo": "eza-community/eza",
@@ -82,13 +92,15 @@ DEFINITIONS = [
     }
 ]
 
-def fetch_latest_version(repo, tag_prefix=None):
+def fetch_latest_version(repo, tag_prefix=None, fetch_type="release", branch="master"):
     headers = {"User-Agent": "Mozilla/5.0"}
     token = os.environ.get("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = f"token {token}"
 
-    if tag_prefix:
+    if fetch_type == "commit":
+        url = f"https://api.github.com/repos/{repo}/commits/{branch}"
+    elif tag_prefix:
         url = f"https://api.github.com/repos/{repo}/releases?per_page=50"
     else:
         url = f"https://api.github.com/repos/{repo}/releases/latest"
@@ -97,7 +109,9 @@ def fetch_latest_version(repo, tag_prefix=None):
     try:
         with urllib.request.urlopen(req) as response:
             data = json.loads(response.read().decode())
-            if tag_prefix:
+            if fetch_type == "commit":
+                return data.get("sha")
+            elif tag_prefix:
                 for release in data:
                     tag = release.get("tag_name", "")
                     if tag.startswith(tag_prefix):
@@ -144,9 +158,9 @@ def main():
         print(f"Checking {COLOR_CYAN}{df['name']}{COLOR_RESET} (current: {current_ver})...", end="", flush=True)
 
         try:
-            latest_tag = fetch_latest_version(df["repo"], df.get("tag_prefix"))
+            latest_tag = fetch_latest_version(df["repo"], df.get("tag_prefix"), df.get("fetch_type", "release"), df.get("branch", "master"))
             if not latest_tag:
-                print(f" {COLOR_RED}Failed (no matching tag found on GitHub){COLOR_RESET}")
+                print(f" {COLOR_RED}Failed (no matching tag/commit found on GitHub){COLOR_RESET}")
                 continue
 
             latest_ver = df["format_tag"](latest_tag, current_ver)

@@ -1,5 +1,6 @@
 ---
 common_eza_version: 0.21.3
+common_zsh_autoenv_version: f5951dd0cfeb37eb18fd62e14edc902a2c308c1e
 common_eza_theme: https://raw.githubusercontent.com/eza-community/eza-themes/refs/heads/main/themes/gruvbox-dark.yml
 common_ls_cmd: eza --git --icons --hyperlink -F
 
