@@ -73,22 +73,6 @@ DEFINITIONS = [
         "extract": r"https://github\.com/BlueM/cliclick/releases/download/([^/]+)/cliclick\.zip",
         "replace": lambda line, old, new: line.replace(f"download/{old}", f"download/{new}"),
         "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t
-    },
-    {
-        "name": "git-delta",
-        "file": "roles/debian/tasks/main.yml",
-        "repo": "dandavison/delta",
-        "extract": r"https://github\.com/dandavison/delta/releases/download/([^/]+)/git-delta_.*\.deb",
-        "replace": lambda line, old, new: line.replace(f"download/{old}", f"download/{new}").replace(f"git-delta_{old}", f"git-delta_{new}"),
-        "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t
-    },
-    {
-        "name": "vgrep",
-        "file": "roles/debian_user/tasks/main.yml",
-        "repo": "vrothberg/vgrep",
-        "extract": r"https://github\.com/vrothberg/vgrep/releases/download/([^/]+)/vgrep_.*",
-        "replace": lambda line, old, new: line.replace(f"download/{old}", f"download/{new}").replace(f"vgrep_{old.lstrip('v')}", f"vgrep_{new.lstrip('v')}"),
-        "format_tag": lambda t, cur: t if cur.startswith("v") else t.lstrip("v")
     }
 ]
 

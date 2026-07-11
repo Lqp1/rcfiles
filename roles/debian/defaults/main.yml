@@ -1,4 +1,5 @@
 ---
+debian_git_delta_version: 0.18.0
 debian_packages:
   # - "cronie"
   # - "lazygit"
