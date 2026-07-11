@@ -1,0 +1,12 @@
+---
+- name: Ensure Antigravity CLI config directory exists
+  ansible.builtin.file:
+    path: "~/.gemini/antigravity-cli"
+    state: directory
+    mode: "0700"
+
+- name: Configure Antigravity CLI global settings
+  ansible.builtin.template:
+    src: settings.json.j2
+    dest: "~/.gemini/antigravity-cli/settings.json"
+    mode: "0600"

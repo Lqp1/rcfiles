@@ -1,0 +1,7 @@
+---
+ai_enable_terminal_sandbox: true
+ai_tool_permission: "request-review"
+ai_non_workspace_file_access: "ask"
+ai_internet_access_policy: "ask"
+ai_artifact_review_mode: "asks-for-review"
+ai_color_scheme: "solarized dark"
