@@ -17,17 +17,24 @@
   ansible.builtin.git:
     repo: https://github.com/junegunn/fzf.git
     dest: "{{ home }}/.fzf"
-  when: not minimal|bool
+  when: (not minimal|bool) and (ansible_facts['os_family'] != "NixOS")
 - name: Install FZF
   ansible.builtin.command: "{{ home }}/.fzf/install --bin"
-  when: not minimal|bool
+  when: (not minimal|bool) and (ansible_facts['os_family'] != "NixOS")
   changed_when: true
-- name: Clone Spacemacs from github
-  ansible.builtin.git:
-    repo: https://github.com/syl20bnr/spacemacs
-    dest: "{{ home }}/.emacs.d"
-    version: master
-  when: not minimal|bool
+- name: Remove stale FZF directory on NixOS
+  ansible.builtin.file:
+    path: "{{ home }}/.fzf"
+    state: absent
+  when: ansible_facts['os_family'] == "NixOS"
+- name: Remove deprecated Spacemacs
+  ansible.builtin.file:
+    path: "{{ home }}/.emacs.d"
+    state: absent
+- name: Remove deprecated zsh-interactive-cd
+  ansible.builtin.file:
+    path: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
+    state: absent
 - name: Clone Oh My ZSH from github
   ansible.builtin.git:
     repo: https://github.com/robbyrussell/oh-my-zsh
@@ -43,15 +50,11 @@
     repo: https://github.com/zsh-users/zsh-syntax-highlighting
     dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
   when: not minimal|bool
-- name: Clone FZF interactive CD plugin from github
-  ansible.builtin.git:
-    repo: https://github.com/changyuheng/zsh-interactive-cd
-    dest: "{{ home }}/.oh-my-zsh/custom/plugins/zsh-interactive-cd"
-  when: not minimal|bool
 - name: Clone zsh-autoenv plugin from github
   ansible.builtin.git:
     repo: https://github.com/Tarrasch/zsh-autoenv
     dest: "{{ home }}/.oh-my-zsh/custom/plugins/autoenv"
+    version: "{{ common_zsh_autoenv_version }}"
   when: not minimal|bool
 - name: Add FZF-man plugin
   ansible.builtin.copy:
@@ -96,7 +99,6 @@
     - { src: ripgreprc, dst: .ripgreprc }
     - { src: profile, dst: .profile }
     - { src: zshenv, dst: .zshenv }
-    - { src: spacemacs, dst: .spacemacs }
     - { src: bash_aliases, dst: .bash_aliases }
     - { src: vgrep, dst: .aliases/10vgrep }
     - { src: bat, dst: .aliases/11bat }
@@ -147,7 +149,7 @@
   ansible.builtin.replace:
     dest: "{{ home }}/.zshrc"
     regexp: plugins=.*
-    replace: plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j zsh-interactive-cd autoenv)
+    replace: plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j autoenv)
   when: not minimal|bool
 - name: Add waiting dots
   ansible.builtin.replace:
