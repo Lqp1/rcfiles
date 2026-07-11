@@ -152,7 +152,7 @@
   ansible.builtin.replace:
     dest: "{{ home }}/.zshrc"
     regexp: plugins=.*
-    replace: plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j autoenv)
+    replace: plugins=(zsh-syntax-highlighting zsh-autosuggestions colored-man-pages autojump fzf fzf-man fzf-j zsh-interactive-cd autoenv)
   when: not minimal|bool
 - name: Add waiting dots
   ansible.builtin.replace:
