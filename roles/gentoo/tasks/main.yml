@@ -118,8 +118,8 @@
   ansible.builtin.lineinfile:
     path: /etc/portage/make.conf
     regexp: EMERGE_DEFAULT_OPTS=.*
-    line: EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build --jobs=4
-      --load-average=4 --getbinpkg"
+    line: EMERGE_DEFAULT_OPTS="--ask-enter-invalid --binpkg-changed-deps=y --binpkg-respect-use=y --read-news --oneshot --verbose-conflicts --quiet-build
+      --jobs=4 --load-average=4 --getbinpkg"
 - name: Ensure portage niceness
   ansible.builtin.lineinfile:
     path: /etc/portage/make.conf

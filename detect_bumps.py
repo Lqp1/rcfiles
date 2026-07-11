@@ -26,6 +26,36 @@ DEFINITIONS = [
         "format_tag": lambda t, cur: t
     },
     {
+        "name": "ohmyzsh",
+        "file": "roles/common/defaults/main.yml",
+        "repo": "ohmyzsh/ohmyzsh",
+        "fetch_type": "commit",
+        "branch": "master",
+        "extract": r"common_ohmyzsh_version:\s*([a-f0-9]{40})",
+        "replace": lambda line, old, new: line.replace(f"common_ohmyzsh_version: {old}", f"common_ohmyzsh_version: {new}"),
+        "format_tag": lambda t, cur: t
+    },
+    {
+        "name": "zsh-autosuggestions",
+        "file": "roles/common/defaults/main.yml",
+        "repo": "zsh-users/zsh-autosuggestions",
+        "fetch_type": "commit",
+        "branch": "master",
+        "extract": r"common_zsh_autosuggestions_version:\s*([a-f0-9]{40})",
+        "replace": lambda line, old, new: line.replace(f"common_zsh_autosuggestions_version: {old}", f"common_zsh_autosuggestions_version: {new}"),
+        "format_tag": lambda t, cur: t
+    },
+    {
+        "name": "zsh-syntax-highlighting",
+        "file": "roles/common/defaults/main.yml",
+        "repo": "zsh-users/zsh-syntax-highlighting",
+        "fetch_type": "commit",
+        "branch": "master",
+        "extract": r"common_zsh_syntax_highlighting_version:\s*([a-f0-9]{40})",
+        "replace": lambda line, old, new: line.replace(f"common_zsh_syntax_highlighting_version: {old}", f"common_zsh_syntax_highlighting_version: {new}"),
+        "format_tag": lambda t, cur: t
+    },
+    {
         "name": "eza",
         "file": "roles/common/defaults/main.yml",
         "repo": "eza-community/eza",

@@ -24,4 +24,3 @@
       ansible.builtin.include_role:
         name: gentoo_user
       when: ansible_facts['distribution'] == 'Gentoo'
-

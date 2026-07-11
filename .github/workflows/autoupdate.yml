@@ -43,13 +43,13 @@ jobs:
             echo "Changes detected, committing and pushing..."
             git add .
             git commit -m "chore: auto-bump hardcoded versions"
-            
+
             # Push using token authentication
             git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" auto-update-versions
 
             # Check if a Pull Request already exists for this branch
             PR_EXISTS=$(gh pr list --head auto-update-versions --json number --jq '.[0].number' 2>/dev/null || true)
-            
+
             if [ -z "$PR_EXISTS" ]; then
               echo "Creating new Pull Request..."
               gh pr create \
@@ -63,4 +63,3 @@ jobs:
           else
             echo "No changes detected. Everything is up to date."
           fi
-
