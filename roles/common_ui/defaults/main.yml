@@ -4,6 +4,11 @@ common_ui_fonts_versions:
   nerdfonts: v3.4.0 # Old version only works with polybar for now?
   fira: "6.2"
   noto: v2.014
+common_ui_fonts_checksums:
+  emoji: 72a635cb3d2f3524c51620cdde406b217204e8a6a06c6a096ff8ed4b5fd6e27b
+  nerdfonts: ad88c69cb6a497db9f2714e4b414817aabbee621484a1560bfdb3fd73abdd564
+  fira: 0949915ba8eb24d89fd93d10a7ff623f42830d7c5ffc3ecbf960e4ecad3e3e79
+  noto: 090cf6c5e03f337a755630ca888b1fef463e64ae7b33ee134e9309c05f978732
 common_ui_color_palette:
   # Core blue surfaces and focus colors used by i3, polybar, kitty tabs, and the lock screen.
   blue:

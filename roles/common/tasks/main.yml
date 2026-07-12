@@ -247,6 +247,7 @@
   ansible.builtin.get_url:
     url: "https://github.com/BlueM/cliclick/releases/download/5.1/cliclick.zip"
     dest: "/tmp/cliclick-{{ user }}.zip"
+    checksum: "sha256:710910fd2dade6a3b5889594bfc019e7d4c2beee09fd777503e71ea82acc91bc"
     mode: "0644"
   when: (not minimal|bool) and ansible_facts['system'] == "Darwin"
 - name: Unarchive cliclick
