@@ -14,9 +14,6 @@
         dest: ~/.profile.d/20nix
         mode: "0644"
 
-    - name: Update channels
-      ansible.builtin.command: nix-channel --update
-      changed_when: true
     - name: Create local app directory
       ansible.builtin.file:
         path: ~/.local/share/applications/
