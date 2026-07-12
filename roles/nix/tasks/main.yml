@@ -14,12 +14,6 @@
         dest: ~/.profile.d/20nix
         mode: "0644"
 
-    - name: Create local app directory
-      ansible.builtin.file:
-        path: ~/.local/share/applications/
-        state: directory
-        mode: "0755"
-
     - name: Remove stale nix release script
       ansible.builtin.file:
         path: ~/bin/haz-nix-release
