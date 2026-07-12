@@ -1,6 +1,0 @@
----
-- name: "Download vgrep from gitub"
-  ansible.builtin.get_url:
-    dest: "~/bin/vgrep"
-    mode: "0755"
-    url: "https://github.com/vrothberg/vgrep/releases/download/v{{ debian_user_vgrep_version }}/vgrep_{{ debian_user_vgrep_version }}_Linux_x86_64"
