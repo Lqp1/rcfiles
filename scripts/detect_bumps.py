@@ -5,6 +5,7 @@ import os
 import re
 import urllib.request
 import urllib.error
+import hashlib
 
 # ANSI colors for nice terminal output
 COLOR_GREEN = "\033[92m"
@@ -69,7 +70,10 @@ DEFINITIONS = [
         "repo": "googlefonts/noto-emoji",
         "extract": r"emoji:\s*([v\d\.]+)",
         "replace": lambda line, old, new: line.replace(f"emoji: {old}", f"emoji: {new}"),
-        "format_tag": lambda t, cur: t if cur.startswith("v") else t.lstrip("v")
+        "format_tag": lambda t, cur: t if cur.startswith("v") else t.lstrip("v"),
+        "hash_url": lambda new_ver: f"https://github.com/googlefonts/noto-emoji/raw/{new_ver}/fonts/NotoColorEmoji.ttf",
+        "hash_extract": r"emoji:\s*([a-f0-9]{64})",
+        "hash_replace": lambda line, old, new: line.replace(f"emoji: {old}", f"emoji: {new}"),
     },
     {
         "name": "nerd-fonts",
@@ -77,7 +81,10 @@ DEFINITIONS = [
         "repo": "ryanoasis/nerd-fonts",
         "extract": r"nerdfonts:\s*([v\d\.]+)",
         "replace": lambda line, old, new: line.replace(f"nerdfonts: {old}", f"nerdfonts: {new}"),
-        "format_tag": lambda t, cur: t if cur.startswith("v") else t.lstrip("v")
+        "format_tag": lambda t, cur: t if cur.startswith("v") else t.lstrip("v"),
+        "hash_url": lambda new_ver: f"https://github.com/ryanoasis/nerd-fonts/raw/{new_ver}/patched-fonts/FiraCode/Regular/FiraCodeNerdFontMono-Regular.ttf",
+        "hash_extract": r"nerdfonts:\s*([a-f0-9]{64})",
+        "hash_replace": lambda line, old, new: line.replace(f"nerdfonts: {old}", f"nerdfonts: {new}"),
     },
     {
         "name": "FiraCode",
@@ -85,7 +92,10 @@ DEFINITIONS = [
         "repo": "tonsky/FiraCode",
         "extract": r'fira:\s*["\']?([v\d\.]+)["\']?',
         "replace": lambda line, old, new: line.replace(f"fira: \"{old}\"", f"fira: \"{new}\"").replace(f"fira: '{old}'", f"fira: '{new}'").replace(f"fira: {old}", f"fira: {new}"),
-        "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t
+        "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t,
+        "hash_url": lambda new_ver: f"https://github.com/tonsky/FiraCode/releases/download/{new_ver}/Fira_Code_v{new_ver}.zip",
+        "hash_extract": r"fira:\s*([a-f0-9]{64})",
+        "hash_replace": lambda line, old, new: line.replace(f"fira: {old}", f"fira: {new}"),
     },
     {
         "name": "latin-greek-cyrillic (noto)",
@@ -94,7 +104,10 @@ DEFINITIONS = [
         "extract": r"noto:\s*([v\d\.]+)",
         "replace": lambda line, old, new: line.replace(f"noto: {old}", f"noto: {new}"),
         "tag_prefix": "NotoSansMono-",
-        "format_tag": lambda t, cur: t.replace("NotoSansMono-", "")
+        "format_tag": lambda t, cur: t.replace("NotoSansMono-", ""),
+        "hash_url": lambda new_ver: f"https://github.com/notofonts/latin-greek-cyrillic/releases/download/NotoSansMono-{new_ver}/NotoSansMono-{new_ver}.zip",
+        "hash_extract": r"noto:\s*([a-f0-9]{64})",
+        "hash_replace": lambda line, old, new: line.replace(f"noto: {old}", f"noto: {new}"),
     },
     {
         "name": "cliclick",
@@ -102,7 +115,10 @@ DEFINITIONS = [
         "repo": "BlueM/cliclick",
         "extract": r"https://github\.com/BlueM/cliclick/releases/download/([^/]+)/cliclick\.zip",
         "replace": lambda line, old, new: line.replace(f"download/{old}", f"download/{new}"),
-        "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t
+        "format_tag": lambda t, cur: t.lstrip("v") if not cur.startswith("v") else t,
+        "hash_url": lambda new_ver: f"https://github.com/BlueM/cliclick/releases/download/{new_ver}/cliclick.zip",
+        "hash_extract": r"checksum:\s*\"sha256:([a-f0-9]{64})\"",
+        "hash_replace": lambda line, old, new: line.replace(f"sha256:{old}", f"sha256:{new}"),
     }
 ]
 
@@ -141,12 +157,23 @@ def fetch_latest_version(repo, tag_prefix=None, fetch_type="release", branch="ma
     except Exception as e:
         raise RuntimeError(f"Network error: {e}")
 
+def fetch_hash(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(req) as response:
+            hasher = hashlib.sha256()
+            while chunk := response.read(8192):
+                hasher.update(chunk)
+            return hasher.hexdigest()
+    except Exception as e:
+        raise RuntimeError(f"Hash fetch error: {e}")
+
 def main():
     parser = argparse.ArgumentParser(description="Detect and bump hardcoded versions in the repository.")
     parser.add_argument("--write", action="store_true", help="Write changes to files in place.")
     args = parser.parse_args()
 
-    repo_root = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     results = []
     any_outdated = False
@@ -168,6 +195,15 @@ def main():
             continue
 
         current_ver = match.group(1)
+        
+        current_hash = None
+        if "hash_extract" in df:
+            h_match = re.search(df["hash_extract"], content)
+            if h_match:
+                current_hash = h_match.group(1)
+            else:
+                print(f"{COLOR_RED}Could not extract hash for '{df['name']}' in {df['file']}{COLOR_RESET}")
+                continue
 
         print(f"Checking {COLOR_CYAN}{df['name']}{COLOR_RESET} (current: {current_ver})...", end="", flush=True)
 
@@ -179,10 +215,15 @@ def main():
 
             latest_ver = df["format_tag"](latest_tag, current_ver)
             is_outdated = current_ver != latest_ver
+            latest_hash = None
 
             if is_outdated:
                 any_outdated = True
-                print(f" {COLOR_YELLOW}Outdated! Latest is {latest_ver}{COLOR_RESET}")
+                print(f" {COLOR_YELLOW}Outdated! Latest is {latest_ver}{COLOR_RESET}", end="", flush=True)
+                if "hash_url" in df:
+                    print(f" {COLOR_CYAN}(Fetching hash...){COLOR_RESET}", end="", flush=True)
+                    latest_hash = fetch_hash(df["hash_url"](latest_ver))
+                print()
             else:
                 print(f" {COLOR_GREEN}Up-to-date ({latest_ver}){COLOR_RESET}")
 
@@ -191,7 +232,9 @@ def main():
                 "file_path": file_path,
                 "current": current_ver,
                 "latest": latest_ver,
-                "is_outdated": is_outdated
+                "is_outdated": is_outdated,
+                "current_hash": current_hash,
+                "latest_hash": latest_hash
             })
 
         except Exception as e:
@@ -225,13 +268,21 @@ def main():
             # Split into lines to replace precisely to keep comments intact
             lines = content.splitlines()
             pattern = re.compile(df["extract"])
+            hash_pattern = re.compile(df["hash_extract"]) if "hash_extract" in df else None
+            
             new_lines = []
             updated = False
+            hash_updated = False
+            
             for line in lines:
                 if pattern.search(line):
                     new_line = df["replace"](line, res["current"], res["latest"])
                     new_lines.append(new_line)
                     updated = True
+                elif hash_pattern and hash_pattern.search(line) and res["latest_hash"] and res["current_hash"]:
+                    new_line = df["hash_replace"](line, res["current_hash"], res["latest_hash"])
+                    new_lines.append(new_line)
+                    hash_updated = True
                 else:
                     new_lines.append(line)
 
@@ -240,6 +291,11 @@ def main():
                 with open(res["file_path"], "w", encoding="utf-8") as f:
                     f.write(new_content)
                 print(f"Updated {COLOR_GREEN}{df['name']}{COLOR_RESET} in {df['file']}: {res['current']} -> {res['latest']}")
+                if "hash_extract" in df:
+                    if hash_updated:
+                        print(f"  └─ Updated hash for {COLOR_GREEN}{df['name']}{COLOR_RESET}: {res['latest_hash'][:8]}...")
+                    else:
+                        print(f"  └─ {COLOR_RED}Failed to write hash for {df['name']} (pattern mismatch){COLOR_RESET}")
             else:
                 print(f"{COLOR_RED}Failed to write update for {df['name']} (pattern mismatch on write){COLOR_RESET}")
 
