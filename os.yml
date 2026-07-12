@@ -7,20 +7,7 @@
       ansible.builtin.include_role:
         name: os
       when: ansible_facts['system'] == 'Linux'
-    - name: Install Gentoo related stuff
-      ansible.builtin.include_role:
-        name: gentoo
-      when: ansible_facts['distribution'] == 'Gentoo'
 
   become: true
   become_user: root
   become_method: ansible.builtin.sudo
-- name: OS specific deployment - user
-  hosts: localhost
-  connection: local
-  vars_files: host_vars/vault.yml
-  tasks:
-    - name: Install gentoo user stuff
-      ansible.builtin.include_role:
-        name: gentoo_user
-      when: ansible_facts['distribution'] == 'Gentoo'
