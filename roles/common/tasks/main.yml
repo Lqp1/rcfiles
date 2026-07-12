@@ -13,20 +13,10 @@
     dest: "{{ home }}/.config/nvim"
     version: main
   when: not minimal|bool
-- name: Clone FZF
-  ansible.builtin.git:
-    repo: https://github.com/junegunn/fzf.git
-    dest: "{{ home }}/.fzf"
-  when: (not minimal|bool) and (ansible_facts['os_family'] != "NixOS")
-- name: Install FZF
-  ansible.builtin.command: "{{ home }}/.fzf/install --bin"
-  when: (not minimal|bool) and (ansible_facts['os_family'] != "NixOS")
-  changed_when: true
-- name: Remove stale FZF directory on NixOS
+- name: Remove stale FZF directory
   ansible.builtin.file:
     path: "{{ home }}/.fzf"
     state: absent
-  when: ansible_facts['os_family'] == "NixOS"
 - name: Remove deprecated Spacemacs
   ansible.builtin.file:
     path: "{{ home }}/.emacs.d"
@@ -227,18 +217,7 @@
     state: present
     mode: "0644"
   with_items: "{{ common_gitattributes }}"
-- name: Pull eza zip
-  ansible.builtin.get_url:
-    url: "https://github.com/eza-community/eza/releases/download/v{{ common_eza_version }}/eza_{{ facts_arch }}-{{ facts_sys }}.tar.gz"
-    dest: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
-    mode: "0644"
-  when: not minimal|bool and ansible_facts['system'] == "Linux"
-- name: Extract eza into path
-  ansible.builtin.unarchive:
-    dest: "{{ home }}/bin/"
-    include: ./eza
-    src: /tmp/eza-{{ user }}-{{ common_eza_version }}.tar.gz
-  when: (not minimal|bool) and (ansible_facts['os_family'] != "NixOS") and (ansible_facts['system'] == "Linux")
+
 - name: Add eza theme in its config dir
   ansible.builtin.get_url:
     url: "{{ common_eza_theme }}"

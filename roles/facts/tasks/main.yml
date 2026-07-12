@@ -17,10 +17,9 @@
   ansible.builtin.set_fact:
     facts_arch: "{{ 'aarch64' if ansible_facts['architecture'] == 'arm64' else ansible_facts['architecture'] }}"
 
-- name: Force usage of system Python on NixOS & Nix-Darwin
+- name: Force usage of system Python
   ansible.builtin.set_fact:
     ansible_python_interpreter: /run/current-system/sw/bin/python
-  when: ansible_facts['system'] == "Darwin" or ansible_facts['os_family'] == "NixOS"
 
 - name: Write git commit hash marker file
   ansible.builtin.copy:
