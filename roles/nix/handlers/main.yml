@@ -1,4 +1,0 @@
----
-- name: Nix-gc
-  ansible.builtin.command: nix-collect-garbage -d
-  changed_when: true
