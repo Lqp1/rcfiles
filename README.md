@@ -1,5 +1,17 @@
 # rcfiles
 
+> [!IMPORTANT]
+> **This repository is archived.**
+> The contents of this repository have been migrated directly to [lqp1/nix-configs](https://github.com/lqp1/nix-configs).
+
+This repository previously hosted personal dotfiles and system configurations managed via Ansible. All system-wide and user-side configurations (including dotfiles and CLI environment settings) have been unified and rewritten using Nix and Home Manager.
+
+For the latest configurations, please visit [lqp1/nix-configs](https://github.com/lqp1/nix-configs).
+
+---
+
+# Original README (Archived)
+
 My personal, reproducible dotfiles and system configurations managed via Ansible.
 
 This repository is a **user-side complement** to my system-wide configuration. While system-wide packages, services, and core OS configurations are managed entirely by Nix (via NixOS or nix-darwin) in my [nix-configs repository](https://github.com/Lqp1/nix-configs/), *this* repository uses Ansible to automate the deployment of my personal dotfiles, command-line environment, and desktop UI (like i3).
