@@ -25,7 +25,7 @@ if [ "$DRY_RUN" = true ]; then
     echo -e "${YELLOW}*** DRY RUN MODE ENABLED *** (No files will be modified or deleted)${NC}\n"
 else
     echo -e "${YELLOW}This script will remove configuration files and settings added by the rcfiles Ansible playbook.${NC}"
-    echo -e "${YELLOW}Note: Directories will not be deleted (except font directories), only individual files/symlinks.${NC}"
+    echo -e "${YELLOW}Note: Directories will not be deleted (except font and cliclick directories), only individual files/symlinks.${NC}"
     read -p "Are you sure you want to proceed? (y/N) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -124,7 +124,9 @@ safe_remove "$HOME/.config/eza/theme.yml"
 safe_remove "$HOME/.profile.d/10kitty"
 safe_remove "$HOME/.profile.d/20nix"
 safe_remove "$HOME/bin/cliclick"
+safe_remove "$HOME/.local/cliclick" "true"
 safe_remove "/tmp/cliclick-$(whoami).zip"
+safe_remove "$HOME/bin/haz-nix-release"
 
 # 5. Clean up UI configuration files (Window Manager, Bar, Terminals, Aesthetics)
 echo -e "${YELLOW}Cleaning up UI configuration files...${NC}"
