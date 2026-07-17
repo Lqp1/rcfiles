@@ -25,7 +25,7 @@ if [ "$DRY_RUN" = true ]; then
     echo -e "${YELLOW}*** DRY RUN MODE ENABLED *** (No files will be modified or deleted)${NC}\n"
 else
     echo -e "${YELLOW}This script will remove configuration files and settings added by the rcfiles Ansible playbook.${NC}"
-    echo -e "${YELLOW}Note: Directories will not be deleted (except font and cliclick directories), only individual files/symlinks.${NC}"
+    echo -e "${YELLOW}Note: Directories will not be deleted (except font, cliclick, Neovim, and kitty-hintsconfig directories), only individual files/symlinks.${NC}"
     read -p "Are you sure you want to proceed? (y/N) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -94,11 +94,12 @@ safe_remove "$HOME/.zshrc"
 safe_remove "$HOME/.zshenv"
 safe_remove "$HOME/.zprofile"
 
-# 2. Clean up Vim files
-echo -e "${YELLOW}Cleaning up Vim configurations...${NC}"
+# 2. Clean up Vim & Neovim files/directories
+echo -e "${YELLOW}Cleaning up Vim & Neovim configurations...${NC}"
 safe_remove "$HOME/.vimrc"
 safe_remove "$HOME/.vim/colors/solarized.vim"
 safe_remove "$HOME/.vim/autoload/plug.vim"
+safe_remove "$HOME/.config/nvim" "true"
 
 # 3. Clean up other core configuration files
 echo -e "${YELLOW}Cleaning up core configuration files...${NC}"
@@ -134,6 +135,7 @@ safe_remove "$HOME/.config/kitty/current-theme.conf"
 safe_remove "$HOME/.config/i3/config"
 safe_remove "$HOME/.config/picom.conf"
 safe_remove "$HOME/.config/kitty/kitty.conf"
+safe_remove "$HOME/.config/kitty/kitty-hintsconfig" "true"
 safe_remove "$HOME/.config/polybar/config.ini"
 safe_remove "$HOME/.config/dunst/dunstrc"
 safe_remove "$HOME/.config/rofi/config.rasi"
@@ -147,6 +149,7 @@ safe_remove "$HOME/.config/polybar/custom"
 safe_remove "$HOME/.config/i3/autostart.sh"
 safe_remove "$HOME/.gtkrc-2.0"
 safe_remove "$HOME/.config/gtk-3.0/settings.ini"
+safe_remove "$HOME/.config/mimeapps.list"
 
 # macOS Specific Cocoa Keyboard Layout configuration cleanup
 safe_remove "$HOME/Library/KeyBindings/DefaultKeyBinding.dict"
